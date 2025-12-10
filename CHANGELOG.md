@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0] - 2025-12-10
+
+### Added
+- Implemented a UI overlay with a search bar and a slide-out filter menu.
+- Added `react-icons` for UI iconography.
+- Created a `MapContext` to provide a shared Leaflet map instance to React components, improving architecture and scalability.
+- Created a custom, React-based zoom control component that consumes the `MapContext`.
+
+### Changed
+- Refactored map controls to be React-idiomatic, removing the default Leaflet zoom controls.
+- Updated UI element styles (search bar, filter button, zoom controls) to use consistent rounded-square design.
+- Adjusted the position of the filter menu button and the zoom controls to new locations (top-left and bottom-right, respectively).
+- Centered the map on Batam, Indonesia, and restricted map bounds and zoom to that region.
+- Fixed Leaflet marker icon path issues by using the `public` folder method.
+
 ## [1.0.0] - 2025-12-09
 
 ### Added
