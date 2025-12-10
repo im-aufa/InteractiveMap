@@ -11,9 +11,8 @@ type FilterMenuProps = {
 const FilterMenu = ({ isOpen, onClose }: FilterMenuProps) => {
   return (
     <div
-      className={`fixed top-0 right-0 z-[1001] h-full w-80 transform bg-white shadow-2xl transition-transform duration-300 ease-in-out ${
-        isOpen ? 'translate-x-0' : 'translate-x-full'
-      }`}
+      className={`fixed top-0 left-0 z-[1001] h-full w-80 transform bg-white shadow-2xl transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
     >
       <div className="flex items-center justify-between border-b border-zinc-200 p-4">
         <h2 className="text-xl font-semibold">Filters</h2>

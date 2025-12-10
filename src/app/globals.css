@@ -27,7 +27,7 @@ body {
 
 /* Override Leaflet's default link color for links inside popups */
 .leaflet-popup-content a {
-  color: inherit !important;
+  color: white !important;
 }
 
 /* Modern styles for Leaflet zoom controls */
@@ -37,6 +37,6 @@ body {
 
 .leaflet-control-zoom-in,
 .leaflet-control-zoom-out {
-  @apply h-8 w-8 rounded-lg bg-white text-zinc-800 transition-colors;
+  @apply h-8 w-8 rounded-xl bg-white text-zinc-800 shadow-md transition-colors;
   @apply hover:bg-zinc-100 active:bg-zinc-200;
 }

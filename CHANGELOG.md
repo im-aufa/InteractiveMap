@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.1] - 2025-12-10
+
+### Changed
+- Adjusted the border-radius of the search bar, filter button, and zoom controls for a more rounded appearance (`rounded-xl`).
+- Added a semi-transparent background overlay that appears when the filter menu is open.
+
+### Fixed
+- Corrected the slide-out animation direction for the left-positioned filter menu.
+
 ## [1.1.0] - 2025-12-10
 
 ### Added
