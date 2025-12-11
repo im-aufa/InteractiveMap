@@ -39,6 +39,18 @@ export default function ProgramDetailPage() {
 
       <div className="mx-auto max-w-4xl rounded-xl bg-white p-6 shadow-lg md:p-8">
         <h1 className="mb-4 text-4xl font-bold text-zinc-900">{program.name}</h1>
+
+        <div className="mb-6">
+          <a
+            href={`https://www.google.com/maps/search/?api=1&query=${program.location.lat},${program.location.lng}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700"
+          >
+            Get Directions
+          </a>
+        </div>
+
         <p className="mb-6 text-zinc-600">{program.description}</p>
 
         {program.images.length > 0 && (

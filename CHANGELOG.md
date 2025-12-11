@@ -17,6 +17,11 @@ This section documents architectural decisions and potential technical debt to b
 
 All notable changes to this project will be documented in this file.
 
+## [1.9.0] - 2025-12-11
+
+### Added
+- Implemented a "Get Directions" button on the program detail page, which links to Google Maps with the program's coordinates.
+
 ## [1.8.0] - 2025-12-11
 
 ### Added
