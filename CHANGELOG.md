@@ -17,6 +17,12 @@ This section documents architectural decisions and potential technical debt to b
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0] - 2025-12-11
+
+### Added
+- Implemented marker clustering using `react-leaflet-cluster` to improve map performance and usability with a large number of markers. Nearby markers will now group into clusters when zoomed out.
+- Added a new 'Entertainment' category to the custom icon mapping.
+
 ## [1.3.0] - 2025-12-11
 
 ### Added

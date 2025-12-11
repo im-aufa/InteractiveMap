@@ -7,7 +7,8 @@ import CustomPopup from './CustomPopup';
 import { MapContext } from '../context/MapContext';
 import { programs } from '../data/programs'; // Import programs data
 import ReactDOMServer from 'react-dom/server';
-import { Landmark, Mountain, University, GanttChartSquare as CulturalSpot } from 'lucide-react'; // Import Lucide icons
+import MarkerClusterGroup from 'react-leaflet-cluster';
+import { Landmark, Mountain, University, GanttChartSquare as CulturalSpot, Smile } from 'lucide-react'; // Import Lucide icons
 
 // --- Create a mapping for category icons and colors ---
 const categoryIcons = {
@@ -15,6 +16,7 @@ const categoryIcons = {
   'Natural Parks': { icon: Mountain, color: '#22C55E' }, // Green
   'Museums': { icon: University, color: '#F97316' }, // Orange
   'Cultural Spots': { icon: CulturalSpot, color: '#3B82F6' }, // Blue
+  'Entertainment': { icon: Smile, color: '#EF4444' }, // Red
 };
 
 // --- Function to create a divIcon for a category ---
@@ -100,17 +102,19 @@ const Map = ({ selectedCategories, searchQuery }: MapProps) => {
     >
       <TileLayer url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" />
       
-      {filteredPrograms.map((program) => (
-        <Marker 
-          key={program.id} 
-          position={[program.location.lat, program.location.lng]} 
-          icon={getIconForCategory(program.category)}
-        >
-          <Popup>
-            <CustomPopup program={program} />
-          </Popup>
-        </Marker>
-      ))}
+      <MarkerClusterGroup>
+        {filteredPrograms.map((program) => (
+          <Marker 
+            key={program.id} 
+            position={[program.location.lat, program.location.lng]} 
+            icon={getIconForCategory(program.category)}
+          >
+            <Popup>
+              <CustomPopup program={program} />
+            </Popup>
+          </Marker>
+        ))}
+      </MarkerClusterGroup>
 
       {/* This component bridges react-leaflet's context with our custom context */}
       <MapContextProvider />

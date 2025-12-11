@@ -1,6 +1,6 @@
 ### **Project To-Do List & Progress**
 
-**Overall Project Progression: ~65%**
+**Overall Project Progression: ~70%**
 
 ---
 
@@ -18,6 +18,7 @@
 -   [x] **Implement Custom Marker Icons:** Display unique, category-based icons for each map marker.
 -   [x] **Implement Category Filtering:** Enable dynamic filtering of map markers via the filter menu UI.
 -   [x] **Implement Search Functionality:** Add logic to the search bar to filter and pan/zoom to programs.
+-   [x] **Implement Marker Clustering:** Group nearby markers for performance and usability.
 -   [ ] **Add More Filter Options:** Extend filtering to include "Tahun" (Year) and "Status" as defined in the `README`.
 -   [ ] **Implement Marker Hover State:** Provide clear visual feedback when a user hovers over a marker.
 
