@@ -101,12 +101,12 @@ const Map = ({ selectedCategories, searchQuery }: MapProps) => {
       className="h-full w-full"
     >
       <TileLayer url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      
-      <MarkerClusterGroup>
+
+      <MarkerClusterGroup maxClusterRadius={35}>
         {filteredPrograms.map((program) => (
-          <Marker 
-            key={program.id} 
-            position={[program.location.lat, program.location.lng]} 
+          <Marker
+            key={program.id}
+            position={[program.location.lat, program.location.lng]}
             icon={getIconForCategory(program.category)}
           >
             <Popup>
