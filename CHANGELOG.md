@@ -17,6 +17,14 @@ This section documents architectural decisions and potential technical debt to b
 
 All notable changes to this project will be documented in this file.
 
+## [1.8.0] - 2025-12-11
+
+### Added
+- Implemented marker hover state:
+  - Popups now open automatically on `mouseover`.
+  - Popups close automatically on `mouseout`.
+  - Marker icons scale up on hover to provide clear visual feedback.
+
 ## [1.7.0] - 2025-12-11
 
 ### Added

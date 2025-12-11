@@ -29,3 +29,14 @@ body {
 .leaflet-popup-content a {
   color: inherit !important;
 }
+
+/* Add a transition for the custom marker icon */
+.custom-div-icon {
+  transition: transform 0.2s ease-out, z-index 0.2s ease-out;
+}
+
+/* Style for the marker on hover */
+.marker-hover .custom-div-icon {
+  transform: scale(1.15);
+  z-index: 1000 !important; /* Ensure it comes to the front */
+}

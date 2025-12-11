@@ -116,16 +116,25 @@ const Map = ({ selectedCategories, selectedYears, selectedStatuses, searchQuery 
       
       <MarkerClusterGroup maxClusterRadius={120}> {/* Corrected maxClusterRadius */}
         {filteredPrograms.map((program) => (
-          <Marker 
-            key={program.id} 
-            position={[program.location.lat, program.location.lng]} 
-            icon={getIconForCategory(program.category)}
-          >
-            <Popup>
-              <CustomPopup program={program} />
-            </Popup>
-          </Marker>
-        ))}
+                  <Marker 
+                    key={program.id} 
+                    position={[program.location.lat, program.location.lng]} 
+                    icon={getIconForCategory(program.category)}
+                    eventHandlers={{
+                      mouseover: (event) => {
+                        event.target.openPopup();
+                        event.target.getElement()?.classList.add('marker-hover');
+                      },
+                      mouseout: (event) => {
+                        event.target.closePopup();
+                        event.target.getElement()?.classList.remove('marker-hover');
+                      },
+                    }}
+                  >
+                    <Popup>
+                      <CustomPopup program={program} />
+                    </Popup>
+                  </Marker>        ))}
       </MarkerClusterGroup>
 
       {/* This component bridges react-leaflet's context with our custom context */}
