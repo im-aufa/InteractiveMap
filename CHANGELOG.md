@@ -17,6 +17,11 @@ This section documents architectural decisions and potential technical debt to b
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.0] - 2025-12-11
+
+### Fixed
+- Resolved "hover tunnel" issue where popups would close prematurely when moving the mouse from a marker to its popup. Created a new `HoverMarker` component that uses a timer to gracefully handle hover state between both the marker and the popup.
+
 ## [2.0.0] - 2025-12-11
 
 ### Added

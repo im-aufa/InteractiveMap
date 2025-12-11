@@ -8,6 +8,7 @@ import { MapContext } from '../context/MapContext';
 import { programs } from '../data/programs'; // Import programs data
 import ReactDOMServer from 'react-dom/server';
 import MarkerClusterGroup from 'react-leaflet-cluster';
+import { HoverMarker } from './HoverMarker'; // Import the new HoverMarker component
 import { Landmark, Mountain, University, GanttChartSquare as CulturalSpot, Smile } from 'lucide-react'; // Import Lucide icons
 
 // --- Create a mapping for category icons and colors ---
@@ -114,27 +115,14 @@ const Map = ({ selectedCategories, selectedYears, selectedStatuses, searchQuery 
     >
       <TileLayer url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" />
       
-      <MarkerClusterGroup maxClusterRadius={120}> {/* Corrected maxClusterRadius */}
+      <MarkerClusterGroup maxClusterRadius={120}>
         {filteredPrograms.map((program) => (
-                  <Marker 
-                    key={program.id} 
-                    position={[program.location.lat, program.location.lng]} 
-                    icon={getIconForCategory(program.category)}
-                    eventHandlers={{
-                      mouseover: (event) => {
-                        event.target.openPopup();
-                        event.target.getElement()?.classList.add('marker-hover');
-                      },
-                      mouseout: (event) => {
-                        event.target.closePopup();
-                        event.target.getElement()?.classList.remove('marker-hover');
-                      },
-                    }}
-                  >
-                    <Popup>
-                      <CustomPopup program={program} />
-                    </Popup>
-                  </Marker>        ))}
+          <HoverMarker 
+            key={program.id}
+            program={program}
+            icon={getIconForCategory(program.category)}
+          />
+        ))}
       </MarkerClusterGroup>
 
       {/* This component bridges react-leaflet's context with our custom context */}
