@@ -10,11 +10,24 @@ import Overlay from './Overlay'; // Import the new Overlay component
 type HeaderProps = {
   selectedCategories: string[];
   onCategoryChange: (category: string, isChecked: boolean) => void;
+  selectedYears: number[];
+  onYearChange: (year: number, isChecked: boolean) => void;
+  selectedStatuses: string[];
+  onStatusChange: (status: string, isChecked: boolean) => void;
   searchQuery: string;
   setSearchQuery: (query: string) => void;
 };
 
-const Header = ({ selectedCategories, onCategoryChange, searchQuery, setSearchQuery }: HeaderProps) => {
+const Header = ({ 
+  selectedCategories, 
+  onCategoryChange, 
+  selectedYears,
+  onYearChange,
+  selectedStatuses,
+  onStatusChange,
+  searchQuery, 
+  setSearchQuery 
+}: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -38,6 +51,10 @@ const Header = ({ selectedCategories, onCategoryChange, searchQuery, setSearchQu
         onClose={() => setIsMenuOpen(false)} 
         selectedCategories={selectedCategories}
         onCategoryChange={onCategoryChange}
+        selectedYears={selectedYears}
+        onYearChange={onYearChange}
+        selectedStatuses={selectedStatuses}
+        onStatusChange={onStatusChange}
       />
     </>
   );

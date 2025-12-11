@@ -17,6 +17,15 @@ This section documents architectural decisions and potential technical debt to b
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.0] - 2025-12-11
+
+### Added
+- Extended filtering capabilities to include "Year" and "Status" for programs, as per `README.md` specifications.
+
+### Changed
+- Updated the `Program` type definition, mock program data (`programs.ts`), `FilterMenu`, `Header`, `page.tsx`, `ClientOnlyMap`, and `Map` components to fully support the new "Year" and "Status" filter criteria.
+- Dynamic extraction of unique years and statuses from program data added.
+
 ## [1.4.0] - 2025-12-11
 
 ### Added

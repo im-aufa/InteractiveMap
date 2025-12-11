@@ -55,33 +55,31 @@ const MapContextProvider = () => {
 
 type MapProps = {
   selectedCategories: string[];
+  selectedYears: number[];
+  selectedStatuses: string[];
   searchQuery: string;
 };
 
-// Helper component to handle map events like pan/zoom
-const MapEvents = ({ filteredPrograms, searchQuery }: { filteredPrograms: typeof programs, searchQuery: string }) => {
-  const map = useMap();
-
-  useEffect(() => {
-    if (filteredPrograms.length === 1 && searchQuery.trim() !== '') {
-      const program = filteredPrograms[0];
-      map.flyTo([program.location.lat, program.location.lng], 15);
-    }
-  }, [filteredPrograms, searchQuery, map]);
-
-  return null; // This component does not render anything
-};
-
-const Map = ({ selectedCategories, searchQuery }: MapProps) => {
+const Map = ({ selectedCategories, selectedYears, selectedStatuses, searchQuery }: MapProps) => {
   const batamPosition: L.LatLngExpression = [1.14937, 104.02491];
   const indonesiaBounds: L.LatLngBoundsLiteral = [[-11.2085669, 94.7717124], [6.2744496, 141.0194444]];
 
-  // Combine filters: categories and search query
+  // Combine filters: categories, years, statuses, and search query
   const filteredPrograms = programs
     .filter(program => {
       // Category filter
       if (selectedCategories.length === 0) return true;
       return selectedCategories.includes(program.category);
+    })
+    .filter(program => {
+      // Year filter
+      if (selectedYears.length === 0) return true;
+      return selectedYears.includes(program.year);
+    })
+    .filter(program => {
+      // Status filter
+      if (selectedStatuses.length === 0) return true;
+      return selectedStatuses.includes(program.status);
     })
     .filter(program => {
       // Search query filter (case-insensitive)
@@ -101,12 +99,12 @@ const Map = ({ selectedCategories, searchQuery }: MapProps) => {
       className="h-full w-full"
     >
       <TileLayer url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" />
-
-      <MarkerClusterGroup maxClusterRadius={35}>
+      
+      <MarkerClusterGroup maxClusterRadius={120}> {/* Corrected maxClusterRadius */}
         {filteredPrograms.map((program) => (
-          <Marker
-            key={program.id}
-            position={[program.location.lat, program.location.lng]}
+          <Marker 
+            key={program.id} 
+            position={[program.location.lat, program.location.lng]} 
             icon={getIconForCategory(program.category)}
           >
             <Popup>

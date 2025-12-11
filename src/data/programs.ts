@@ -3,7 +3,7 @@
 export type Program = {
   id: string;
   name: string;
-  category: 'Historical Sites' | 'Natural Parks' | 'Museums' | 'Cultural Spots';
+  category: 'Historical Sites' | 'Natural Parks' | 'Museums' | 'Cultural Spots' | 'Entertainment';
   description: string;
   location: {
     lat: number;
@@ -13,6 +13,8 @@ export type Program = {
   images: string[]; // URLs to images
   videoUrl?: string; // URL to a video (e.g., YouTube embed URL)
   detailsUrl: string; // URL for more detailed info, maybe Wikipedia
+  year: number;
+  status: 'Planned' | 'In Progress' | 'Completed';
 };
 
 export const programs: Program[] = [
@@ -32,6 +34,8 @@ export const programs: Program[] = [
     ],
     videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', // Example YouTube embed
     detailsUrl: 'https://en.wikipedia.org/wiki/Batam',
+    year: 2023,
+    status: 'Completed',
   },
   {
     id: 'nagoya-hill',
@@ -48,6 +52,8 @@ export const programs: Program[] = [
       'https://www.batamfast.com/wp-content/uploads/2019/10/Nagoya-Hill-Shopping-Mall-Batam-Fast.jpg',
     ],
     detailsUrl: 'https://www.tripadvisor.com/Attraction_Review-g294265-d1434937-Reviews-Nagoya_Hill_Shopping_Mall-Batam_Riau_Islands_Provincial_Government.html',
+    year: 2022,
+    status: 'Completed',
   },
   {
     id: 'barelang-bridge',
@@ -64,6 +70,8 @@ export const programs: Program[] = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/BARELANG_BRIDGE.jpg/1280px-BARELANG_BRIDGE.jpg',
     ],
     detailsUrl: 'https://en.wikipedia.org/wiki/Barelang_Bridge',
+    year: 2024,
+    status: 'In Progress',
   },
   {
     id: 'marian-grotto',
@@ -80,11 +88,13 @@ export const programs: Program[] = [
       'https://cdn-image.hipwee.com/wp-content/uploads/2018/11/hipwee-gua_maria_batam.jpg',
     ],
     detailsUrl: 'https://www.tripadvisor.com/Attraction_Review-g294265-d11974751-Reviews-Gua_Maria-Batam_Riau_Islands_Provincial_Government.html',
+    year: 2023,
+    status: 'Completed',
   },
   {
     id: 'golden-city',
     name: 'Golden City Go Kart',
-    category: 'Entertainment', // Changed category for variety
+    category: 'Entertainment',
     description: 'A popular entertainment complex featuring go-karting, flying fox, and other recreational activities, suitable for families and thrill-seekers.',
     location: {
       lat: 1.0560,
@@ -96,6 +106,8 @@ export const programs: Program[] = [
       'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/09/b3/ef/golden-city.jpg?w=1200&h=-1&s=1',
     ],
     detailsUrl: 'https://www.tripadvisor.com/Attraction_Review-g294265-d602330-Reviews-Golden_City_Go_Kart-Batam_Riau_Islands_Provincial_Government.html',
+    year: 2024,
+    status: 'Planned',
   },
   {
     id: 'taman-mini-indonesia',
@@ -112,6 +124,8 @@ export const programs: Program[] = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Rumah_Gadang_in_Taman_Mini_Indonesia_Indah_Jakarta.jpg/1280px-Rumah_Gadang_in_Taman_Mini_Indonesia_Indah_Jakarta.jpg',
     ],
     detailsUrl: 'https://en.wikipedia.org/wiki/Taman_Mini_Indonesia_Indah',
+    year: 2023,
+    status: 'Completed',
   },
   {
     id: 'bali-beach',
@@ -128,8 +142,16 @@ export const programs: Program[] = [
       'https://images.unsplash.com/photo-1548328903-b09e8633c70f?q=80&w=2940&auto=format&fit=crop',
     ],
     detailsUrl: 'https://en.wikipedia.org/wiki/Bali',
+    year: 2025,
+    status: 'Planned',
   },
 ];
 
 // Dynamically extract unique categories
 export const categories = [...new Set(programs.map(p => p.category))];
+
+// Dynamically extract unique years
+export const years = [...new Set(programs.map(p => p.year))].sort((a, b) => a - b);
+
+// Dynamically extract unique statuses
+export const statuses = [...new Set(programs.map(p => p.status))];

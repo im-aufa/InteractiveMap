@@ -12,11 +12,18 @@ const Map = dynamic(
 
 type ClientOnlyMapProps = {
   selectedCategories: string[];
+  selectedYears: number[];
+  selectedStatuses: string[];
   searchQuery: string;
 };
 
-const ClientOnlyMap = ({ selectedCategories, searchQuery }: ClientOnlyMapProps) => {
-  return <Map selectedCategories={selectedCategories} searchQuery={searchQuery} />;
+const ClientOnlyMap = ({ selectedCategories, selectedYears, selectedStatuses, searchQuery }: ClientOnlyMapProps) => {
+  return <Map 
+    selectedCategories={selectedCategories} 
+    selectedYears={selectedYears}
+    selectedStatuses={selectedStatuses}
+    searchQuery={searchQuery} 
+  />;
 };
 
 export default ClientOnlyMap;
