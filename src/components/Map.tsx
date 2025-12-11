@@ -51,14 +51,27 @@ const MapContextProvider = () => {
   return null;
 };
 
-const Map = ({ selectedCategories }: { selectedCategories: string[] }) => {
+type MapProps = {
+  selectedCategories: string[];
+  searchQuery: string;
+};
+
+const Map = ({ selectedCategories, searchQuery }: MapProps) => {
   const batamPosition: L.LatLngExpression = [1.14937, 104.02491];
   const indonesiaBounds: L.LatLngBoundsLiteral = [[-11.2085669, 94.7717124], [6.2744496, 141.0194444]];
 
-  // Filter programs based on selectedCategories
-  const filteredPrograms = selectedCategories.length > 0
-    ? programs.filter(program => selectedCategories.includes(program.category))
-    : programs;
+  // Combine filters: categories and search query
+  const filteredPrograms = programs
+    .filter(program => {
+      // Category filter
+      if (selectedCategories.length === 0) return true;
+      return selectedCategories.includes(program.category);
+    })
+    .filter(program => {
+      // Search query filter (case-insensitive)
+      if (searchQuery.trim() === '') return true;
+      return program.name.toLowerCase().includes(searchQuery.toLowerCase());
+    });
 
   return (
     <MapContainer

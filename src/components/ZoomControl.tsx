@@ -21,20 +21,20 @@ const ZoomControl = () => {
   };
 
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-2">
       <button
         onClick={handleZoomIn}
-        className="h-10 w-10 flex items-center justify-center rounded-lg bg-white shadow-md transition-colors hover:bg-zinc-100 active:bg-zinc-200"
+        className="h-10 w-10 flex items-center justify-center rounded-xl border border-zinc-200 bg-white shadow-sm transition-colors hover:bg-zinc-100 active:bg-zinc-200"
         aria-label="Zoom in"
       >
-        <FiPlus className="h-5 w-5" />
+        <FiPlus className="h-5 w-5 text-zinc-500" />
       </button>
       <button
         onClick={handleZoomOut}
-        className="h-10 w-10 flex items-center justify-center rounded-lg bg-white shadow-md transition-colors hover:bg-zinc-100 active:bg-zinc-200"
+        className="h-10 w-10 flex items-center justify-center rounded-xl border border-zinc-200 bg-white shadow-sm transition-colors hover:bg-zinc-100 active:bg-zinc-200"
         aria-label="Zoom out"
       >
-        <FiMinus className="h-5 w-5" />
+        <FiMinus className="h-5 w-5 text-zinc-500" />
       </button>
     </div>
   );

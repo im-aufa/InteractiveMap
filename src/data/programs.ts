@@ -84,7 +84,7 @@ export const programs: Program[] = [
   {
     id: 'golden-city',
     name: 'Golden City Go Kart',
-    category: 'Natural Parks', // Using Natural Parks for simplicity, could be 'Entertainment'
+    category: 'Entertainment', // Changed category for variety
     description: 'A popular entertainment complex featuring go-karting, flying fox, and other recreational activities, suitable for families and thrill-seekers.',
     location: {
       lat: 1.0560,
@@ -96,6 +96,38 @@ export const programs: Program[] = [
       'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/09/b3/ef/golden-city.jpg?w=1200&h=-1&s=1',
     ],
     detailsUrl: 'https://www.tripadvisor.com/Attraction_Review-g294265-d602330-Reviews-Golden_City_Go_Kart-Batam_Riau_Islands_Provincial_Government.html',
+  },
+  {
+    id: 'taman-mini-indonesia',
+    name: 'Taman Mini Indonesia Indah',
+    category: 'Cultural Spots',
+    description: 'A miniature park representing Indonesia\'s diverse culture, featuring traditional houses, museums, and gardens.',
+    location: {
+      lat: -6.3025,
+      lng: 106.8950,
+      address: 'East Jakarta, Jakarta, Indonesia',
+    },
+    images: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Taman_Mini_Indonesia_Indah_Entrance.jpg/1280px-Taman_Mini_Indonesia_Indah_Entrance.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Rumah_Gadang_in_Taman_Mini_Indonesia_Indah_Jakarta.jpg/1280px-Rumah_Gadang_in_Taman_Mini_Indonesia_Indah_Jakarta.jpg',
+    ],
+    detailsUrl: 'https://en.wikipedia.org/wiki/Taman_Mini_Indonesia_Indah',
+  },
+  {
+    id: 'bali-beach',
+    name: 'Bali Beach',
+    category: 'Natural Parks',
+    description: 'Famous for its stunning beaches, volcanic mountains, coral reefs, and iconic rice paddies, Bali is a popular tourist destination.',
+    location: {
+      lat: -8.4095,
+      lng: 115.1889,
+      address: 'Bali, Indonesia',
+    },
+    images: [
+      'https://images.unsplash.com/photo-1536152818225-835359145657?q=80&w=2940&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1548328903-b09e8633c70f?q=80&w=2940&auto=format&fit=crop',
+    ],
+    detailsUrl: 'https://en.wikipedia.org/wiki/Bali',
   },
 ];
 

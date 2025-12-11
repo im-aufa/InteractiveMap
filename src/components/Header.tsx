@@ -10,10 +10,11 @@ import Overlay from './Overlay'; // Import the new Overlay component
 type HeaderProps = {
   selectedCategories: string[];
   onCategoryChange: (category: string, isChecked: boolean) => void;
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
 };
 
-const Header = ({ selectedCategories, onCategoryChange }: HeaderProps) => {
-  const [searchQuery, setSearchQuery] = useState('');
+const Header = ({ selectedCategories, onCategoryChange, searchQuery, setSearchQuery }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -23,10 +24,10 @@ const Header = ({ selectedCategories, onCategoryChange }: HeaderProps) => {
         <div className="flex items-center gap-2">
           <button 
             onClick={() => setIsMenuOpen(true)}
-            className="h-10 w-10 flex items-center justify-center rounded-xl bg-white shadow-sm transition-transform hover:scale-105"
+            className="h-10 w-10 flex items-center justify-center rounded-xl border border-zinc-200 bg-white shadow-sm transition-transform hover:scale-105"
             aria-label="Open filters menu"
           >
-            <FiMenu className="h-5 w-5 text-zinc-800" />
+            <FiMenu className="h-5 w-5 text-zinc-500" />
           </button>
           <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         </div>

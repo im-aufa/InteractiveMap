@@ -23,6 +23,7 @@ All notable changes to this project will be documented in this file.
 - Implemented dynamic filtering of map markers based on category selection.
 - Implemented custom, data-driven marker icons based on program category, using `lucide-react`.
 - Created `todolist.md` to track project progress and future tasks.
+- Added more sample program data, including new categories ("Entertainment", "Natural Parks") for testing filtering and search functionality.
 
 ### Changed
 - **Major Refactor**: Migrated the core map implementation from manual Leaflet DOM manipulation to the `react-leaflet` library for a more declarative and React-idiomatic architecture.
