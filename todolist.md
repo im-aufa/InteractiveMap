@@ -1,6 +1,6 @@
 ### **Project To-Do List & Progress**
 
-**Overall Project Progression: ~75%**
+**Overall Project Progression: ~85%**
 
 ---
 
@@ -24,7 +24,7 @@
 
 ### **Phase 3: Responsive UX & Content**
 
--   [ ] **Responsive Filter UI (Mobile):** Adapt the filter menu to a "bottom sheet" or "drawer" on mobile devices for a better UX.
+-   [x] **Responsive Filter UI (Mobile):** Adapt the filter menu to a "bottom sheet" or "drawer" on mobile devices for a better UX.
 -   [ ] **Enhance Program Detail Page:**
     -   [ ] Implement the responsive `3 → 2 → 1` column image gallery.
     -   [ ] Add the "Aksi" button to navigate/route to the program's location using an external map service.

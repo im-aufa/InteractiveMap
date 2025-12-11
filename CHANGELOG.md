@@ -17,6 +17,31 @@ This section documents architectural decisions and potential technical debt to b
 
 All notable changes to this project will be documented in this file.
 
+## [1.7.0] - 2025-12-11
+
+### Added
+- Implemented responsive filter UI using the 'vaul' library for accessible and touch-friendly bottom sheets/drawers.
+- Removed the redundant `Overlay.tsx` component as its functionality is now handled by `vaul`.
+
+### Changed
+- Refactored `FilterMenu.tsx` to be the content of the drawer, and `Header.tsx` to be the owner of the `Drawer` components, improving component architecture.
+
+### Fixed
+- Resolved multiple build errors:
+  - Added `'use client';` directive to `page.tsx` and `useDebounce.ts` to fix React Hook errors in Server Components.
+  - Corrected `vaul` import and usage pattern to resolve `Export doesn't exist` errors.
+  - Fixed `Cannot find name 'MapEvents'` error by reordering component definitions in `Map.tsx`.
+
+## [1.6.0] - 2025-12-11
+
+### Added
+- Implemented responsive filter UI using the 'vaul' library for accessible and touch-friendly bottom sheets/drawers.
+- Removed the redundant `Overlay.tsx` component as its functionality is now handled by `vaul`'s `DrawerOverlay`.
+
+### Changed
+- Refactored `FilterMenu.tsx` to use `vaul`'s `Drawer` components, replacing custom positioning and transition logic.
+- Modified `Header.tsx` to integrate with `vaul`'s `Drawer.Trigger` for opening the filter menu.
+
 ## [1.5.0] - 2025-12-11
 
 ### Added

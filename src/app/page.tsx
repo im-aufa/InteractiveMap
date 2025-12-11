@@ -1,3 +1,5 @@
+'use client';
+
 import ClientOnlyMap from './../components/ClientOnlyMap';
 import Header from './../components/Header';
 import { MapProvider } from './../context/MapContext';

@@ -60,6 +60,20 @@ type MapProps = {
   searchQuery: string;
 };
 
+// Helper component to handle map events like pan/zoom
+const MapEvents = ({ filteredPrograms, searchQuery }: { filteredPrograms: typeof programs, searchQuery: string }) => {
+  const map = useMap();
+
+  useEffect(() => {
+    if (filteredPrograms.length === 1 && searchQuery.trim() !== '') {
+      const program = filteredPrograms[0];
+      map.flyTo([program.location.lat, program.location.lng], 15);
+    }
+  }, [filteredPrograms, searchQuery, map]);
+
+  return null; // This component does not render anything
+};
+
 const Map = ({ selectedCategories, selectedYears, selectedStatuses, searchQuery }: MapProps) => {
   const batamPosition: L.LatLngExpression = [1.14937, 104.02491];
   const indonesiaBounds: L.LatLngBoundsLiteral = [[-11.2085669, 94.7717124], [6.2744496, 141.0194444]];

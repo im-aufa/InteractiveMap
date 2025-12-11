@@ -1,12 +1,9 @@
 // src/components/FilterMenu.tsx
 'use client';
 
-import { FiX } from 'react-icons/fi';
-import { categories, years, statuses } from '../data/programs'; // Import categories, years, and statuses
+import { categories, years, statuses } from '../data/programs';
 
 type FilterMenuProps = {
-  isOpen: boolean;
-  onClose: () => void;
   selectedCategories: string[];
   onCategoryChange: (category: string, isChecked: boolean) => void;
   selectedYears: number[];
@@ -16,8 +13,6 @@ type FilterMenuProps = {
 };
 
 const FilterMenu = ({ 
-  isOpen, 
-  onClose, 
   selectedCategories, 
   onCategoryChange,
   selectedYears,
@@ -26,16 +21,7 @@ const FilterMenu = ({
   onStatusChange,
 }: FilterMenuProps) => {
   return (
-    <div
-      className={`fixed top-0 left-0 z-[1001] h-full w-80 transform bg-zinc-50 shadow-2xl transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
-    >
-      <div className="flex items-center justify-between border-b border-zinc-200 p-4">
-        <h2 className="text-xl font-semibold text-zinc-900">Filters</h2>
-        <button onClick={onClose} className="rounded-xl p-2 hover:bg-zinc-200">
-          <FiX className="h-6 w-6 text-zinc-500" />
-        </button>
-      </div>
+    <>
       <div className="flex flex-col gap-6 p-4"> {/* Use flex-col and gap for sections */}
         <div className="pb-4 border-b border-zinc-200"> {/* Section for Category */}
           <h3 className="mb-3 font-semibold text-zinc-600">Category</h3>
@@ -88,7 +74,7 @@ const FilterMenu = ({
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
