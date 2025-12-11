@@ -17,6 +17,17 @@ This section documents architectural decisions and potential technical debt to b
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0] - 2025-12-11
+
+### Added
+- Completed the core features for the Program Detail Page:
+  - Implemented a responsive `3 → 2 → 1` column image gallery.
+  - Added a "Get Directions" button that links to Google Maps.
+  - Integrated the embedded video player with an accessible title.
+
+### Changed
+- Marked the completion of all major features from the initial `README.md` and updated the `todolist.md` to reflect ~90% completion.
+
 ## [1.9.0] - 2025-12-11
 
 ### Added

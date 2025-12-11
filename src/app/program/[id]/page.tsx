@@ -72,6 +72,7 @@ export default function ProgramDetailPage() {
             <div className="relative aspect-video w-full overflow-hidden rounded-xl shadow-md">
               <iframe
                 src={program.videoUrl}
+                title={`Embedded YouTube video for ${program.name}`}
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen

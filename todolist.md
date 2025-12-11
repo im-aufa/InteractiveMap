@@ -1,6 +1,6 @@
 ### **Project To-Do List & Progress**
 
-**Overall Project Progression: ~88%**
+**Overall Project Progression: ~90%**
 
 ---
 
@@ -25,10 +25,10 @@
 ### **Phase 3: Responsive UX & Content**
 
 -   [x] **Responsive Filter UI (Mobile):** Adapt the filter menu to a "bottom sheet" or "drawer" on mobile devices for a better UX.
--   [ ] **Enhance Program Detail Page:**
+-   [x] **Enhance Program Detail Page:**
     -   [x] Implement the responsive `3 → 2 → 1` column image gallery.
     -   [x] Add the "Aksi" button to navigate/route to the program's location using an external map service.
-    -   [ ] Fully integrate the embedded video player.
+    -   [x] Fully integrate the embedded video player.
 -   [ ] **Data Source Refactor:** Transition from static data (`programs.ts`) to fetching data from a live API endpoint.
 
 ### **Phase 4: Polish & Finalization**
