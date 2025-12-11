@@ -7,13 +7,18 @@ import FilterMenu from './FilterMenu';
 import { FiMenu } from 'react-icons/fi';
 import Overlay from './Overlay'; // Import the new Overlay component
 
-const Header = () => {
+type HeaderProps = {
+  selectedCategories: string[];
+  onCategoryChange: (category: string, isChecked: boolean) => void;
+};
+
+const Header = ({ selectedCategories, onCategoryChange }: HeaderProps) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <>
-      <Overlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} /> {/* Add the Overlay */}
+      <Overlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
       <header className="absolute top-0 left-0 z-[1000] w-full p-4">
         <div className="flex items-center gap-2">
           <button 
@@ -27,7 +32,12 @@ const Header = () => {
         </div>
       </header>
 
-      <FilterMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      <FilterMenu 
+        isOpen={isMenuOpen} 
+        onClose={() => setIsMenuOpen(false)} 
+        selectedCategories={selectedCategories}
+        onCategoryChange={onCategoryChange}
+      />
     </>
   );
 };

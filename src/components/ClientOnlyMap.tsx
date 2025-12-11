@@ -10,8 +10,12 @@ const Map = dynamic(
   }
 );
 
-const ClientOnlyMap = () => {
-  return <Map />;
+type ClientOnlyMapProps = {
+  selectedCategories: string[];
+};
+
+const ClientOnlyMap = ({ selectedCategories }: ClientOnlyMapProps) => {
+  return <Map selectedCategories={selectedCategories} />;
 };
 
 export default ClientOnlyMap;

@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.0] - 2025-12-10
+
+### Added
+- Implemented dynamic filtering of map markers based on category selection.
+- Implemented custom, data-driven marker icons based on program category, using `lucide-react`.
+
+### Changed
+- **Major Refactor**: Migrated the core map implementation from manual Leaflet DOM manipulation to the `react-leaflet` library for a more declarative and React-idiomatic architecture.
+
+### Fixed
+- Resolved `next/image` configuration error by whitelisting external image hostnames in `next.config.ts`.
+- Fixed React hook error in the main page component (`page.tsx`) by marking it as a Client Component with `'use client'`.
+
 ## [1.1.1] - 2025-12-10
 
 ### Changed
