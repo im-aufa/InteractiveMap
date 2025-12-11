@@ -17,6 +17,19 @@ This section documents architectural decisions and potential technical debt to b
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0] - 2025-12-11
+
+### Added
+- Implemented search functionality to filter map markers by program name.
+- Added a `useDebounce` hook to improve search performance by delaying filtering until the user stops typing.
+- Implemented pan and zoom (`flyTo`) functionality to automatically focus the map on a single search result.
+
+### Changed
+- Lifted search query state up to the main page component (`page.tsx`) to allow sharing between the header and map components.
+
+### Fixed
+- Resolved a `react-leaflet` context error (`useLeafletContext`) by refactoring map event handling (pan/zoom effect) into a dedicated `MapEvents` child component, ensuring hooks like `useMap` are used correctly within the `<MapContainer>` hierarchy.
+
 ## [1.2.0] - 2025-12-10
 
 ### Added
