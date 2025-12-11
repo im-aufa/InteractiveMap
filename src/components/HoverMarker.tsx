@@ -14,56 +14,54 @@ type HoverMarkerProps = {
 
 export const HoverMarker = ({ program, icon }: HoverMarkerProps) => {
   const markerRef = useRef<L.Marker>(null);
-  const popupRef = useRef<L.Popup>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
-
-  const handleMouseOver = () => {
-    if (timerRef.current) {
-      clearTimeout(timerRef.current);
-    }
-    markerRef.current?.openPopup();
-  };
-
-  const handleMouseOut = () => {
-    timerRef.current = setTimeout(() => {
-      markerRef.current?.closePopup();
-    }, 200); // 200ms delay
-  };
 
   useEffect(() => {
     const marker = markerRef.current;
-    if (marker) {
-      marker.on('mouseover', handleMouseOver);
-      marker.on('mouseout', handleMouseOut);
-    }
+    if (!marker) return;
 
-    const popup = popupRef.current;
-    if (popup) {
-      popup.on('mouseover', handleMouseOver); // When mouse enters the popup, cancel the close timer
-      popup.on('mouseout', handleMouseOut); // When mouse leaves the popup, start the close timer
-    }
-
-    // Cleanup event listeners
-    return () => {
-      if (marker) {
-        marker.off('mouseover', handleMouseOver);
-        marker.off('mouseout', handleMouseOut);
+    const openPopup = () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
       }
-      if (popup) {
-        popup.off('mouseover', handleMouseOver);
-        popup.off('mouseout', handleMouseOut);
-      }
+      marker.openPopup();
     };
-  }, [markerRef, popupRef]);
+
+    const closePopup = () => {
+      timerRef.current = setTimeout(() => {
+        marker.closePopup();
+      }, 100); // A short delay
+    };
+
+    marker.on('mouseover', openPopup);
+    marker.on('mouseout', closePopup);
+
+    // This is the key: we wait for the popup to open, then attach listeners to IT.
+    marker.on('popupopen', () => {
+      const popupElement = marker.getPopup()?.getElement();
+      if (popupElement) {
+        popupElement.addEventListener('mouseenter', openPopup); // Keep it open
+        popupElement.addEventListener('mouseleave', closePopup); // Close when leaving popup
+      }
+    });
+
+    // Cleanup all event listeners
+    return () => {
+      marker.off('mouseover', openPopup);
+      marker.off('mouseout', closePopup);
+      marker.off('popupopen'); // Clean up the popup open listener as well
+      // Note: we don't need to manually remove listeners from the popup element
+      // because the element gets destroyed when the popup closes.
+    };
+  }, []);
 
   return (
     <Marker 
       ref={markerRef}
-      key={program.id} 
       position={[program.location.lat, program.location.lng]} 
       icon={icon}
     >
-      <Popup ref={popupRef}>
+      <Popup>
         <CustomPopup program={program} />
       </Popup>
     </Marker>
