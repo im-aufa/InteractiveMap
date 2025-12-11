@@ -1,3 +1,18 @@
+# Architectural Notes & Future Considerations
+
+This section documents architectural decisions and potential technical debt to be aware of as the project scales.
+
+- **State Management & Prop Drilling**: The current implementation lifts filter state to `page.tsx`. As more global states (e.g., search query) are added, this could lead to excessive "prop drilling."
+  - **Future Improvement**: Consider creating a dedicated `FilterContext` or using a lightweight state management library like Zustand to centralize UI state.
+
+- **Data Source**: Program data is currently static (`src/data/programs.ts`). This is great for development but not scalable.
+  - **Future Improvement**: The architecture is designed to easily swap this static data for a live API call (`fetch(...)`) when a backend is available.
+
+- **Configuration Management**: Mappings for category-to-icon and colors are currently hardcoded in `Map.tsx`.
+  - **Future Improvement**: This configuration could be moved to a separate `config.ts` file or be delivered as part of the API response to make the components more dynamic.
+
+---
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
