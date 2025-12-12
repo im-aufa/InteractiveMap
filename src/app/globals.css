@@ -35,8 +35,9 @@ body {
   transition: transform 0.2s ease-out, z-index 0.2s ease-out;
 }
 
-/* Style for the marker on hover */
-.marker-hover .custom-div-icon {
-  transform: scale(1.15);
-  z-index: 1000 !important; /* Ensure it comes to the front */
+
+/* Customizations for react-leaflet-cluster animations */
+/* Quick but smooth - responsive to fast zoom while avoiding jarring transitions */
+.leaflet-cluster-anim .leaflet-marker-icon {
+  transition: transform 0.25s ease-out !important;
 }

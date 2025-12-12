@@ -38,6 +38,20 @@ export default function ProgramDetailPage() {
       </Link>
 
       <div className="mx-auto max-w-4xl rounded-xl bg-white p-6 shadow-lg md:p-8">
+        <div className="flex items-center gap-3 mb-3">
+          <span className={`text-sm font-semibold px-3 py-1 rounded-full ${program.status === 'Completed'
+              ? 'bg-green-100 text-green-800'
+              : program.status === 'In Progress'
+                ? 'bg-blue-100 text-blue-800'
+                : 'bg-gray-100 text-gray-800'
+            }`}>
+            {program.status}
+          </span>
+          <span className="text-sm text-zinc-500">{program.year}</span>
+          <span className="text-sm text-zinc-500">•</span>
+          <span className="text-sm font-medium text-zinc-700">{program.category}</span>
+        </div>
+
         <h1 className="mb-4 text-4xl font-bold text-zinc-900">{program.name}</h1>
 
         <div className="mb-6">

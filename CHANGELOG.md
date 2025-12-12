@@ -25,12 +25,16 @@ All notable changes to this project will be documented in this file.
   - New: Pendidikan, Kesehatan, Teknologi, Lingkungan, Ekonomi Kreatif, Pariwisata, Pemberdayaan Masyarakat, Infrastruktur, Pertanian, Kelautan
 - Updated marker icons to match P2M categories (GraduationCap, Heart, Cpu, Leaf, Palette, Palmtree, Users, Building, Sprout, Waves)
 - Updated category colors to match P2M visual design system
-- Converted existing sample data to use P2M categories (temporary - will be replaced with real P2M programs)
+- **Replaced sample data with 5 complete P2M programs:**
+  - 3 real programs from journal publications (Pelatihan Media Promosi, Virtual Tour 360, Penetapan Batas Wilayah)
+  - 2 realistic mock programs (Digital Marketing UMKM, Kesehatan Ibu dan Anak)
+  - All programs have rich descriptions, proper locations in Batam/Galang, 3 images each, and video URLs
 
 ### Technical Details
 - Modified `src/data/programs.ts` type definition
 - Updated `src/components/Map.tsx` icon mappings
 - Aligned with documentation (DOCS.md, README.md, DATA_STRATEGY.md)
+- Programs now use real P2M data from Politeknik Negeri Batam community service projects
 
 ## [2.1.0] - 2025-12-11
 
