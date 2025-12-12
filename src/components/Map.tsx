@@ -9,20 +9,25 @@ import { programs } from '../data/programs'; // Import programs data
 import ReactDOMServer from 'react-dom/server';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 import { HoverMarker } from './HoverMarker'; // Import the new HoverMarker component
-import { Landmark, Mountain, University, GanttChartSquare as CulturalSpot, Smile } from 'lucide-react'; // Import Lucide icons
+import { GraduationCap, Heart, Cpu, Leaf, Palette, Palmtree, Users, Building, Sprout, Waves } from 'lucide-react'; // P2M Icons
 
-// --- Create a mapping for category icons and colors ---
+// --- Create a mapping for P2M category icons and colors ---
 const categoryIcons = {
-  'Historical Sites': { icon: Landmark, color: '#8B5CF6' }, // Purple
-  'Natural Parks': { icon: Mountain, color: '#22C55E' }, // Green
-  'Museums': { icon: University, color: '#F97316' }, // Orange
-  'Cultural Spots': { icon: CulturalSpot, color: '#3B82F6' }, // Blue
-  'Entertainment': { icon: Smile, color: '#EF4444' }, // Red
+  'Pendidikan': { icon: GraduationCap, color: '#3B82F6' },           // Blue
+  'Kesehatan': { icon: Heart, color: '#EF4444' },                    // Red
+  'Teknologi': { icon: Cpu, color: '#8B5CF6' },                      // Purple
+  'Lingkungan': { icon: Leaf, color: '#10B981' },                    // Green
+  'Ekonomi Kreatif': { icon: Palette, color: '#F59E0B' },            // Orange
+  'Pariwisata': { icon: Palmtree, color: '#14B8A6' },                // Teal
+  'Pemberdayaan Masyarakat': { icon: Users, color: '#EC4899' },      // Pink
+  'Infrastruktur': { icon: Building, color: '#6366F1' },             // Indigo
+  'Pertanian': { icon: Sprout, color: '#84CC16' },                   // Lime
+  'Kelautan': { icon: Waves, color: '#06B6D4' },                     // Cyan
 };
 
 // --- Function to create a divIcon for a category ---
 const getIconForCategory = (category: keyof typeof categoryIcons) => {
-  const IconComponent = categoryIcons[category]?.icon || Landmark; // Default to Landmark
+  const IconComponent = categoryIcons[category]?.icon || GraduationCap; // Default to GraduationCap
   const iconColor = categoryIcons[category]?.color || '#6B7280'; // Default to gray
 
   const iconHtml = ReactDOMServer.renderToString(
@@ -114,10 +119,10 @@ const Map = ({ selectedCategories, selectedYears, selectedStatuses, searchQuery 
       className="h-full w-full"
     >
       <TileLayer url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      
-      <MarkerClusterGroup maxClusterRadius={120}>
+
+      <MarkerClusterGroup maxClusterRadius={40}>
         {filteredPrograms.map((program) => (
-          <HoverMarker 
+          <HoverMarker
             key={program.id}
             program={program}
             icon={getIconForCategory(program.category)}

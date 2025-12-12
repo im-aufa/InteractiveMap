@@ -3,7 +3,7 @@
 export type Program = {
   id: string;
   name: string;
-  category: 'Historical Sites' | 'Natural Parks' | 'Museums' | 'Cultural Spots' | 'Entertainment';
+  category: 'Pendidikan' | 'Kesehatan' | 'Teknologi' | 'Lingkungan' | 'Ekonomi Kreatif' | 'Pariwisata' | 'Pemberdayaan Masyarakat' | 'Infrastruktur' | 'Pertanian' | 'Kelautan';
   description: string;
   location: {
     lat: number;
@@ -21,7 +21,7 @@ export const programs: Program[] = [
   {
     id: 'batam-island',
     name: 'Batam Island',
-    category: 'Natural Parks',
+    category: 'Pariwisata',
     description: 'Batam is an island in Indonesia, known for its beaches, nightlife, and duty-free shopping. It is a popular weekend getaway for residents of Singapore and Malaysia.',
     location: {
       lat: 1.14937,
@@ -40,7 +40,7 @@ export const programs: Program[] = [
   {
     id: 'nagoya-hill',
     name: 'Nagoya Hill Shopping Mall',
-    category: 'Cultural Spots',
+    category: 'Ekonomi Kreatif',
     description: 'Nagoya Hill is one of the largest and most popular shopping malls in Batam, offering a wide range of retail stores, restaurants, and entertainment options.',
     location: {
       lat: 1.1396,
@@ -58,7 +58,7 @@ export const programs: Program[] = [
   {
     id: 'barelang-bridge',
     name: 'Barelang Bridge',
-    category: 'Historical Sites',
+    category: 'Infrastruktur',
     description: 'The Barelang Bridge is a chain of six bridges that connect the islands of Batam, Rempang, and Galang. It is an iconic landmark and a popular spot for sightseeing.',
     location: {
       lat: 0.9859,
@@ -76,7 +76,7 @@ export const programs: Program[] = [
   {
     id: 'marian-grotto',
     name: 'Marian Grotto (Gua Maria)',
-    category: 'Cultural Spots',
+    category: 'Pariwisata',
     description: 'A serene religious site featuring a grotto dedicated to the Virgin Mary, offering a peaceful place for prayer and contemplation.',
     location: {
       lat: 1.0544,
@@ -94,7 +94,7 @@ export const programs: Program[] = [
   {
     id: 'golden-city',
     name: 'Golden City Go Kart',
-    category: 'Entertainment',
+    category: 'Pemberdayaan Masyarakat',
     description: 'A popular entertainment complex featuring go-karting, flying fox, and other recreational activities, suitable for families and thrill-seekers.',
     location: {
       lat: 1.0560,
@@ -112,7 +112,7 @@ export const programs: Program[] = [
   {
     id: 'taman-mini-indonesia',
     name: 'Taman Mini Indonesia Indah',
-    category: 'Cultural Spots',
+    category: 'Pendidikan',
     description: 'A miniature park representing Indonesia\'s diverse culture, featuring traditional houses, museums, and gardens.',
     location: {
       lat: -6.3025,
@@ -130,7 +130,7 @@ export const programs: Program[] = [
   {
     id: 'bali-beach',
     name: 'Bali Beach',
-    category: 'Natural Parks',
+    category: 'Lingkungan',
     description: 'Famous for its stunning beaches, volcanic mountains, coral reefs, and iconic rice paddies, Bali is a popular tourist destination.',
     location: {
       lat: -8.4095,

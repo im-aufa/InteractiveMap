@@ -17,6 +17,21 @@ This section documents architectural decisions and potential technical debt to b
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.0] - 2024-12-12
+
+### Changed
+- **BREAKING:** Updated category system from 5 generic categories to 10 P2M-specific categories
+  - Old: Historical Sites, Natural Parks, Museums, Cultural Spots, Entertainment
+  - New: Pendidikan, Kesehatan, Teknologi, Lingkungan, Ekonomi Kreatif, Pariwisata, Pemberdayaan Masyarakat, Infrastruktur, Pertanian, Kelautan
+- Updated marker icons to match P2M categories (GraduationCap, Heart, Cpu, Leaf, Palette, Palmtree, Users, Building, Sprout, Waves)
+- Updated category colors to match P2M visual design system
+- Converted existing sample data to use P2M categories (temporary - will be replaced with real P2M programs)
+
+### Technical Details
+- Modified `src/data/programs.ts` type definition
+- Updated `src/components/Map.tsx` icon mappings
+- Aligned with documentation (DOCS.md, README.md, DATA_STRATEGY.md)
+
 ## [2.1.0] - 2025-12-11
 
 ### Fixed
