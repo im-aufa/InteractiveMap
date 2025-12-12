@@ -17,6 +17,27 @@ This section documents architectural decisions and potential technical debt to b
 
 All notable changes to this project will be documented in this file.
 
+## [2.3.0] - 2024-12-12
+
+### Added
+- **Modern Filter Drawer UI:**
+  - Added P2M-specific icons and color coding for all 10 categories
+  - Added program counts to all filter sections (Category, Year, Status)
+  - Added "Clear All Filters" button
+  - Added active filter count badge to the menu button
+  - Improved visual hierarchy with uppercase headers and hover effects
+- **Accessibility:** Added `Drawer.Title` for screen reader support in the filter menu
+
+### Changed
+- **Fixed program category data:** Changed from dynamic extraction to a static list of all 10 P2M categories to ensure all options are visible even without data
+- **Modified filtering logic:** "Match all" approach for multi-select (user selection is OR within same group, AND between groups)
+- **Updated Checkbox UI:** Changed from default square to `rounded-md` for a softer look
+- **Improved Popup Styling:** Forced white text color for "View Details" button to ensure contrast
+
+### Fixed
+- **Auto-pan Animation:** Changed from `fitBounds` (choppy) to `flyToBounds` with smooth easing for clustered markers
+- **Filter Drawer Direction:** Now opens reliably from the left on all devices (reverted complex responsive logic for stability)
+
 ## [2.2.0] - 2024-12-12
 
 ### Changed
