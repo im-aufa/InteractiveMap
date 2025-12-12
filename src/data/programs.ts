@@ -128,8 +128,19 @@ export const programs: Program[] = [
   },
 ];
 
-// Dynamically extract unique categories
-export const categories = [...new Set(programs.map(p => p.category))];
+// All 10 P2M categories (static list to show all, even if no programs exist yet)
+export const categories = [
+  'Pendidikan',
+  'Kesehatan',
+  'Teknologi',
+  'Lingkungan',
+  'Ekonomi Kreatif',
+  'Pariwisata',
+  'Pemberdayaan Masyarakat',
+  'Infrastruktur',
+  'Pertanian',
+  'Kelautan',
+];
 
 // Dynamically extract unique years
 export const years = [...new Set(programs.map(p => p.year))].sort((a, b) => a - b);

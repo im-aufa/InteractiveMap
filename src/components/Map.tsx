@@ -70,12 +70,27 @@ type MapProps = {
 const MapEvents = ({ filteredPrograms, searchQuery }: { filteredPrograms: typeof programs, searchQuery: string }) => {
   const map = useMap();
 
+  // Auto-pan and zoom when there's a single search result OR multiple results
   useEffect(() => {
-    if (filteredPrograms.length === 1 && searchQuery.trim() !== '') {
-      const program = filteredPrograms[0];
-      map.flyTo([program.location.lat, program.location.lng], 15);
+    if (map && filteredPrograms.length > 0 && filteredPrograms.length <= 5) {
+      if (filteredPrograms.length === 1) {
+        // Single result - zoom to it
+        const program = filteredPrograms[0];
+        map.flyTo([program.location.lat, program.location.lng], 15, {
+          duration: 1.5,
+        });
+      } else {
+        // Multiple results - fit bounds to show all with smooth animation
+        const bounds = filteredPrograms.map(p => [p.location.lat, p.location.lng] as [number, number]);
+        map.flyToBounds(bounds, {
+          padding: [50, 50],
+          maxZoom: 14,
+          duration: 1.5,
+          easeLinearity: 0.25, // Smooth easing
+        });
+      }
     }
-  }, [filteredPrograms, searchQuery, map]);
+  }, [filteredPrograms, map]);
 
   return null; // This component does not render anything
 };
