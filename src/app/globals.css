@@ -27,7 +27,7 @@ body {
 
 /* Override Leaflet's default link color for links inside popups */
 .leaflet-popup-content a {
-  color: inherit !important;
+  color: white !important;
 }
 
 /* Add a transition for the custom marker icon */
