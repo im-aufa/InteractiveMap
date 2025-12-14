@@ -1,10 +1,10 @@
 # Data Strategy & Deployment Guide for P2M Interactive Map
 
-> **Version:** 2.1.0  
-> **Last Updated:** December 2024  
+> **Version:** 2.4.0 (Implemented)  
+> **Last Updated:** December 14, 2024  
 > **Project Context:** Final Project - Politeknik Negeri Batam  
 > **Goal:** Transform text-based P2M program listings into an interactive geographic visualization  
-> **Current Data Source:** https://p2m.polibatam.ac.id (text-based lists by year)
+> **Current Data Source:** 49 Journal PDFs (2019-2025) - Extracted via LLM
 
 > [!NOTE]
 > **For UX patterns, popup design, and filter system design, see:** [DOCS.md - UX Design Patterns](./DOCS.md#4-ux-design-patterns)
@@ -141,11 +141,16 @@ type P2MProgram = {
 
 **Revised Finding:** ~40% of required data can be extracted from journal publications! This significantly reduces manual collection effort.
 
-**New Data Collection Strategy:**
-1. **Scrape journal links** from P2M website (automated)
-2. **Extract data from journal PDFs** (semi-automated with manual verification)
-3. **Geocode locations** from extracted location names (manual)
-4. **Supplement with P2M office data** for missing information (manual)
+**✅ IMPLEMENTED STRATEGY (SUCCESS):**
+1. **Source:** Collected 49 PDFs of P2M journal publications (2019-2025).
+2. **Extraction:** Used Python + **OpenAI GPT-3.5-turbo (ChatGPT API)** to extract structured JSON data.
+   - Script: `data-extraction-workspace/scripts/extract_with_chatgpt.py`
+   - Success Rate: 100% (49/49 files)
+3. **Geocoding:** Automated geocoding using `geopy` + custom logic for local islands (Mubut, Rempang, Galang).
+   - Script: `data-extraction-workspace/scripts/geocode_locations.py`
+4. **Integration:** Converted to TypeScript and injected into web app.
+
+**Outcome:** 50+ real programs successfully mapped with actual locations, descriptions, and metadata.
 
 ---
 

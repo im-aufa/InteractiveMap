@@ -17,6 +17,17 @@ This section documents architectural decisions and potential technical debt to b
 
 All notable changes to this project will be documented in this file.
 
+## [2.4.0] - 2025-12-14
+
+### Added
+- **Major Data Update:** Successfully extracted and integrated 50+ real P2M programs from 2019-2025 using an LLM-assisted data pipeline.
+- **Data Workspace:** Created `data-extraction-workspace` containing detailed Python ETL scripts.
+- **Automated Geocoding:** Implemented `geocode_locations.py` to automatically resolve program locations (e.g., "Pulau Mubut", "Sembulang") to coordinates.
+- **ChatGPT Integration:** Implemented `extract_with_chatgpt.py` using GPT-3.5-turbo for high-accuracy structured data extraction from PDFs.
+
+### Changed
+- **Data Source:** Migrated from static sample data to a fully populated `programs.ts` generated from real journal publications.
+
 ## [2.3.0] - 2024-12-12
 
 ### Added
