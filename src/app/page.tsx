@@ -4,6 +4,7 @@ import ClientOnlyMap from './../components/ClientOnlyMap';
 import Header from './../components/Header';
 import { MapProvider } from './../context/MapContext';
 import ZoomControl from './../components/ZoomControl';
+import ThemeToggle from './../components/ThemeToggle';
 import { useState } from 'react';
 import { useDebounce } from '../hooks/useDebounce';
 
@@ -41,13 +42,13 @@ export default function Home() {
   return (
     <MapProvider>
       <main className="relative h-screen w-screen">
-        <ClientOnlyMap 
-          selectedCategories={selectedCategories} 
+        <ClientOnlyMap
+          selectedCategories={selectedCategories}
           selectedYears={selectedYears}
           selectedStatuses={selectedStatuses}
-          searchQuery={debouncedSearchQuery} 
+          searchQuery={debouncedSearchQuery}
         />
-        <Header 
+        <Header
           selectedCategories={selectedCategories}
           onCategoryChange={handleCategoryChange}
           selectedYears={selectedYears}
@@ -57,6 +58,7 @@ export default function Home() {
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
         />
+        <ThemeToggle />
         <div className="absolute bottom-4 right-4 z-[1000]">
           <ZoomControl />
         </div>

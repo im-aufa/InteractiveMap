@@ -17,6 +17,46 @@ This section documents architectural decisions and potential technical debt to b
 
 All notable changes to this project will be documented in this file.
 
+## [2.5.0] - 2025-12-15
+
+### Added
+- **Marker Dark Mode Support**: Individual markers now adapt to theme with proper backgrounds and borders
+  - Light mode: White background with subtle border
+  - Dark mode: Dark gray (#1f2937) background with gray border (#374151)
+  - Theme-aware shadows for better depth perception
+
+### Changed
+- **Improved Cluster Radius**: Reduced `maxClusterRadius` from 40 to 25 pixels
+  - Markers now stay separate longer before clustering
+  - Better visual spacing at mid-zoom levels
+  - Less aggressive clustering behavior
+- **Enhanced Cluster Styling**: Implemented modern "glassmorphism" design for clusters
+  - Light mode: Soft blue gradient (`blue-500/20` to `blue-300/30`) with blur effect
+  - Dark mode: Deep blue gradient with glowing borders for high contrast
+  - Hover effects: Smooth scale (1.1x) and enhanced shadow depth
+  - Improved typography: Bold text with text-shadow for readability in all themes
+- **Validation Fixes**: 
+  - Resolved hydration mismatch errors by suppressing warnings on body
+  - Fixed legacy Next.js Link warnings in popup components
+
+### Fixed
+- **CRITICAL: Dark Mode Tailwind v4 Configuration**
+  - Fixed dark mode toggle not working due to Tailwind CSS v4 configuration incompatibility
+  - Root cause: Tailwind v4 uses CSS-first configuration and ignores `tailwind.config.ts`
+  - Solution: Added `@variant dark (&:where(.dark, .dark *));` directive to `globals.css`
+  - System dark mode preference (`prefers-color-scheme`) no longer overrides manual theme selection
+  - All UI components now correctly respond to theme toggle in both directions
+- **ThemeContext Robustness**: Added synchronization effect to handle viewport changes and re-renders
+- **DOM Class Management**: Changed from `classList.toggle()` to explicit `add()`/`remove()` for reliability
+- **Marker Backgrounds**: Fixed white marker backgrounds being hard to see on dark map tiles
+
+### Technical Details
+- Migrated from Tailwind v3 JavaScript config (`darkMode: "class"`) to v4 CSS-based config (`@variant`)
+- Updated `getIconForCategory()` to accept theme parameter and generate theme-aware marker styles
+- Added theme to marker key (`${program.id}-${theme}`) to force re-render on theme changes
+- Added comprehensive browser testing to verify theme toggle across all components
+- Documented Tailwind v4 migration considerations for future reference
+
 ## [2.4.0] - 2025-12-14
 
 ### Added

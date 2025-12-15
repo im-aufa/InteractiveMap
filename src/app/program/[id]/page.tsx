@@ -16,13 +16,13 @@ export default function ProgramDetailPage() {
 
   if (!program) {
     return (
-      <div className="flex h-screen items-center justify-center bg-zinc-50 p-4 text-zinc-800">
+      <div className="flex h-screen items-center justify-center bg-zinc-50 dark:bg-gray-900 p-4 text-zinc-800 dark:text-gray-100 transition-colors">
         <div className="text-center">
-          <h1 className="text-3xl font-bold">Program Not Found</h1>
-          <p className="mt-2">The program you are looking for does not exist.</p>
+          <h1 className="text-3xl font-bold text-zinc-900 dark:text-white">Program Not Found</h1>
+          <p className="mt-2 text-zinc-600 dark:text-gray-400">The program you are looking for does not exist.</p>
           <button
             onClick={() => router.back()}
-            className="mt-6 rounded-xl bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700"
+            className="mt-6 rounded-xl bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
           >
             Go Back
           </button>
@@ -32,44 +32,44 @@ export default function ProgramDetailPage() {
   }
 
   return (
-    <div className="relative min-h-screen w-full bg-zinc-50 p-4 md:p-8">
-      <Link href="/" className="absolute top-4 left-4 z-10 flex h-10 w-10 items-center justify-center rounded-xl border border-zinc-200 bg-white shadow-sm transition-colors hover:bg-zinc-100">
-        <FiArrowLeft className="h-5 w-5 text-zinc-500" />
+    <div className="relative min-h-screen w-full bg-zinc-50 dark:bg-gray-900 p-4 md:p-8 transition-colors">
+      <Link href="/" className="absolute top-4 left-4 z-10 flex h-10 w-10 items-center justify-center rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm transition-colors hover:bg-zinc-100 dark:hover:bg-gray-700">
+        <FiArrowLeft className="h-5 w-5 text-zinc-500 dark:text-gray-300" />
       </Link>
 
-      <div className="mx-auto max-w-4xl rounded-xl bg-white p-6 shadow-lg md:p-8">
+      <div className="mx-auto max-w-4xl rounded-xl bg-white dark:bg-gray-800 p-6 shadow-lg md:p-8 transition-colors">
         <div className="flex items-center gap-3 mb-3">
           <span className={`text-sm font-semibold px-3 py-1 rounded-full ${program.status === 'Completed'
-              ? 'bg-green-100 text-green-800'
-              : program.status === 'In Progress'
-                ? 'bg-blue-100 text-blue-800'
-                : 'bg-gray-100 text-gray-800'
+            ? 'bg-green-100 text-green-800'
+            : program.status === 'In Progress'
+              ? 'bg-blue-100 text-blue-800'
+              : 'bg-gray-100 text-gray-800'
             }`}>
             {program.status}
           </span>
-          <span className="text-sm text-zinc-500">{program.year}</span>
-          <span className="text-sm text-zinc-500">•</span>
-          <span className="text-sm font-medium text-zinc-700">{program.category}</span>
+          <span className="text-sm text-zinc-500 dark:text-gray-400">{program.year}</span>
+          <span className="text-sm text-zinc-500 dark:text-gray-400">•</span>
+          <span className="text-sm font-medium text-zinc-700 dark:text-gray-300">{program.category}</span>
         </div>
 
-        <h1 className="mb-4 text-4xl font-bold text-zinc-900">{program.name}</h1>
+        <h1 className="mb-4 text-4xl font-bold text-zinc-900 dark:text-white">{program.name}</h1>
 
         <div className="mb-6">
           <a
             href={`https://www.google.com/maps/search/?api=1&query=${program.location.lat},${program.location.lng}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700"
+            className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
           >
             Get Directions
           </a>
         </div>
 
-        <p className="mb-6 text-zinc-600">{program.description}</p>
+        <p className="mb-6 text-zinc-600 dark:text-gray-300 leading-relaxed">{program.description}</p>
 
         {program.images.length > 0 && (
           <div className="mb-6">
-            <h2 className="mb-3 text-2xl font-semibold text-zinc-800">Gallery</h2>
+            <h2 className="mb-3 text-2xl font-semibold text-zinc-800 dark:text-gray-100">Gallery</h2>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {program.images.map((src, index) => (
                 <div key={index} className="relative h-48 w-full overflow-hidden rounded-xl shadow-md">
@@ -82,7 +82,7 @@ export default function ProgramDetailPage() {
 
         {program.videoUrl && (
           <div className="mb-6">
-            <h2 className="mb-3 text-2xl font-semibold text-zinc-800">Video</h2>
+            <h2 className="mb-3 text-2xl font-semibold text-zinc-800 dark:text-gray-100">Video</h2>
             <div className="relative aspect-video w-full overflow-hidden rounded-xl shadow-md">
               <iframe
                 src={program.videoUrl}
@@ -96,7 +96,7 @@ export default function ProgramDetailPage() {
           </div>
         )}
 
-        <div className="mt-8 space-y-2 border-t border-zinc-200 pt-6 text-sm text-zinc-600">
+        <div className="mt-8 space-y-2 border-t border-zinc-200 dark:border-gray-700 pt-6 text-sm text-zinc-600 dark:text-gray-400">
           <p>
             <strong>Location:</strong> {program.location.address} (Lat: {program.location.lat}, Lng: {program.location.lng})
           </p>
@@ -106,7 +106,7 @@ export default function ProgramDetailPage() {
           {program.detailsUrl && (
             <p>
               <strong>More Info:</strong>{' '}
-              <a href={program.detailsUrl} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+              <a href={program.detailsUrl} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline dark:text-blue-400">
                 Read More
               </a>
             </p>

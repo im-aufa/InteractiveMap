@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* Tailwind v4 Dark Mode Configuration */
+/* Override default prefers-color-scheme behavior with class-based dark mode */
+@variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -12,17 +16,45 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Removing media query to allow full manual control via .dark class */
+/* ThemeContext handles initial system preference check */
+
+/* Dark mode override when .dark class is present */
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- Leaflet Popup Customization --- */
+/* Remove default bubble styling to fit our custom card */
+.leaflet-popup-content-wrapper {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  width: auto !important;
+}
+
+/* Style the tip (triangle) */
+.leaflet-popup-tip {
+  background: white;
+}
+
+/* Dark mode for popup tip */
+.dark .leaflet-popup-tip {
+  background: #1f2937;
+  /* gray-800 */
 }
 
 /* Override Leaflet's default link color for links inside popups */
@@ -35,9 +67,87 @@ body {
   transition: transform 0.2s ease-out, z-index 0.2s ease-out;
 }
 
-
 /* Customizations for react-leaflet-cluster animations */
 /* Quick but smooth - responsive to fast zoom while avoiding jarring transitions */
 .leaflet-cluster-anim .leaflet-marker-icon {
   transition: transform 0.25s ease-out !important;
+}
+
+/* ========================================
+   Modern Cluster Styling - HIGH SPECIFICITY
+   ======================================== */
+
+/* Base cluster styles - make them very specific and override defaults */
+.leaflet-marker-icon.marker-cluster-small,
+.leaflet-marker-icon.marker-cluster-medium,
+.leaflet-marker-icon.marker-cluster-large {
+  background-image: none !important;
+  /* Override default image */
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(147, 197, 253, 0.3)) !important;
+  backdrop-filter: blur(8px);
+  border: 2px solid rgba(59, 130, 246, 0.4) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.leaflet-marker-icon.marker-cluster-small:hover,
+.leaflet-marker-icon.marker-cluster-medium:hover,
+.leaflet-marker-icon.marker-cluster-large:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+}
+
+.dark .leaflet-marker-icon.marker-cluster-small,
+.dark .leaflet-marker-icon.marker-cluster-medium,
+.dark .leaflet-marker-icon.marker-cluster-large {
+  background-image: none !important;
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.6), rgba(59, 130, 246, 0.4)) !important;
+  border: 2px solid rgba(96, 165, 250, 0.6) !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2), 0 0 20px rgba(59, 130, 246, 0.1);
+}
+
+.dark .leaflet-marker-icon.marker-cluster-small:hover,
+.dark .leaflet-marker-icon.marker-cluster-medium:hover,
+.dark .leaflet-marker-icon.marker-cluster-large:hover {
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4), 0 0 30px rgba(59, 130, 246, 0.2);
+}
+
+/* Cluster text/number styling */
+.marker-cluster div {
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  background: transparent !important;
+  color: #1e40af !important;
+  /* blue-800 */
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Dark mode text */
+.dark .marker-cluster div {
+  color: #93c5fd !important;
+  /* blue-300 */
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* Spiderfy animation markers */
+.dark .leaflet-cluster-anim .leaflet-marker-icon {
+  opacity: 0.9;
+}
+
+/* Spiderfy leg lines - light mode */
+.marker-cluster-spider-leg {
+  stroke: rgba(59, 130, 246, 0.4) !important;
+  stroke-width: 2px !important;
+}
+
+/* Spiderfy leg lines - dark mode */
+.dark .marker-cluster-spider-leg {
+  stroke: rgba(96, 165, 250, 0.6) !important;
+  stroke-width: 2px !important;
 }

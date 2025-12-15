@@ -52,20 +52,20 @@ const FilterMenu = ({
 
   return (
     <>
-      <div className="flex flex-col gap-6 p-4 bg-zinc-50">
+      <div className="flex flex-col gap-6 p-4 bg-zinc-50 dark:bg-gray-900 transition-colors">
         {/* Clear All Button */}
         {hasActiveFilters && (
           <button
             onClick={clearAllFilters}
-            className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
+            className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors"
           >
             Clear All Filters
           </button>
         )}
 
         {/* Category Section */}
-        <div className="pb-4 border-b border-zinc-200">
-          <h3 className="mb-4 text-sm font-bold text-zinc-800 uppercase tracking-wide">Category</h3>
+        <div className="pb-4 border-b border-zinc-200 dark:border-gray-700">
+          <h3 className="mb-4 text-sm font-bold text-zinc-800 dark:text-white uppercase tracking-wide">Category</h3>
           <div className="flex flex-col gap-2">
             {categories.map((category) => {
               const config = categoryConfig[category as keyof typeof categoryConfig];
@@ -76,7 +76,7 @@ const FilterMenu = ({
               return (
                 <label
                   key={category}
-                  className={`flex items-center gap-3 p-2 rounded-lg cursor-pointer transition-colors ${isDisabled ? 'opacity-40 cursor-not-allowed' : 'hover:bg-zinc-100'
+                  className={`flex items-center gap-3 p-2 rounded-lg cursor-pointer transition-colors ${isDisabled ? 'opacity-40 cursor-not-allowed' : 'hover:bg-zinc-100 dark:hover:bg-gray-800'
                     }`}
                 >
                   <input
@@ -90,8 +90,8 @@ const FilterMenu = ({
                     className="h-5 w-5 flex-shrink-0"
                     style={{ color: config?.color || '#6B7280' }}
                   />
-                  <span className="flex-1 text-sm text-zinc-700 font-medium">{category}</span>
-                  <span className="text-xs text-zinc-500 font-semibold">({count})</span>
+                  <span className="flex-1 text-sm text-zinc-700 dark:text-gray-300 font-medium">{category}</span>
+                  <span className="text-xs text-zinc-500 dark:text-gray-400 font-semibold">({count})</span>
                 </label>
               );
             })}
@@ -99,22 +99,22 @@ const FilterMenu = ({
         </div>
 
         {/* Year Section */}
-        <div className="pb-4 border-b border-zinc-200">
-          <h3 className="mb-4 text-sm font-bold text-zinc-800 uppercase tracking-wide">Year</h3>
+        <div className="pb-4 border-b border-zinc-200 dark:border-gray-700">
+          <h3 className="mb-4 text-sm font-bold text-zinc-800 dark:text-white uppercase tracking-wide">Year</h3>
           <div className="flex flex-col gap-2">
             {years.map((year) => {
               const yearCount = programs.filter(p => p.year === year).length;
 
               return (
-                <label key={year} className="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-zinc-100 transition-colors">
+                <label key={year} className="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-zinc-100 dark:hover:bg-gray-800 transition-colors">
                   <input
                     type="checkbox"
                     className="h-4 w-4 rounded-md border-zinc-300 text-blue-600 focus:ring-blue-600"
                     checked={selectedYears.includes(year)}
                     onChange={(e) => onYearChange(year, e.target.checked)}
                   />
-                  <span className="flex-1 text-sm text-zinc-700 font-medium">{year}</span>
-                  <span className="text-xs text-zinc-500 font-semibold">({yearCount})</span>
+                  <span className="flex-1 text-sm text-zinc-700 dark:text-gray-300 font-medium">{year}</span>
+                  <span className="text-xs text-zinc-500 dark:text-gray-400 font-semibold">({yearCount})</span>
                 </label>
               );
             })}
@@ -123,7 +123,7 @@ const FilterMenu = ({
 
         {/* Status Section */}
         <div>
-          <h3 className="mb-4 text-sm font-bold text-zinc-800 uppercase tracking-wide">Status</h3>
+          <h3 className="mb-4 text-sm font-bold text-zinc-800 dark:text-white uppercase tracking-wide">Status</h3>
           <div className="flex flex-col gap-2">
             {statuses.map((status) => {
               const statusCount = programs.filter(p => p.status === status).length;
@@ -139,7 +139,7 @@ const FilterMenu = ({
                   : '○';
 
               return (
-                <label key={status} className="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-zinc-100 transition-colors">
+                <label key={status} className="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-zinc-100 dark:hover:bg-gray-800 transition-colors">
                   <input
                     type="checkbox"
                     className="h-4 w-4 rounded-md border-zinc-300 text-blue-600 focus:ring-blue-600"
@@ -147,8 +147,8 @@ const FilterMenu = ({
                     onChange={(e) => onStatusChange(status, e.target.checked)}
                   />
                   <span className={`text-base ${statusColor}`}>{statusIcon}</span>
-                  <span className="flex-1 text-sm text-zinc-700 font-medium">{status}</span>
-                  <span className="text-xs text-zinc-500 font-semibold">({statusCount})</span>
+                  <span className="flex-1 text-sm text-zinc-700 dark:text-gray-300 font-medium">{status}</span>
+                  <span className="text-xs text-zinc-500 dark:text-gray-400 font-semibold">({statusCount})</span>
                 </label>
               );
             })}
