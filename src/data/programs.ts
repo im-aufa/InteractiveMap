@@ -26,8 +26,8 @@ export const programs: Program[] = [
     "category": "Teknologi",
     "description": "Program ini bertujuan untuk meningkatkan kualitas penerangan dan penyediaan air bersih di Pulau Jemare melalui penerapan teknologi tepat guna, seperti penerangan jalan umum dan sistem pompa air tenaga surya. Melalui kolaborasi dengan warga setempat, program ini berhasil memasang lampu jalan dan sistem pompa air yang diharapkan memberikan dampak positif pada kualitas hidup warga.",
     "location": {
-      "lat": 1.0196577,
-      "lng": 104.5698189,
+      "lat": 0.9044922437723182,
+      "lng": 104.20328174103597,
       "address": "Pulau Jemare"
     },
     "images": [
@@ -45,8 +45,8 @@ export const programs: Program[] = [
     "category": "Pendidikan",
     "description": "Program ini bertujuan untuk meningkatkan kapasitas petani muda generasi milenial dalam memasarkan produk pertanian hidroponik pasca panen secara digital melalui platform e-commerce TikTok. Melalui seminar edukasi dan pelatihan praktis, peserta dari SMAN 1 Pemali diberdayakan dalam strategi pemasaran digital dan penggunaan alat e-commerce.",
     "location": {
-      "lat": 1.1030815,
-      "lng": 104.0383696,
+      "lat": -1.8804274147867814,
+      "lng": 106.04828505663748,
       "address": "SMAN 1 Pemali"
     },
     "images": [
@@ -64,8 +64,8 @@ export const programs: Program[] = [
     "category": "Pendidikan",
     "description": "Program ini bertujuan untuk meningkatkan pemahaman siswa SMKN 2 Sungailiat tentang judi online dan dampaknya terhadap ekonomi, serta menumbuhkan kesadaran kritis dan sikap penolakan terhadap praktik judi online. Metode yang digunakan adalah sosialisasi dengan persiapan, pelaksanaan program, dan evaluasi melalui pre-test, post-test, dan kualitatif.",
     "location": {
-      "lat": 1.1030815,
-      "lng": 104.0383696,
+      "lat": -1.8079607562507451,
+      "lng": 106.0816808808634,
       "address": "SMKN 2 Sungailiat"
     },
     "images": [
@@ -83,8 +83,8 @@ export const programs: Program[] = [
     "category": "Kesehatan",
     "description": "Program ini bertujuan untuk meningkatkan keamanan di lingkungan perumahan dengan pemasangan sistem keamanan berupa CCTV. Metode meliputi survei lokasi, pemilihan jenis kamera, penempatan DVR, dan pengaturan perangkat lunak. Respon positif diterima dari pengurus RT dan masyarakat setempat.",
     "location": {
-      "lat": 1.0490933,
-      "lng": 103.9398514,
+      "lat": 1.0478149693576555,
+      "lng": 103.94030442565546,
       "address": "Perumahan Fanindo, Tanjung Uncang, Batam"
     },
     "images": [
@@ -102,8 +102,8 @@ export const programs: Program[] = [
     "category": "Kesehatan",
     "description": "Program ini bertujuan meningkatkan kesadaran, pengetahuan, dan praktik K3 di lingkungan kerja pelajar SMK Negeri 1 Bintan Utara untuk mengurangi risiko kecelakaan dan penyakit terkait pekerjaan. Workshop diselenggarakan untuk mengidentifikasi, mengevaluasi, dan mengendalikan risiko K3 di lingkungan kerja.",
     "location": {
-      "lat": 1.1030815,
-      "lng": 104.0383696,
+      "lat": 1.0568150321526417,
+      "lng": 104.23135728329802,
       "address": "SMK Negeri 1 Bintan Utara"
     },
     "images": [
@@ -121,8 +121,8 @@ export const programs: Program[] = [
     "category": "Pendidikan",
     "description": "Program ini bertujuan untuk meningkatkan keterampilan siswa dalam membuat dan merawat hidroponik sederhana di SMAN 1 Pemali. Metode yang digunakan melibatkan sosialisasi dan pelatihan mengenai hidroponik sumbu. Kegiatan ini juga memberikan kesadaran tentang pentingnya memanfaatkan lahan sempit dan barang bekas untuk budidaya tanaman melalui hidroponik.",
     "location": {
-      "lat": 1.1030815,
-      "lng": 104.0383696,
+      "lat": -1.8993755707051774,
+      "lng": 106.05638423585302,
       "address": "SMA Negeri 1 Pemali"
     },
     "images": [
@@ -140,8 +140,8 @@ export const programs: Program[] = [
     "category": "Pariwisata",
     "description": "Studi ini bertujuan untuk membantu pengelola wisata Pulau Mubut dalam memanfaatkan website sebagai media promosi wisata. Metode meliputi tahap persiapan, pengembangan konten website, implementasi sebagai media promosi, dan evaluasi kepuasan pengguna website.",
     "location": {
-      "lat": 0.81975,
-      "lng": 104.2816,
+      "lat": 0.8166598980309709,
+      "lng": 104.28021963215934,
       "address": "Pulau Mubut"
     },
     "images": [
@@ -159,8 +159,8 @@ export const programs: Program[] = [
     "category": "Pariwisata",
     "description": "Penelitian ini bertujuan untuk mengidentifikasi potensi pariwisata Pulau Galang dengan pendekatan studi kasus. Hasil penelitian menunjukkan bahwa Pulau Galang memiliki potensi wisata yang signifikan namun masih memerlukan peningkatan infrastruktur dan pemberdayaan ekonomi.",
     "location": {
-      "lat": 0.7388,
-      "lng": 104.2343,
+      "lat": 0.7390744926637561,
+      "lng": 104.23472148756903,
       "address": "Pulau Galang"
     },
     "images": [
@@ -178,8 +178,8 @@ export const programs: Program[] = [
     "category": "Pariwisata",
     "description": "Program ini bertujuan untuk merancang visual branding untuk wisata Pulau Mubut Darat dengan menggunakan metode Branding Process. Melalui riset dan desain identitas lokal, program ini bertujuan untuk memperkuat identitas wisata dan mempromosikan kembali pariwisata di tengah pandemi. Metode perancangan melibatkan tahapan penelitian, strategi, desain identitas, menciptakan sentuhan pokok, dan mengelola aset.",
     "location": {
-      "lat": 0.81975,
-      "lng": 104.2816,
+      "lat": 0.8171106050183428,
+      "lng": 104.28108189321345,
       "address": "Pulau Mubut Darat"
     },
     "images": [
@@ -197,8 +197,8 @@ export const programs: Program[] = [
     "category": "Pariwisata",
     "description": "Program ini bertujuan untuk memberdayakan masyarakat Pulau Akar di Batam melalui pengajaran bahasa Inggris, pemasaran, dan teknologi digital agar mampu berkomunikasi dengan wisatawan asing, mempromosikan destinasi pariwisata, serta menggunakan teknologi digital sebagai media publikasi. Metode yang diterapkan meliputi perkenalan diri, presentasi, diskusi, dan praktek.",
     "location": {
-      "lat": 2.5031589,
-      "lng": 109.0146598,
+      "lat": 0.9684855221133514,
+      "lng": 104.03457503480244,
       "address": "Kampung Pulau Akar, Kelurahan Setokok, Kecamatan Bulang, Batam"
     },
     "images": [
@@ -216,8 +216,8 @@ export const programs: Program[] = [
     "category": "Pariwisata",
     "description": "Program kemitraan masyarakat ini bertujuan mengembangkan usaha kuliner Kupat Tahu Padalarang di Kecamatan Batujajar, Jawa Barat dengan membangun identitas merek, personal branding, pelayanan prima, dan komunikasi pelanggan yang baik. Survey dilakukan untuk mengevaluasi kesadaran merek, kondisi usaha, dan kepuasan pelanggan sebelum dan sesudah program dijalankan.",
     "location": {
-      "lat": 1.1030815,
-      "lng": 104.0383696,
+      "lat": -6.916768749619889,
+      "lng": 107.49851181777521,
       "address": "Kecamatan Batujajar"
     },
     "images": [
@@ -235,8 +235,8 @@ export const programs: Program[] = [
     "category": "Kesehatan",
     "description": "Studi ini bertujuan untuk meningkatkan kesadaran akan keselamatan dan kesehatan kerja dalam proses perbaikan kapal kayu di Daerah Pasir Panjang. Metode yang digunakan meliputi penyuluhan dan langkah-langkah aman dalam melakukan perbaikan kapal.",
     "location": {
-      "lat": 0.8256,
-      "lng": 104.2691,
+      "lat": 0.8800525933558903,
+      "lng": 104.22036999341624,
       "address": "Daerah Pasir Panjang"
     },
     "images": [
@@ -254,8 +254,8 @@ export const programs: Program[] = [
     "category": "Pariwisata",
     "description": "Program ini bertujuan untuk mengenalkan keindahan dan hasil laut di Pantai Pasir Panjang kepada masyarakat melalui pelatihan pembuatan pempek. Pelatihan dilakukan di Kampung Pesisir Pasir Panjang, dengan hasil survei menunjukkan peningkatan pengetahuan dan keterampilan masyarakat sekaligus potensi pariwisata di daerah tersebut.",
     "location": {
-      "lat": 0.8256,
-      "lng": 104.2691,
+      "lat": 0.8787151918808486,
+      "lng": 104.22093540746863,
       "address": "Kampung Pesisir Pasir Panjang, Kelurahan Pasir Panjang, Kecamatan Rempang Cate, Kota Batam"
     },
     "images": [
@@ -273,8 +273,8 @@ export const programs: Program[] = [
     "category": "Pariwisata",
     "description": "Program ini bertujuan untuk melatih masyarakat Rempang Cate dalam berkomunikasi Bahasa Inggris sebagai tuan rumah desa wisata Pasir Panjang. Melalui pelatihan ini diharapkan kawasan Pasir Panjang dapat menarik lebih banyak wisatawan. Metode pelatihan dilakukan dengan memberikan materi latihan percakapan sederhana.",
     "location": {
-      "lat": 0.8256,
-      "lng": 104.2691,
+      "lat": 0.8806540809634038,
+      "lng": 104.22628689653908,
       "address": "Kelurahan Pasir Panjang, Kecamatan Rempang Cate, Kota Batam"
     },
     "images": [
@@ -292,8 +292,8 @@ export const programs: Program[] = [
     "category": "Pemberdayaan Masyarakat",
     "description": "Program ini bertujuan untuk meningkatkan perekonomian masyarakat nelayan Kampung Tua Nongsa melalui pelatihan konsultasi dan pendampingan kewirausahaan serta inkubator bisnis. Metode pelaksanaan kegiatan menggunakan pre dan post test. Output kegiatan meliputi menciptakan produk baru, mengembangkan keterampilan masyarakat, dan memenuhi tri darma perguruan tinggi.",
     "location": {
-      "lat": 1.1030815,
-      "lng": 104.0383696,
+      "lat": 1.1866468849644778,
+      "lng": 104.11382907902032,
       "address": "Kampung Tua Teluk Mata Ikan Nongsa"
     },
     "images": [
@@ -311,8 +311,8 @@ export const programs: Program[] = [
     "category": "Pendidikan",
     "description": "Kegiatan pengabdian ini bertujuan untuk mensosialisasikan metode penentuan arah kiblat secara teliti dengan teknologi survei pemetaan, yaitu Total Station, sekaligus bersama-sama dengan masyarakat setempat melakukan kegiatan pengukuran di lapangan. Dilakukan dalam dua tahap, yaitu persiapan dan pelaksanaan di lapangan dengan menggunakan prinsip perhitungan segitiga bola dalam ilmu Matematika Geodesi.",
     "location": {
-      "lat": 0.8256,
-      "lng": 104.2691,
+      "lat": 0.8782215355169247,
+      "lng": 104.22313828020076,
       "address": "Kampung Pasir Panjang"
     },
     "images": [
@@ -330,8 +330,8 @@ export const programs: Program[] = [
     "category": "Pendidikan",
     "description": "Program ini bertujuan untuk memberikan pelatihan dalam pembuatan peta desa di Sembulang, Batam. Kegiatan meliputi penggunaan GPS handheld, deliniasi citra Google Earth, dan dokumentasi informasi geospasial. Pelatihan dilaksanakan pada Agustus 2019 dengan peserta dari perangkat Kecamatan Galang dan perangkat kelurahan.",
     "location": {
-      "lat": 0.8541,
-      "lng": 104.2404,
+      "lat": 0.8537309964657647,
+      "lng": 104.24020506263481,
       "address": "Sembulang, Batam"
     },
     "images": [
@@ -349,8 +349,8 @@ export const programs: Program[] = [
     "category": "Kesehatan",
     "description": "Program ini bertujuan untuk menyediakan stok air bersih dengan menggunakan mini-house destilator air laut di Pantai Setokok, Batam. Alat ini merupakan alternatif sederhana, ekonomis, dan ramah lingkungan untuk menyuling air laut menjadi air tawar, membantu masyarakat pesisir dalam memenuhi kebutuhan air bersih.",
     "location": {
-      "lat": 0.92335,
-      "lng": 104.06094,
+      "lat": 0.9246737094349377,
+      "lng": 104.06125364293379,
       "address": "Pantai Setokok, Batam"
     },
     "images": [
@@ -368,8 +368,8 @@ export const programs: Program[] = [
     "category": "Pariwisata",
     "description": "Studi ini bertujuan untuk mengembangkan potensi pariwisata di Pulau Setokok melalui pemetaan partisipatif objek wisata dan fasilitas pendukungnya. Metode yang digunakan adalah pemetaan partisipatif yang kemudian dipublikasikan dalam bentuk WebGIS untuk meningkatkan kesadaran masyarakat akan potensi pariwisata di pulau tersebut.",
     "location": {
-      "lat": 1.1030815,
-      "lng": 104.0383696,
+      "lat": 0.9432516770000674,
+      "lng": 104.05891386109995,
       "address": "Kelurahan Pulau Setokok"
     },
     "images": [
@@ -387,8 +387,8 @@ export const programs: Program[] = [
     "category": "Teknologi",
     "description": "Program ini bertujuan untuk memasang alat pencuci tangan otomatis di Pasar Mitra Raya Kota Batam dengan sumber energi listrik alternatif dari panel surya. Dengan demikian, diharapkan dapat meningkatkan kebersihan dan efisiensi dalam mencuci tangan di tempat umum.",
     "location": {
-      "lat": 1.1204732,
-      "lng": 104.0430552,
+      "lat": 1.1209717758311082,
+      "lng": 104.04256922156706,
       "address": "Pasar Mitra Raya, Kota Batam"
     },
     "images": [
@@ -406,8 +406,8 @@ export const programs: Program[] = [
     "category": "Pendidikan",
     "description": "Pelatihan ini bertujuan untuk meningkatkan pengetahuan dan penguasaan guru SMK Muhammadiyah Adiwerna dalam menggunakan program aplikasi Spreadsheet untuk mendukung pembelajaran akuntansi. Program dilaksanakan sebagai respons terhadap kebutuhan kurikulum 2013 yang menekankan penggunaan teknologi dalam pendidikan.",
     "location": {
-      "lat": 1.1030815,
-      "lng": 104.0383696,
+      "lat": -6.9363664439362225,
+      "lng": 109.12533268438128,
       "address": "Desa Adiwerna, Kabupaten Tegal"
     },
     "images": [
@@ -425,8 +425,8 @@ export const programs: Program[] = [
     "category": "Kelautan",
     "description": "Program ini bertujuan untuk meningkatkan jalur transportasi nelayan melalui sosialisasi rute pelayaran efektif berbasis medan di Kelurahan Sembulang. Dengan menganalisis medan kompleks, program ini memberikan pemahaman kepada nelayan tentang jalur transportasi laut terbaik sambil meminimalisir dampak negatif terhadap lingkungan.",
     "location": {
-      "lat": 0.8541,
-      "lng": 104.2404,
+      "lat": 0.854474993317182,
+      "lng": 104.24032613188903,
       "address": "Kelurahan Sembulang"
     },
     "images": [
@@ -444,8 +444,8 @@ export const programs: Program[] = [
     "category": "Kesehatan",
     "description": "Studi evaluasi penyediaan air bersih dengan sumber listrik tenaga surya di Desa Pasir Panjang, Rempang. Kegiatan meliputi pemberian peralatan dan pemasangan pompa air dengan sumber listrik mandiri dari sel surya 100WP. Hasil penelitian menunjukkan perbaikan sistem instalasi kelistrikan dengan mengubah diameter kabel distribusi arus.",
     "location": {
-      "lat": 0.8541,
-      "lng": 104.2404,
+      "lat": 0.8783043582770678,
+      "lng": 104.22304928599553,
       "address": "Desa Pasir Panjang, Pulau Rempang"
     },
     "images": [
@@ -463,8 +463,8 @@ export const programs: Program[] = [
     "category": "Kesehatan",
     "description": "Program ini menggunakan augmented reality sebagai media pelatihan untuk penanganan kebakaran hutan bagi warga Desa Pasir Panjang, Batam. Tujuannya adalah meningkatkan pengetahuan dan keterampilan warga dalam menghadapi bencana kebakaran. Metode pelatihan dilakukan melalui simulasi penggunaan alat pemadam api dengan aplikasi berbasis augmented reality.",
     "location": {
-      "lat": 0.8256,
-      "lng": 104.2691,
+      "lat": 0.8783256667224918,
+      "lng": 104.2203833990836,
       "address": "Desa Pasir Panjang, Batam"
     },
     "images": [
@@ -482,8 +482,8 @@ export const programs: Program[] = [
     "category": "Ekonomi Kreatif",
     "description": "Program ini bertujuan untuk meningkatkan keterampilan manajerial dan pemanfaatan teknologi informasi dalam pencatatan keuangan digital di Kopontren Daarul Rahman. Metode pelaksanaan meliputi wawancara, ceramah, praktik, dan diskusi pelatihan menggunakan aplikasi teknologi informasi.",
     "location": {
-      "lat": 0.8493748,
-      "lng": 104.2619318,
+      "lat": 0.8494704476042001,
+      "lng": 104.26168845654463,
       "address": "Cipedak, Jagakarsa, Jakarta Selatan"
     },
     "images": [
@@ -501,8 +501,8 @@ export const programs: Program[] = [
     "category": "Pariwisata",
     "description": "Program ini bertujuan untuk meningkatkan kecerdasan linguistik masyarakat Desa Mubut agar mampu berkomunikasi dalam bahasa Inggris bisnis guna mendukung pengembangan Desa Wisata Pulau Mubut. Metode yang dilakukan meliputi pelatihan offline, pemberian buku saku, dan video simulasi.",
     "location": {
-      "lat": 0.81975,
-      "lng": 104.2816,
+      "lat": 0.8163431539740266,
+      "lng": 104.27990707490392,
       "address": "Desa Mubut, Pulau Mubut"
     },
     "images": [
@@ -520,8 +520,8 @@ export const programs: Program[] = [
     "category": "Pariwisata",
     "description": "Program ini bertujuan untuk meningkatkan infrastruktur listrik dan penerangan di Pulau Mubud Darat, sebuah destinasi wisata di Kota Batam. Dengan menggunakan panel surya dan lampu LED, program ini juga menciptakan ikon wisata baru untuk menarik pengunjung.",
     "location": {
-      "lat": 1.0196577,
-      "lng": 104.5698189,
+      "lat": 0.8171003829773864,
+      "lng": 104.28211436105836,
       "address": "Pulau Mubud Darat"
     },
     "images": [
@@ -539,8 +539,8 @@ export const programs: Program[] = [
     "category": "Kesehatan",
     "description": "Program ini bertujuan untuk menghasilkan peta batimetri guna memastikan rute pelayaran kapal ambulans yang aman dan efisien di Kecamatan Belakang Padang, Batam. Kolaborasi antara LAZ Batam, Politeknik Negeri Batam, dan RS Awal Bross dilakukan untuk mewujudkan kapal ambulans generasi kedua.",
     "location": {
-      "lat": 1.1030815,
-      "lng": 104.0383696,
+      "lat": 1.1252949397493992,
+      "lng": 103.92673742903905,
       "address": "Kecamatan Belakang Padang"
     },
     "images": [
@@ -558,8 +558,8 @@ export const programs: Program[] = [
     "category": "Pariwisata",
     "description": "Program ini bertujuan untuk meningkatkan promosi dan daya tarik wisata di Pulau Mubut Darat melalui pembuatan plang informasi denah lokasi atau POI. Metode meliputi pemetaan lokasi bangunan dan fasilitas serta pembuatan plang informasi. Diharapkan plang ini dapat menjadi ikon foto wisata yang mempromosikan dan meningkatkan jumlah wisatawan yang berkunjung.",
     "location": {
-      "lat": 0.8541,
-      "lng": 104.2404,
+      "lat": 0.8171632686094332,
+      "lng": 104.2793185966618,
       "address": "Desa Mubut Darat, Kecamatan Sembulang, Kota Batam, Kepulauan Riau"
     },
     "images": [
@@ -577,8 +577,8 @@ export const programs: Program[] = [
     "category": "Lingkungan",
     "description": "Studi ini bertujuan untuk menggali pandangan masyarakat lokal terkait pembangunan desa wisata dan dampak kerusakan lingkungan yang menyertainya di Mubut Darat. Metode penelitian melibatkan wawancara dengan pengelola pantai dan awak media serta penggunaan kuesioner.",
     "location": {
-      "lat": 1.0196577,
-      "lng": 104.5698189,
+      "lat": 0.8459383366823677,
+      "lng": 104.26374336870813,
       "address": "Mubut Darat"
     },
     "images": [
@@ -596,8 +596,8 @@ export const programs: Program[] = [
     "category": "Lingkungan",
     "description": "Program ini bertujuan untuk merancang dan membuat ecobrick dari sampah plastik guna mengatasi permasalahan sampah domestik di komunitas pesisir di Pulau Mubut Darat. Metode meliputi persiapan alat dan bahan, survei lokasi sampah, penyuluhan, pembuatan ecobrick, evaluasi, dan pemantauan.",
     "location": {
-      "lat": 0.81975,
-      "lng": 104.2816,
+      "lat": 0.8455646052902153,
+      "lng": 104.25992431660744,
       "address": "Pulau Mubut Darat"
     },
     "images": [
@@ -615,8 +615,8 @@ export const programs: Program[] = [
     "category": "Pariwisata",
     "description": "Kegiatan ini bertujuan untuk membangun dan menerapkan website wisata Pulau Mubut sebagai media promosi. Metode pelaksanaan melibatkan observasi, sosialisasi, dan pelatihan pengguna secara aktif.",
     "location": {
-      "lat": 0.81975,
-      "lng": 104.2816,
+      "lat": 0.845797439024361,
+      "lng": 104.25952712944027,
       "address": "Pulau Mubut Darat, Kecamatan Galang, Kota Batam, Kepulauan Riau"
     },
     "images": [
@@ -634,8 +634,8 @@ export const programs: Program[] = [
     "category": "Kesehatan",
     "description": "Program ini bertujuan untuk melakukan perawatan rutin terhadap kapal ambulans laut Batam Marine Ambulance guna memastikan fungsi sistem kapal berjalan dengan baik sebagai sarana transportasi medis. Kegiatan perawatan dilakukan untuk memperbaiki dan mempertahankan fungsi kapal agar layanan transportasi medis berjalan lancar.",
     "location": {
-      "lat": 1.0196577,
-      "lng": 104.5698189,
+      "lat": 1.0330457769562196,
+      "lng": 104.13004325178495,
       "address": "Pulau Batam"
     },
     "images": [
@@ -653,8 +653,8 @@ export const programs: Program[] = [
     "category": "Pemberdayaan Masyarakat",
     "description": "Program ini bertujuan untuk memberdayakan masyarakat Kampung Rempang Cate melalui pelatihan pemasaran digital untuk produk unggulan seperti kerupuk ikan, kue bangkit, kerupuk paru, dan empek-empek. Dengan memanfaatkan media sosial, program ini bertujuan meningkatkan ekonomi masyarakat dan mengurangi ketidakpastian penjualan produk.",
     "location": {
-      "lat": 2.5031589,
-      "lng": 109.0146598,
+      "lat": 0.9093001106003132,
+      "lng": 104.15507931675373,
       "address": "Kampung Rempang Cate, Kecamatan Galang, Kota Batam"
     },
     "images": [
@@ -672,8 +672,8 @@ export const programs: Program[] = [
     "category": "Teknologi",
     "description": "Program ini bertujuan untuk merancang Sistem Informasi Akuntansi Penjualan menggunakan Program Microsoft Visual Basic 6.0 pada PD Mie Ayam Berkah. Metode yang digunakan adalah wawancara dan tinjauan langsung terhadap sistem pencatatan penjualan yang ada.",
     "location": {
-      "lat": 1.1030815,
-      "lng": 104.0383696,
+      "lat": -2.941753966384703,
+      "lng": 104.7414600628332,
       "address": "PD Mie Ayam Berkah"
     },
     "images": [
@@ -691,8 +691,8 @@ export const programs: Program[] = [
     "category": "Teknologi",
     "description": "Program ini bertujuan untuk memberikan pemahaman dan keterampilan kepada masyarakat pesisir dan pulau kecil di Nongsa, Batam, dalam menentukan dan memetakan daerah penangkapan ikan berbasis teknologi bawah air. Melalui pengembangan IPTEk, program ini membantu masyarakat pesisir dalam menentukan spot penangkapan ikan untuk meningkatkan kemandirian ekonomi mereka.",
     "location": {
-      "lat": 0.6772011,
-      "lng": 104.3041216,
+      "lat": 1.1867754241571804,
+      "lng": 104.1142588579097,
       "address": "Teluk Mata Ikan, Nongsa, Batam"
     },
     "images": [
@@ -710,8 +710,8 @@ export const programs: Program[] = [
     "category": "Pariwisata",
     "description": "Pelatihan ini bertujuan untuk mengoptimalkan media promosi sosial, khususnya Facebook, bagi pengelola Desa Wisata Pulau Mubut. Dengan demikian, diharapkan Desa Wisata Pulau Mubut dapat lebih dikenal dan dikunjungi oleh masyarakat luas.",
     "location": {
-      "lat": 0.81975,
-      "lng": 104.2816,
+      "lat": 0.8173605947981154,
+      "lng": 104.2806408229229,
       "address": "Desa Wisata Pulau Mubut"
     },
     "images": [
@@ -729,8 +729,8 @@ export const programs: Program[] = [
     "category": "Pertanian",
     "description": "Proyek pilot hidroponik di Politeknik Negeri Batam bertujuan mendukung gerakan 'menanam sendiri makananmu' untuk mengurangi pengangguran, meningkatkan ketahanan pangan, dan pola hidup sehat. Kegiatan ini melibatkan pembuatan kerangka bangunan tanaman hidroponik efisien sebagai prototipe yang dapat dimanfaatkan oleh masyarakat luas.",
     "location": {
-      "lat": 1.1184,
-      "lng": 104.0485,
+      "lat": 1.1185556232711005,
+      "lng": 104.04831050901407,
       "address": "Politeknik Negeri Batam"
     },
     "images": [
@@ -748,8 +748,8 @@ export const programs: Program[] = [
     "category": "Pendidikan",
     "description": "Kegiatan pengabdian ini bertujuan untuk menyusun laporan keuangan dan pajak Pondok Pesantren Baitul Qur’an berbasis Excel, dengan metode pendampingan dan pengembangan aplikasi Excel. Lokasi kegiatan berada di Tanjung Buntung, Kecamatan Bengkong, Kota Batam, Kepulauan Riau.",
     "location": {
-      "lat": 1.1687351,
-      "lng": 104.0340261,
+      "lat": 1.1687118949810944,
+      "lng": 104.03438497912781,
       "address": "Tanjung Buntung, Kecamatan Bengkong, Kota Batam, Kepulauan Riau"
     },
     "images": [
@@ -767,8 +767,8 @@ export const programs: Program[] = [
     "category": "Pendidikan",
     "description": "Program ini bertujuan untuk melatih dan mendampingi pengelola Desa Pulau Mubut dalam mengoptimalkan website promosi mereka menggunakan teknik Search Engine Optimization (SEO). Pelatihan dilakukan dengan melibatkan praktisi SEO dan mahasiswa Project Based Learning (PBL). Evaluasi dilakukan terhadap kemampuan pengelola dalam mengoptimasi website dan peningkatan jumlah pengunjung setelah optimalisasi.",
     "location": {
-      "lat": 0.81975,
-      "lng": 104.2816,
+      "lat": 0.8164449742208093,
+      "lng": 104.28103377944292,
       "address": "Desa Pulau Mubut"
     },
     "images": [
@@ -786,8 +786,8 @@ export const programs: Program[] = [
     "category": "Pemberdayaan Masyarakat",
     "description": "Program ini bertujuan untuk melakukan pemetaan batas wilayah RT & RW di Kelurahan Sembulang menggunakan metode partisipatif. Peta wilayah ini penting untuk menciptakan tertib administrasi dan kepastian hukum, serta meminimalisir konflik batas. Metode kartometrik digunakan untuk menetapkan batas wilayah sesuai regulasi Badan Informasi Geospasial.",
     "location": {
-      "lat": 0.8541,
-      "lng": 104.2404,
+      "lat": 0.8540274347705923,
+      "lng": 104.24055620815106,
       "address": "Kelurahan Sembulang"
     },
     "images": [
@@ -805,8 +805,8 @@ export const programs: Program[] = [
     "category": "Pendidikan",
     "description": "Studi dan survei dalam bentuk Pembelajaran Berbasis Proyek (PBL) dilakukan oleh mahasiswa Politeknik Negeri Batam dalam pengabdian masyarakat di Tanjung Riau, Kota Batam. Kegiatan ini melibatkan pembuatan peta foto udara menggunakan drone DJI Phantom 4 RTK.",
     "location": {
-      "lat": 1.1671271,
-      "lng": 104.028717,
+      "lat": 1.1676037734713474,
+      "lng": 104.02853029017179,
       "address": "Kelurahan Tanjung Riau, Kecamatan Sekupang, Kota Batam, Provinsi Kepulauan Riau"
     },
     "images": [
@@ -824,8 +824,8 @@ export const programs: Program[] = [
     "category": "Pertanian",
     "description": "Program ini bertujuan untuk mengembangkan alat pengukur nutrisi tanah portabel sebagai dukungan dalam program pengembangan lahan pertanian. Melalui kerjasama dengan Kelompok Tani Maju Mandiri di Pulau Setokok, program ini telah mencapai tahap pengembangan alat pengukur nutrisi tanah portabel untuk pengujian laboratorium.",
     "location": {
-      "lat": 1.0196577,
-      "lng": 104.5698189,
+      "lat": 0.9358709849148344,
+      "lng": 104.06928334730077,
       "address": "Pulau Setokok"
     },
     "images": [
@@ -843,8 +843,8 @@ export const programs: Program[] = [
     "category": "Pendidikan",
     "description": "Program ini bertujuan membantu kelompok nelayan mengelola konten website sebagai media promosi dan pemasaran produk hasil pengolahan ikan. Melalui pelatihan dan pendampingan, kelompok nelayan dapat mengembangkan konten yang menarik dan informatif untuk menjangkau pasar lokal dan regional.",
     "location": {
-      "lat": 1.1030815,
-      "lng": 104.0383696,
+      "lat": 1.1590790915654803,
+      "lng": 104.13567842312487,
       "address": "Kelurahan Batu Besar, Batam"
     },
     "images": [
@@ -862,8 +862,8 @@ export const programs: Program[] = [
     "category": "Teknologi",
     "description": "Penelitian ini bertujuan untuk mengembangkan dan mengimplementasikan Sistem Informasi Kelurahan berbasis website di Kelurahan Pulau Buluh, Kota Batam. Metode pengabdian kepada masyarakat dilakukan dengan merancang aplikasi berbasis OpenSID untuk membantu pengelolaan arsip dan data administrasi kependudukan.",
     "location": {
-      "lat": 1.1030815,
-      "lng": 104.0383696,
+      "lat": 1.0149931689565337,
+      "lng": 103.92949018747052,
       "address": "Kelurahan Pulau Buluh, Kecamatan Bulang, Kota Batam"
     },
     "images": [
@@ -881,8 +881,8 @@ export const programs: Program[] = [
     "category": "Pendidikan",
     "description": "Kegiatan pengabdian ini bertujuan untuk meningkatkan keterampilan siswa SMKN 9 Batam dalam menggunakan mesin Laser cutting untuk fabrikasi produk berdasarkan desain mereka. Kegiatan ini membantu siswa memperluas pembelajaran desain mereka ke proses fabrikasi, dengan hasil berupa souvenir gantungan kunci.",
     "location": {
-      "lat": 1.1030815,
-      "lng": 104.0383696,
+      "lat": 1.0211855472832987,
+      "lng": 104.07259694289668,
       "address": "SMKN 9 Batam"
     },
     "images": [
@@ -900,8 +900,8 @@ export const programs: Program[] = [
     "category": "Pendidikan",
     "description": "Program ini bertujuan untuk mengembangkan media pembelajaran microlearning berbasis mobile di SMA IT Ulil Albab Batam dengan metode persiapan, pelaksanaan, dan tahap akhir. Hasil uji coba aplikasi menunjukkan kepuasan pengguna sebesar 87,52% dan kepuasan mitra sebesar 90,3%.",
     "location": {
-      "lat": 1.0497484,
-      "lng": 103.9563447,
+      "lat": 1.0566917795484743,
+      "lng": 103.96167416527801,
       "address": "Kelurahan Bukit Tempayan, Kecamatan Batu Aji, Kota Batam"
     },
     "images": [
@@ -919,8 +919,8 @@ export const programs: Program[] = [
     "category": "Teknologi",
     "description": "Program ini bertujuan untuk membangun bilik pelindung mesin pembangkit listrik di Kelurahan Rempang Cate sebagai solusi terhadap kesulitan penyediaan air bersih. Metode yang digunakan adalah memanfaatkan pompa air dengan tenaga listrik dari mesin pembangkit portabel berbasis teknologi water lifting.",
     "location": {
-      "lat": 0.8493748,
-      "lng": 104.2619318,
+      "lat": 0.8496288306637485,
+      "lng": 104.26160474787346,
       "address": "Kelurahan Rempang Cate"
     },
     "images": [
@@ -930,25 +930,6 @@ export const programs: Program[] = [
     "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2022,
-    "status": "Completed"
-  },
-  {
-    "id": "p2m-2023-049",
-    "name": "Website Media Promosi Ikan Kel. Batu Besar, Batam",
-    "category": "Pendidikan",
-    "description": "Program ini bertujuan membantu kelompok nelayan mengelola konten website sebagai media promosi dan pemasaran produk hasil pengolahan ikan. Melalui pelatihan dan pendampingan, kelompok nelayan belajar teknik penulisan konten efektif dan penggunaan alat digital untuk meningkatkan visibilitas website mereka.",
-    "location": {
-      "lat": 1.1030815,
-      "lng": 104.0383696,
-      "address": "Kelurahan Batu Besar, Batam"
-    },
-    "images": [
-      "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800",
-      "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800"
-    ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    "detailsUrl": "https://jurnal.polibatam.ac.id",
-    "year": 2023,
     "status": "Completed"
   }
 ];
