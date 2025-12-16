@@ -5,6 +5,7 @@ import SearchBar from './SearchBar';
 import FilterMenu from './FilterMenu';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { Drawer } from 'vaul';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 
 type HeaderProps = {
   selectedCategories: string[];
@@ -29,12 +30,13 @@ const Header = ({
   searchQuery,
   setSearchQuery
 }: HeaderProps) => {
-
+  const isDesktop = useMediaQuery('(min-width: 768px)');
   const totalActiveFilters = selectedCategories.length + selectedYears.length + selectedStatuses.length;
 
   return (
-    <Drawer.Root direction="left">
+    <Drawer.Root direction={isDesktop ? 'left' : 'bottom'}>
       <header className="absolute top-0 left-0 z-[1000] w-full p-4">
+        {/* ... (header content remains same) ... */}
         <div className="flex items-center gap-2">
           <Drawer.Trigger asChild>
             <button
@@ -55,8 +57,21 @@ const Header = ({
 
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-black/40 dark:bg-black/60 z-[1000]" />
-        <Drawer.Content className="fixed bottom-0 left-0 mt-24 flex h-full w-80 flex-col rounded-r-2xl bg-zinc-50 dark:bg-gray-900 z-[1001] shadow-2xl transition-colors">
-          <div className="flex items-center justify-between border-b border-zinc-200 dark:border-gray-700 p-4 bg-white dark:bg-gray-800 rounded-tr-2xl transition-colors">
+        <Drawer.Content
+          className={`
+            fixed z-[1001] flex flex-col bg-zinc-50 dark:bg-gray-900 shadow-2xl transition-colors outline-none
+            ${isDesktop
+              ? 'bottom-0 left-0 mt-24 h-full w-80 rounded-r-2xl'
+              : 'bottom-0 left-0 right-0 max-h-[85vh] rounded-t-[20px] isolate'
+            }
+          `}
+        >
+          {/* Mobile Drag Handle */}
+          {!isDesktop && (
+            <div className="mx-auto mt-3 h-1.5 w-12 rounded-full bg-zinc-300 dark:bg-gray-700/50 mb-1" />
+          )}
+
+          <div className={`flex items-center justify-between border-b border-zinc-200 dark:border-gray-700 p-4 transition-colors ${isDesktop ? 'bg-white dark:bg-gray-800 rounded-tr-2xl' : 'bg-zinc-50 dark:bg-gray-900 rounded-t-2xl'}`}>
             <div className="flex items-center gap-3">
               <Drawer.Title className="text-xl font-semibold text-zinc-900 dark:text-white">
                 Filters
@@ -76,7 +91,7 @@ const Header = ({
               </button>
             </Drawer.Close>
           </div>
-          <div className="overflow-auto">
+          <div className="overflow-auto flex-1">
             <FilterMenu
               selectedCategories={selectedCategories}
               onCategoryChange={onCategoryChange}

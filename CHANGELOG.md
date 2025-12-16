@@ -17,6 +17,17 @@ This section documents architectural decisions and potential technical debt to b
 
 All notable changes to this project will be documented in this file.
 
+## [2.6.1] - 2025-12-16
+
+### Added
+- **Responsive Drawer System**:
+  - **Desktop**: Remains a left-side drawer.
+  - **Mobile**: Transforms into a Bottom Sheet with a drag handle for native-like experience.
+  - Implemented `useMediaQuery` hook for robust responsive detection.
+
+### Fixed
+- **Mobile Drawer Styling**: Fixed visual mismatch where the header background didn't blend with the sheet content on mobile.
+
 ## [2.6.0] - 2025-12-16
 
 ### Added

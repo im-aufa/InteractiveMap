@@ -1,6 +1,6 @@
 # 🗺️ P2M Interactive Map Application
 
-> Interactive map visualization for 50+ P2M (Pengabdian Kepada Masyarakat) programs at Politeknik Negeri Batam
+> Interactive map visualization for 50+ P2M (Pengabdian Kepada Masyarakat) programs at Politeknik Negeri Batam.
 
 ![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
@@ -8,23 +8,62 @@
 ![Tailwind](https://img.shields.io/badge/Tailwind-4-38B2AC?logo=tailwind-css)
 ![Leaflet](https://img.shields.io/badge/Leaflet-1.9-199900?logo=leaflet)
 
+## 📖 Table of Contents
+
+- [Features](#-features)
+- [Quick Start](#-quick-start)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Data Pipeline](#-data-pipeline)
+- [Documentation](#-documentation)
+
+## ✨ Features
+
+### 🗺️ Interactive Map
+- **Clustered Markers**: Efficiently handles large datasets with dynamic clustering.
+- **Theme-Aware**: Fully supported dark/light mode for all map elements.
+- **Custom Popups**: 
+  - **Single**: Glassmorphism cards with details.
+  - **Cluster**: Scrollable lists for grouped locations.
+- **Smart Controls**: "Reset View" button to instantly focus on Batam.
+
+### 🔍 Advanced Filtering & Search
+- **Responsive Drawer System**:
+  - **Desktop**: Side drawer for easy access.
+  - **Mobile**: Touch-friendly Bottom Sheet with drag gestures.
+- **Multi-Criteria Filter**: Filter by **Category** (10 P2M domains), **Year**, and **Status**.
+- **Visual Feedback**: Category-specific colors and icons (e.g., Education = Blue/Cap, Health = Red/Heart).
+- **Real-time Search**: Instant name-based search with auto-pan functionality.
+
+### 📱 Responsive Design
+- Mobile-first approach with touch targets >44px.
+- Adaptive layouts for phones, tablets, and desktops.
+
 ## 🚀 Quick Start
 
-```bash
-cd interactive-map-app
-npm install
-npm run dev
-```
+### Prerequisites
+- Node.js 18+
+- npm or yarn
 
-Open [http://localhost:3000](http://localhost:3000) to view the application.
+### Installation
 
-## 📖 Documentation
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/yourusername/interactive-map-app.git
+    cd interactive-map-app
+    ```
 
-- **[Complete Documentation](./DOCS.md)** - Architecture, features, UX patterns, **production action plan**
-- **[Data Strategy](./DATA_STRATEGY.md)** - Data collection, processing & deployment
-- **[Changelog](./interactive-map-app/CHANGELOG.md)** - Version history
+2.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
 
-> **🔴 CRITICAL:** See [DOCS.md Section 5](./DOCS.md#5-development-roadmap) for the production-ready action plan with deadlines and priorities.
+3.  **Run the development server**:
+    ```bash
+    npm run dev
+    ```
+
+4.  Open [http://localhost:3000](http://localhost:3000) to view the application.
 
 ## 🛠️ Tech Stack
 
@@ -33,129 +72,43 @@ Open [http://localhost:3000](http://localhost:3000) to view the application.
 | **Framework** | Next.js 16 (App Router) |
 | **UI Library** | React 19 |
 | **Language** | TypeScript 5 |
-| **Styling** | Tailwind CSS 4 |
-| **Map** | Leaflet 1.9, react-leaflet 5.0 |
-| **Clustering** | react-leaflet-cluster 4.0 |
-| **Components** | vaul (drawer), lucide-react (icons) |
+| **Styling** | Tailwind CSS 4 (+ globals.css) |
+| **Map Engine** | Leaflet 1.9, react-leaflet 5.0 |
+| **Icons** | Lucide React, React Icons |
+| **Deployment** | Vercel (Recommended) |
 
-## 📊 Project Status
-
-| Metric | Value |
-|--------|-------|
-| **Version** | 2.1.0 |
-| **Completion** | ~90% |
-| **Last Updated** | December 2024 |
-| **Current Phase** | Phase 4-5 (Architecture & Accessibility) |
-
-## ✨ Features
-
-✅ **Interactive Map**
-- Custom category-based markers (10 P2M categories)
-- Marker clustering for performance
-- Hover states with smooth animations
-- Pan & zoom to search results
-
-✅ **Smart Filtering (Modern UI)**
-- **Rich Category Filters** with P2M icons and color coding
-- **Program Counts** visible for every filter option
-- **Multi-criteria filtering:**
-  - Category (10 P2M domains)
-  - Year (2020-2024)
-  - Status (In Progress, Completed)
-- **UX Enhancements:**
-  - "Clear All" button for quick reset
-  - Active filter badges
-  - Rounded, touch-friendly UI design
-  - Real-time updates
-
-✅ **Search**
-- Debounced search (300ms)
-- Auto-pan/zoom to single result
-- Case-insensitive matching
-
-✅ **Program Details**
-- Responsive image gallery (3→2→1 columns)
-- Embedded video player
-- Google Maps integration ("Get Directions")
-- Dynamic routing (`/program/[id]`)
-
-✅ **Responsive Design**
-- Mobile-first approach
-- Touch-friendly controls (44x44px minimum)
-- Bottom sheet filters on mobile
-
-## 🎯 Use Cases
-
-| User Type | Primary Use | Key Features |
-|-----------|-------------|--------------|
-| **Students** | Explore P2M programs | Search, Filter, Quick Info |
-| **Lecturers** | Review program details | Detail Pages, Multimedia |
-| **Public** | Discover community programs | Map Exploration, Directions |
-
-## 📁 Project Structure
+## 📂 Project Structure
 
 ```
 interactive-map-app/
 ├── src/
-│   ├── app/                    # Next.js App Router
-│   │   ├── page.tsx           # Main map page
-│   │   ├── layout.tsx         # Root layout
-│   │   └── program/[id]/      # Detail pages
-│   ├── components/            # React components
-│   │   ├── Map.tsx           # Main map component
-│   │   ├── HoverMarker.tsx   # Marker with hover
-│   │   ├── Header.tsx        # Search + filter
-│   │   └── ...
-│   ├── context/              # React Context
-│   ├── data/                 # Static data
-│   └── hooks/                # Custom hooks
-└── public/                   # Static assets
+│   ├── app/              # Next.js Pages & Layouts
+│   ├── components/       # UI Components (Map, Header, FilterMenu)
+│   ├── context/          # Global State (MapContext, ThemeContext)
+│   ├── data/             # Static Data (programs.ts)
+│   └── hooks/            # Custom Hooks (useMediaQuery, useDebounce)
+├── public/               # Assets (Markers, Images)
+└── data-extraction-workspace/ # Python ETL Scripts
 ```
 
-## 🧪 Development
+## 📊 Data Pipeline
 
-### Prerequisites
-- Node.js 20+
-- npm or yarn
+The project uses an advanced data pipeline to populate the map:
+1.  **Extraction**: `extract_with_chatgpt.py` parses PDF reports using LLMs.
+2.  **Geocoding**: `geocode_locations.py` resolves location names to coordinates.
+3.  **Correction**: Manual overrides in `corrections.json` ensure high accuracy.
+4.  **Generation**: `json_to_ts.py` compiles everything into the type-safe `programs.ts` used by the app.
 
-### Commands
+See [DATA_STRATEGY.md](./DATA_STRATEGY.md) for details.
 
-```bash
-# Development
-npm run dev          # Start dev server (http://localhost:3000)
+## 📝 Documentation
 
-# Production
-npm run build        # Build for production
-npm start            # Start production server
+We maintain detailed documentation for development and deployment:
 
-# Code Quality
-npm run lint         # Run ESLint
-```
-
-### Environment Variables
-
-No environment variables required for basic functionality. Optional:
-- `NEXT_PUBLIC_API_URL` - For future API integration
-- `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` - For enhanced directions
-
-## 🗺️ Roadmap
-
-- **Phase 4-5 (Current):** Architecture & Accessibility
-- **Phase 6-7:** Performance & Visual Polish
-- **Phase 8-9:** PWA Features & Testing
-
-See [DOCS.md - Development Roadmap](./DOCS.md#5-development-roadmap) for detailed breakdown.
-
-## 📝 Contributing
-
-This is an academic project for Politeknik Negeri Batam. For questions or suggestions, please contact the project team.
-
-## 📄 License
-
-[Your License Here]
+- **[CHANGELOG.md](./CHANGELOG.md)**: Version history (Latest: v2.6.1).
+- **[DEPLOYMENT.md](./DEPLOYMENT.md)**: Deployment guides (Vercel, Netlify).
+- **[DOCS.md](./DOCS.md)**: Architecture deep dive and roadmap.
 
 ---
 
-**Built with ❤️ for Politeknik Negeri Batam**  
-**Project Type:** Final Project (Tugas Akhir)  
-**Academic Year:** 2024
+**Built for Politeknik Negeri Batam** | Final Project (Tugas Akhir) 2024
