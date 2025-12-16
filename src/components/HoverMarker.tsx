@@ -20,6 +20,9 @@ export const HoverMarker = ({ program, icon }: HoverMarkerProps) => {
     const marker = markerRef.current;
     if (!marker) return;
 
+    // Attach ID for clustering identification
+    (marker as any).programId = program.id;
+
     const openPopup = () => {
       if (timerRef.current) {
         clearTimeout(timerRef.current);
@@ -56,9 +59,9 @@ export const HoverMarker = ({ program, icon }: HoverMarkerProps) => {
   }, []);
 
   return (
-    <Marker 
+    <Marker
       ref={markerRef}
-      position={[program.location.lat, program.location.lng]} 
+      position={[program.location.lat, program.location.lng]}
       icon={icon}
     >
       <Popup>

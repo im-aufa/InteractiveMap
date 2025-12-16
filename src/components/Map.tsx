@@ -9,27 +9,16 @@ import { programs } from '../data/programs'; // Import programs data
 import ReactDOMServer from 'react-dom/server';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 import { HoverMarker } from './HoverMarker'; // Import the new HoverMarker component
-import { GraduationCap, Heart, Cpu, Leaf, Palette, Palmtree, Users, Building, Sprout, Waves } from 'lucide-react'; // P2M Icons
+import ClusterPopup from './ClusterPopup'; // Import the ClusterPopup component
+import { categoryIcons, CategoryKey } from '../utils/categoryIcons';
+import { GraduationCap } from 'lucide-react'; // Default fallback icon
 import { useTheme } from '../context/ThemeContext'; // Import theme hook
 
-// --- Create a mapping for P2M category icons and colors ---
-const categoryIcons = {
-  'Pendidikan': { icon: GraduationCap, color: '#3B82F6' },           // Blue
-  'Kesehatan': { icon: Heart, color: '#EF4444' },                    // Red
-  'Teknologi': { icon: Cpu, color: '#8B5CF6' },                      // Purple
-  'Lingkungan': { icon: Leaf, color: '#10B981' },                    // Green
-  'Ekonomi Kreatif': { icon: Palette, color: '#F59E0B' },            // Orange
-  'Pariwisata': { icon: Palmtree, color: '#14B8A6' },                // Teal
-  'Pemberdayaan Masyarakat': { icon: Users, color: '#EC4899' },      // Pink
-  'Infrastruktur': { icon: Building, color: '#6366F1' },             // Indigo
-  'Pertanian': { icon: Sprout, color: '#84CC16' },                   // Lime
-  'Kelautan': { icon: Waves, color: '#06B6D4' },                     // Cyan
-};
-
 // --- Function to create a divIcon for a category ---
-const getIconForCategory = (category: keyof typeof categoryIcons, theme: 'light' | 'dark') => {
-  const IconComponent = categoryIcons[category]?.icon || GraduationCap; // Default to GraduationCap
-  const iconColor = categoryIcons[category]?.color || '#6B7280'; // Default to gray
+const getIconForCategory = (category: string, theme: 'light' | 'dark') => {
+  const catKey = category as CategoryKey;
+  const IconComponent = categoryIcons[catKey]?.icon || GraduationCap; // Default to GraduationCap
+  const iconColor = categoryIcons[catKey]?.color || '#6B7280'; // Default to gray
 
   // Theme-aware background and border
   const bgColor = theme === 'dark' ? '#1f2937' : 'white'; // gray-800 for dark
@@ -101,62 +90,105 @@ const MapEvents = ({ filteredPrograms, searchQuery }: { filteredPrograms: typeof
   return null; // This component does not render anything
 };
 
-// Helper component to customize cluster click animation
-const ClusterEvents = () => {
+// Helper component to handle cluster rendering and events
+const ProgramClusters = ({ filteredPrograms, theme }: { filteredPrograms: typeof programs, theme: string }) => {
   const map = useMap();
 
-  useEffect(() => {
-    if (!map) return;
+  const handleClusterClick = (event: any) => {
+    // Zoom is already disabled via zoomToBoundsOnClick={false}, so just run logic
+    const cluster = event.layer;
+    const currentZoom = map.getZoom();
 
-    // Override cluster click to use smooth flyToBounds instead of aggressive zoomToBounds
-    map.on('clusterclick', (event: any) => {
-      event.preventDefault();
-      const cluster = event.layer;
-      const bounds = cluster.getBounds();
+    // Threshold: at zoom 14+ (city view), show popup list
+    if (currentZoom >= 14) {
+      const markers = cluster.getAllChildMarkers();
 
-      // Use smooth flyToBounds with same parameters as search
-      map.flyToBounds(bounds, {
-        padding: [50, 50],
-        maxZoom: 16,
-        duration: 1.5,
-        easeLinearity: 0.25, // Smooth easing matching search animation
-      });
+      // Attempt to get IDs attached to markers
+      const programIds = markers.map((m: any) => m.programId).filter(Boolean);
+      let clusterPrograms = programs.filter(p => programIds.includes(p.id));
+
+      // Fallback: If no IDs found (e.g., ref issues), match by location (approx. 5 meters)
+      if (clusterPrograms.length === 0) {
+        const markerLocs = markers.map((m: any) => m.getLatLng());
+        clusterPrograms = programs.filter(p =>
+          markerLocs.some((loc: any) =>
+            L.latLng(p.location.lat, p.location.lng).distanceTo(loc) < 5
+          )
+        );
+      }
+
+      if (clusterPrograms.length > 0) {
+        const popupHtml = ReactDOMServer.renderToString(<ClusterPopup programs={clusterPrograms} />);
+
+        L.popup({
+          minWidth: 220,
+          maxWidth: 280,
+          offset: [0, -10],
+          className: 'cluster-custom-popup'
+        })
+          .setLatLng(event.latlng)
+          .setContent(popupHtml)
+          .openOn(map);
+
+        return;
+      }
+    }
+
+    // Default: Smooth flyToBounds
+    const bounds = cluster.getBounds();
+    map.flyToBounds(bounds, {
+      padding: [50, 50],
+      maxZoom: 16,
+      duration: 1.5,
+      easeLinearity: 0.25,
     });
+  };
 
-    return () => {
-      map.off('clusterclick');
-    };
-  }, [map]);
-
-  return null;
+  return (
+    <MarkerClusterGroup
+      maxClusterRadius={25}
+      spiderfyOnMaxZoom={false}
+      showCoverageOnHover={false}
+      zoomToBoundsOnClick={false}
+      animate={true}
+      animateAddingMarkers={true}
+      chunkedLoading={true}
+      removeOutsideVisibleBounds={true}
+      eventHandlers={{
+        clusterclick: handleClusterClick
+      }}
+    >
+      {filteredPrograms.map((program) => (
+        <HoverMarker
+          key={`${program.id}-${theme}`}
+          program={program}
+          icon={getIconForCategory(program.category, theme as 'light' | 'dark')}
+        />
+      ))}
+    </MarkerClusterGroup>
+  );
 };
 
-
-
 const Map = ({ selectedCategories, selectedYears, selectedStatuses, searchQuery }: MapProps) => {
-  const { theme } = useTheme(); // Get current theme
+  const { theme } = useTheme();
   const batamPosition: L.LatLngExpression = [1.14937, 104.02491];
   const indonesiaBounds: L.LatLngBoundsLiteral = [[-11.2085669, 94.7717124], [6.2744496, 141.0194444]];
 
-  // Combine filters: categories, years, statuses, and search query
+  // Combine filters
   const filteredPrograms = programs
     .filter(program => {
-      // Category filter
       if (selectedCategories.length === 0) return true;
       return selectedCategories.includes(program.category);
     })
     .filter(program => {
-      // Year filter
       if (selectedYears.length === 0) return true;
       return selectedYears.includes(program.year);
     })
     .filter(program => {
-      // Status filter
       if (selectedStatuses.length === 0) return true;
       return selectedStatuses.includes(program.status);
     })
     .filter(program => {
-      // Search query filter (case-insensitive)
       if (searchQuery.trim() === '') return true;
       return program.name.toLowerCase().includes(searchQuery.toLowerCase());
     });
@@ -180,32 +212,11 @@ const Map = ({ selectedCategories, selectedYears, selectedStatuses, searchQuery 
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
       />
 
-      <MarkerClusterGroup
-        maxClusterRadius={25}
-        spiderfyOnMaxZoom={true}
-        showCoverageOnHover={false}
-        zoomToBoundsOnClick={true}
-        animate={true}
-        animateAddingMarkers={true}
-        // Smooth animation options matching search behavior
-        chunkedLoading={true}
-        removeOutsideVisibleBounds={true}
-      >
-        {filteredPrograms.map((program) => (
-          <HoverMarker
-            key={`${program.id}-${theme}`}
-            program={program}
-            icon={getIconForCategory(program.category, theme)}
-          />
-        ))}
-      </MarkerClusterGroup>
+      {/* Render Clusters with direct event handling */}
+      <ProgramClusters filteredPrograms={filteredPrograms} theme={theme} />
 
-      {/* This component bridges react-leaflet's context with our custom context */}
       <MapContextProvider />
-      {/* This component handles map side effects like panning and zooming */}
       <MapEvents filteredPrograms={filteredPrograms} searchQuery={searchQuery} />
-      {/* This component customizes cluster click animation */}
-      <ClusterEvents />
     </MapContainer>
   );
 };

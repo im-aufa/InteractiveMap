@@ -931,6 +931,95 @@ export const programs: Program[] = [
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2022,
     "status": "Completed"
+  },
+  // --- MOCK DATA FOR CLUSTER TESTING ---
+  {
+    "id": "mock-cluster-1",
+    "name": "Pelatihan Digital Marketing Batam Centre",
+    "category": "Teknologi",
+    "description": "Mock program for testing cluster popup.",
+    "location": { "lat": 1.1185, "lng": 104.0483, "address": "Batam Centre" },
+    "images": ["https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800"],
+    "detailsUrl": "",
+    "year": 2025,
+    "status": "Planned"
+  },
+  {
+    "id": "mock-cluster-2",
+    "name": "Workshop UI/UX Design",
+    "category": "Pendidikan",
+    "description": "Mock program for testing cluster popup.",
+    "location": { "lat": 1.11851, "lng": 104.04831, "address": "Batam Centre" },
+    "images": ["https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800"],
+    "detailsUrl": "",
+    "year": 2025,
+    "status": "In Progress"
+  },
+  {
+    "id": "mock-cluster-3",
+    "name": "Seminar Kewirausahaan Mahasiswa",
+    "category": "Ekonomi Kreatif",
+    "description": "Mock program for testing cluster popup.",
+    "location": { "lat": 1.11852, "lng": 104.04832, "address": "Batam Centre" },
+    "images": ["https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800"],
+    "detailsUrl": "",
+    "year": 2025,
+    "status": "Completed"
+  },
+  {
+    "id": "mock-cluster-4",
+    "name": "Pameran Inovasi Robotik",
+    "category": "Teknologi",
+    "description": "Mock program for testing cluster popup.",
+    "location": { "lat": 1.11853, "lng": 104.04833, "address": "Batam Centre" },
+    "images": ["https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800"],
+    "detailsUrl": "",
+    "year": 2025,
+    "status": "Completed"
+  },
+  {
+    "id": "mock-cluster-5",
+    "name": "Pelatihan Bahasa Asing",
+    "category": "Pendidikan",
+    "description": "Mock program for testing cluster popup.",
+    "location": { "lat": 1.11854, "lng": 104.04834, "address": "Batam Centre" },
+    "images": ["https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800"],
+    "detailsUrl": "",
+    "year": 2025,
+    "status": "Planned"
+  },
+  {
+    "id": "mock-cluster-6",
+    "name": "Kegiatan Donor Darah",
+    "category": "Kesehatan",
+    "description": "Mock program for testing cluster popup.",
+    "location": { "lat": 1.11855, "lng": 104.04835, "address": "Batam Centre" },
+    "images": ["https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800"],
+    "detailsUrl": "",
+    "year": 2025,
+    "status": "Completed"
+  },
+  {
+    "id": "mock-cluster-7",
+    "name": "Sosialisasi Lingkungan Hidup",
+    "category": "Lingkungan",
+    "description": "Mock program for testing cluster popup.",
+    "location": { "lat": 1.11856, "lng": 104.04836, "address": "Batam Centre" },
+    "images": ["https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800"],
+    "detailsUrl": "",
+    "year": 2025,
+    "status": "In Progress"
+  },
+  {
+    "id": "mock-cluster-8",
+    "name": "Festival Seni Budaya",
+    "category": "Pariwisata",
+    "description": "Mock program for testing cluster popup.",
+    "location": { "lat": 1.11857, "lng": 104.04837, "address": "Batam Centre" },
+    "images": ["https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800"],
+    "detailsUrl": "",
+    "year": 2025,
+    "status": "Planned"
   }
 ];
 

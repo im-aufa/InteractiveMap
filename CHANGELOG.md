@@ -38,6 +38,20 @@ All notable changes to this project will be documented in this file.
 - **Validation Fixes**: 
   - Resolved hydration mismatch errors by suppressing warnings on body
   - Fixed legacy Next.js Link warnings in popup components
+- **Refinements**:
+  - **Cluster Popup**: 
+    - Activates at Zoom 14+ (City view)
+    - **DISABLED** `spiderfyOnMaxZoom` & `zoomToBoundsOnClick` to ensuring popup list always takes precedence
+    - **Robustness**: Implemented location-based data fallback to prevent empty popups
+    - **Refactor**: Moved logic to dedicated `ProgramClusters` component with direct event handlers
+  - **Detail Page**: 
+    - Fixed Hero hover animation
+    - Improved visual hierarchy (Badges below title, Sticky sidebar)
+  - **Design Unification (Premium Polish)**:
+    - **Global**: Added `backdrop-filter` for true glassmorphism, updated popup radius to `rounded-2xl`, and added custom scrollbars for dark mode.
+    - **Cluster Popup**: Now features Category Icons, Unified Status Badges (replacing text), and improved visual hierarchy.
+    - **Single Popup**: Aligned badge placement (below title) and typography (Uppercase/Tracking) with Detail Page.
+    - **Refactor**: Centralized icon logic in `src/utils/categoryIcons.ts`.
 
 ### Fixed
 - **CRITICAL: Dark Mode Tailwind v4 Configuration**

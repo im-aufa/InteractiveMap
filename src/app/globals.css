@@ -146,8 +146,71 @@ body {
   stroke-width: 2px !important;
 }
 
-/* Spiderfy leg lines - dark mode */
+/* spiderfy leg lines - dark mode */
 .dark .marker-cluster-spider-leg {
   stroke: rgba(96, 165, 250, 0.6) !important;
   stroke-width: 2px !important;
+}
+
+/* ========================================
+   Cluster Popup Customizations
+   ======================================== */
+.cluster-custom-popup .leaflet-popup-content-wrapper,
+.cluster-custom-popup .leaflet-popup-tip {
+  border-radius: 1rem !important;
+  /* rounded-2xl */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.cluster-custom-popup .leaflet-popup-content {
+  margin: 0 !important;
+  line-height: 1.5;
+}
+
+/* Dark mode for Cluster Popups */
+.dark .cluster-custom-popup .leaflet-popup-content-wrapper,
+.dark .cluster-custom-popup .leaflet-popup-tip {
+  background-color: rgba(31, 41, 55, 0.85) !important;
+  /* gray-800 with opacity */
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  color: #f3f4f6 !important;
+  /* gray-100 */
+  border: 1px solid #374151;
+  /* gray-700 */
+}
+
+/* Override close button for dark mode */
+.dark .cluster-custom-popup .leaflet-popup-close-button {
+  color: #9ca3af !important;
+  /* gray-400 */
+}
+
+.dark .cluster-custom-popup .leaflet-popup-close-button:hover {
+  color: #f3f4f6 !important;
+  /* gray-100 */
+}
+
+/* Custom Scrollbar for Cluster Popup */
+.cluster-custom-popup ul::-webkit-scrollbar {
+  width: 4px;
+}
+
+.cluster-custom-popup ul::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.cluster-custom-popup ul::-webkit-scrollbar-thumb {
+  background-color: rgba(209, 213, 219, 0.5);
+  /* gray-300 transparent */
+  border-radius: 20px;
+}
+
+.dark .cluster-custom-popup ul::-webkit-scrollbar-thumb {
+  background-color: rgba(75, 85, 99, 0.5);
+  /* gray-600 transparent */
+  border-radius: 20px;
 }
