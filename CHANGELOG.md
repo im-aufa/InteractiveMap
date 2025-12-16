@@ -17,6 +17,26 @@ This section documents architectural decisions and potential technical debt to b
 
 All notable changes to this project will be documented in this file.
 
+## [2.6.0] - 2025-12-16
+
+### Added
+- **Reset View Button**: Added a "Maximize" button to the zoom controls that instantly resets the map view to the Batam overview (Zoom 11).
+- **Reset Filters Button**: Added a dedicated "Reset" button to the filter drawer header that appears only when filters are active.
+
+### Changed
+- **Filter Menu Overhaul**: Completely redesigned the filter menu for a modern, app-like experience:
+  - **Multimedia Chips**: Replaced standard checkboxes with interactive, touch-friendly selection cards.
+  - **Visual Feedback**: Categories now light up with their specific brand colors when selected.
+  - **Status Toggles**: Implemented full-width toggle buttons for clearer status selection.
+  - **Smart Layout**: Optimized layout with "Pill" buttons for Year selection.
+- **Unified Popup Design**: Standardized padding, fonts, and badge styling across both `ClusterPopup` and `CustomPopup` for consistent visual weight.
+- **Enhanced Close Buttons**: Adjusted positioning of popup close buttons for perfect alignment with headers.
+- **Map Defaults**: Updated initial map view and reset coordinates to specifically center on Batam (Lat: 0.964..., Long: 104.21...) at Zoom 11.
+
+### Fixed
+- **Filter Reset Logic**: Resolved a race condition where the previous reset button would only clear one filter at a time. Implemented `resetFilters` in `page.tsx` for atomic state clearing.
+- **UI Redundancy**: Removed duplicate "Filters" heading from the filter menu content.
+
 ## [2.5.0] - 2025-12-15
 
 ### Added

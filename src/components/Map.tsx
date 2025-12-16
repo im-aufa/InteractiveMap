@@ -171,7 +171,7 @@ const ProgramClusters = ({ filteredPrograms, theme }: { filteredPrograms: typeof
 
 const Map = ({ selectedCategories, selectedYears, selectedStatuses, searchQuery }: MapProps) => {
   const { theme } = useTheme();
-  const batamPosition: L.LatLngExpression = [1.14937, 104.02491];
+  const batamPosition: L.LatLngExpression = [0.9640591285588442, 104.2100177997217];
   const indonesiaBounds: L.LatLngBoundsLiteral = [[-11.2085669, 94.7717124], [6.2744496, 141.0194444]];
 
   // Combine filters
@@ -196,7 +196,7 @@ const Map = ({ selectedCategories, selectedYears, selectedStatuses, searchQuery 
   return (
     <MapContainer
       center={batamPosition}
-      zoom={13}
+      zoom={11}
       minZoom={5}
       maxBounds={indonesiaBounds}
       maxBoundsViscosity={1.0}

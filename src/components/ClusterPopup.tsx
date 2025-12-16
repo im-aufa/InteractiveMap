@@ -8,9 +8,9 @@ type ClusterPopupProps = {
 
 const ClusterPopup = ({ programs }: ClusterPopupProps) => {
     return (
-        <div className="min-w-[220px] max-w-[280px] p-2">
-            <div className="mb-3 flex items-center justify-between border-b border-gray-200 pb-3 dark:border-gray-600">
-                <h3 className="text-sm font-bold text-gray-900 dark:text-white">
+        <div className="min-w-[240px] max-w-[280px] p-3">
+            <div className="mb-3 flex items-center justify-between border-b border-gray-200 pb-2 pl-1 dark:border-gray-600">
+                <h3 className="text-sm font-bold text-gray-900 dark:text-white pr-8 leading-none">
                     {programs.length} Programs Here
                 </h3>
             </div>
@@ -28,7 +28,7 @@ const ClusterPopup = ({ programs }: ClusterPopupProps) => {
                         <li key={program.id}>
                             <a
                                 href={`/program/${program.id}`}
-                                className="group relative flex items-start gap-3 rounded-xl bg-gray-50/50 p-2.5 transition-all hover:bg-blue-50/80 hover:shadow-sm dark:bg-gray-800/50 dark:hover:bg-gray-700/80"
+                                className="group relative flex items-start gap-3 rounded-xl bg-gray-100/90 p-2.5 transition-all hover:bg-blue-50 hover:shadow-sm dark:bg-gray-700/60 dark:hover:bg-gray-600/80"
                             >
                                 {/* Category Icon */}
                                 <div
@@ -41,11 +41,11 @@ const ClusterPopup = ({ programs }: ClusterPopupProps) => {
                                     <div className="mb-1 pr-4 text-xs font-bold text-gray-800 group-hover:text-blue-600 dark:text-gray-200 dark:group-hover:text-blue-400">
                                         {program.name}
                                     </div>
-                                    <div className="flex flex-wrap items-center gap-1.5">
+                                    <div className="flex flex-wrap items-center gap-2">
                                         <span className="inline-flex items-center rounded-full bg-white px-2 py-0.5 text-[10px] font-medium text-gray-600 shadow-sm ring-1 ring-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:ring-gray-600">
                                             {program.year}
                                         </span>
-                                        <span className={`inline-flex items-center rounded-full border px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wide ${statusColor}`}>
+                                        <span className={`inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide ${statusColor}`}>
                                             {program.status}
                                         </span>
                                     </div>

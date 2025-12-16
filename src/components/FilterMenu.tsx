@@ -52,104 +52,131 @@ const FilterMenu = ({
 
   return (
     <>
-      <div className="flex flex-col gap-6 p-4 bg-zinc-50 dark:bg-gray-900 transition-colors">
-        {/* Clear All Button */}
-        {hasActiveFilters && (
-          <button
-            onClick={clearAllFilters}
-            className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors"
-          >
-            Clear All Filters
-          </button>
-        )}
+      <div className="flex flex-col gap-8 p-4 bg-zinc-50 dark:bg-gray-900 transition-colors h-full overflow-y-auto">
 
         {/* Category Section */}
-        <div className="pb-4 border-b border-zinc-200 dark:border-gray-700">
-          <h3 className="mb-4 text-sm font-bold text-zinc-800 dark:text-white uppercase tracking-wide">Category</h3>
-          <div className="flex flex-col gap-2">
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <h3 className="text-xs font-bold text-zinc-500 dark:text-gray-400 uppercase tracking-wider">Categories</h3>
+            <span className="text-[10px] font-medium px-2 py-0.5 bg-gray-100 dark:bg-gray-800 rounded-full text-gray-500 dark:text-gray-400">
+              {selectedCategories.length} selected
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 gap-2">
             {categories.map((category) => {
               const config = categoryConfig[category as keyof typeof categoryConfig];
               const Icon = config?.icon || GraduationCap;
               const count = getCategoryCount(category);
               const isDisabled = count === 0;
+              const isSelected = selectedCategories.includes(category);
+
+              // Dynamic style for active state
+              const activeStyle = isSelected ? {
+                backgroundColor: `${config.color}15`, // 15 = ~8% opacity
+                borderColor: config.color,
+              } : {};
 
               return (
-                <label
+                <button
                   key={category}
-                  className={`flex items-center gap-3 p-2 rounded-lg cursor-pointer transition-colors ${isDisabled ? 'opacity-40 cursor-not-allowed' : 'hover:bg-zinc-100 dark:hover:bg-gray-800'
-                    }`}
+                  onClick={() => !isDisabled && onCategoryChange(category, !isSelected)}
+                  disabled={isDisabled}
+                  style={activeStyle}
+                  className={`
+                    group relative flex items-center gap-3 p-3 rounded-xl border-2 text-left transition-all duration-200
+                    ${isDisabled ? 'opacity-40 cursor-not-allowed border-transparent bg-gray-50 dark:bg-gray-800/50' : ''}
+                    ${isSelected
+                      ? 'border-transparent shadow-sm'
+                      : 'border-transparent bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-200 dark:hover:border-gray-600 shadow-sm'
+                    }
+                  `}
                 >
-                  <input
-                    type="checkbox"
-                    className="h-4 w-4 rounded border-zinc-300 text-blue-600 focus:ring-blue-600"
-                    checked={selectedCategories.includes(category)}
-                    onChange={(e) => onCategoryChange(category, e.target.checked)}
-                    disabled={isDisabled}
-                  />
-                  <Icon
-                    className="h-5 w-5 flex-shrink-0"
-                    style={{ color: config?.color || '#6B7280' }}
-                  />
-                  <span className="flex-1 text-sm text-zinc-700 dark:text-gray-300 font-medium">{category}</span>
-                  <span className="text-xs text-zinc-500 dark:text-gray-400 font-semibold">({count})</span>
-                </label>
+                  <div
+                    className={`nav-icon-box p-2 rounded-lg transition-colors ${isSelected ? 'bg-white dark:bg-gray-900' : 'bg-gray-100 dark:bg-gray-700 group-hover:bg-white dark:group-hover:bg-gray-600'}`}
+                    style={{ color: isSelected ? config.color : '#6B7280' }}
+                  >
+                    <Icon size={18} />
+                  </div>
+
+                  <div className="flex-1 min-w-0">
+                    <div className={`text-sm font-bold truncate ${isSelected ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-200'}`}>
+                      {category}
+                    </div>
+                    {isSelected && (
+                      <div className="text-[10px] font-medium opacity-80" style={{ color: config.color }}>
+                        Active
+                      </div>
+                    )}
+                  </div>
+
+                  <span className={`text-xs font-semibold px-2 py-1 rounded-md ${isSelected ? 'bg-white/50 dark:bg-black/20' : 'bg-gray-100 dark:bg-gray-700 text-gray-500'}`}>
+                    {count}
+                  </span>
+                </button>
               );
             })}
           </div>
         </div>
 
-        {/* Year Section */}
-        <div className="pb-4 border-b border-zinc-200 dark:border-gray-700">
-          <h3 className="mb-4 text-sm font-bold text-zinc-800 dark:text-white uppercase tracking-wide">Year</h3>
-          <div className="flex flex-col gap-2">
+        {/* Year Section (Pills) */}
+        <div className="space-y-3">
+          <h3 className="text-xs font-bold text-zinc-500 dark:text-gray-400 uppercase tracking-wider">Year</h3>
+          <div className="flex flex-wrap gap-2">
             {years.map((year) => {
+              const textYear = year.toString(); // FilterMenu actually receives years as Numbers based on props
               const yearCount = programs.filter(p => p.year === year).length;
+              const isSelected = selectedYears.includes(year);
 
               return (
-                <label key={year} className="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-zinc-100 dark:hover:bg-gray-800 transition-colors">
-                  <input
-                    type="checkbox"
-                    className="h-4 w-4 rounded-md border-zinc-300 text-blue-600 focus:ring-blue-600"
-                    checked={selectedYears.includes(year)}
-                    onChange={(e) => onYearChange(year, e.target.checked)}
-                  />
-                  <span className="flex-1 text-sm text-zinc-700 dark:text-gray-300 font-medium">{year}</span>
-                  <span className="text-xs text-zinc-500 dark:text-gray-400 font-semibold">({yearCount})</span>
-                </label>
+                <button
+                  key={year}
+                  onClick={() => onYearChange(year, !isSelected)}
+                  className={`
+                    px-4 py-2 rounded-lg text-sm font-semibold transition-all shadow-sm
+                    ${isSelected
+                      ? 'bg-blue-600 text-white shadow-blue-200 dark:shadow-none'
+                      : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 ring-1 ring-inset ring-gray-200 dark:ring-gray-700'
+                    }
+                  `}
+                >
+                  {year} <span className={`ml-1 text-[10px] ${isSelected ? 'text-blue-200' : 'text-gray-400'}`}>({yearCount})</span>
+                </button>
               );
             })}
           </div>
         </div>
 
-        {/* Status Section */}
-        <div>
-          <h3 className="mb-4 text-sm font-bold text-zinc-800 dark:text-white uppercase tracking-wide">Status</h3>
-          <div className="flex flex-col gap-2">
+        {/* Status Section (Grid) */}
+        <div className="space-y-3 pb-8">
+          <h3 className="text-xs font-bold text-zinc-500 dark:text-gray-400 uppercase tracking-wider">Status</h3>
+          <div className="grid grid-cols-1 gap-2">
             {statuses.map((status) => {
               const statusCount = programs.filter(p => p.status === status).length;
-              const statusColor = status === 'Completed'
-                ? 'text-green-600'
-                : status === 'In Progress'
-                  ? 'text-blue-600'
-                  : 'text-gray-600';
-              const statusIcon = status === 'Completed'
-                ? '✓'
-                : status === 'In Progress'
-                  ? '◐'
-                  : '○';
+              const isSelected = selectedStatuses.includes(status);
+
+              let activeClass = '';
+              if (status === 'Completed') activeClass = 'bg-green-600 text-white ring-green-600';
+              else if (status === 'In Progress') activeClass = 'bg-blue-600 text-white ring-blue-600';
+              else activeClass = 'bg-gray-600 text-white ring-gray-600';
 
               return (
-                <label key={status} className="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-zinc-100 dark:hover:bg-gray-800 transition-colors">
-                  <input
-                    type="checkbox"
-                    className="h-4 w-4 rounded-md border-zinc-300 text-blue-600 focus:ring-blue-600"
-                    checked={selectedStatuses.includes(status)}
-                    onChange={(e) => onStatusChange(status, e.target.checked)}
-                  />
-                  <span className={`text-base ${statusColor}`}>{statusIcon}</span>
-                  <span className="flex-1 text-sm text-zinc-700 dark:text-gray-300 font-medium">{status}</span>
-                  <span className="text-xs text-zinc-500 dark:text-gray-400 font-semibold">({statusCount})</span>
-                </label>
+                <button
+                  key={status}
+                  onClick={() => onStatusChange(status, !isSelected)}
+                  className={`
+                    flex items-center justify-between px-4 py-3 rounded-xl transition-all font-medium text-sm
+                    ${isSelected
+                      ? activeClass
+                      : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 ring-1 ring-inset ring-gray-200 dark:ring-gray-700'
+                    }
+                  `}
+                >
+                  <span>{status}</span>
+                  <span className={`text-xs ${isSelected ? 'text-white/80' : 'text-gray-400'}`}>
+                    {statusCount}
+                  </span>
+                </button>
               );
             })}
           </div>

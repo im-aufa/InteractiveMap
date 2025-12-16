@@ -21,7 +21,7 @@ const CustomPopup = ({ program }: CustomPopupProps) => {
     <div className="w-56 bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg transition-colors">
       <img src={program.images[0]} alt={program.name} className="h-32 w-full object-cover" />
       <div className="p-3">
-        <h3 className="text-sm font-bold text-zinc-900 dark:text-white leading-tight mb-2 line-clamp-2">
+        <h3 className="text-sm font-bold text-zinc-900 dark:text-white leading-snug mb-2 line-clamp-2">
           {program.name}
         </h3>
         <div className="flex items-center gap-2 mb-3">

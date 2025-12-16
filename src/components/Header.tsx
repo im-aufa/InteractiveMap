@@ -13,6 +13,7 @@ type HeaderProps = {
   onYearChange: (year: number, isChecked: boolean) => void;
   selectedStatuses: string[];
   onStatusChange: (status: string, isChecked: boolean) => void;
+  onResetFilters: () => void;
   searchQuery: string;
   setSearchQuery: (query: string) => void;
 };
@@ -24,6 +25,7 @@ const Header = ({
   onYearChange,
   selectedStatuses,
   onStatusChange,
+  onResetFilters,
   searchQuery,
   setSearchQuery
 }: HeaderProps) => {
@@ -55,9 +57,19 @@ const Header = ({
         <Drawer.Overlay className="fixed inset-0 bg-black/40 dark:bg-black/60 z-[1000]" />
         <Drawer.Content className="fixed bottom-0 left-0 mt-24 flex h-full w-80 flex-col rounded-r-2xl bg-zinc-50 dark:bg-gray-900 z-[1001] shadow-2xl transition-colors">
           <div className="flex items-center justify-between border-b border-zinc-200 dark:border-gray-700 p-4 bg-white dark:bg-gray-800 rounded-tr-2xl transition-colors">
-            <Drawer.Title className="text-xl font-semibold text-zinc-900 dark:text-white">
-              Filters {totalActiveFilters > 0 && <span className="text-blue-600">({totalActiveFilters})</span>}
-            </Drawer.Title>
+            <div className="flex items-center gap-3">
+              <Drawer.Title className="text-xl font-semibold text-zinc-900 dark:text-white">
+                Filters
+              </Drawer.Title>
+              {totalActiveFilters > 0 && (
+                <button
+                  onClick={onResetFilters}
+                  className="text-xs font-bold uppercase tracking-wider text-rose-500 hover:text-rose-600 bg-rose-50 hover:bg-rose-100 dark:bg-rose-500/10 dark:hover:bg-rose-500/20 px-2 py-1 rounded-md transition-colors"
+                >
+                  Reset
+                </button>
+              )}
+            </div>
             <Drawer.Close asChild>
               <button className="rounded-xl p-2 hover:bg-zinc-200 dark:hover:bg-gray-700 transition-colors">
                 <FiX className="h-6 w-6 text-zinc-500 dark:text-gray-300" />

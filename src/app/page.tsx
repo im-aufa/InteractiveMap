@@ -39,6 +39,12 @@ export default function Home() {
     }
   };
 
+  const resetFilters = () => {
+    setSelectedCategories([]);
+    setSelectedYears([]);
+    setSelectedStatuses([]);
+  };
+
   return (
     <MapProvider>
       <main className="relative h-screen w-screen">
@@ -55,6 +61,7 @@ export default function Home() {
           onYearChange={handleYearChange}
           selectedStatuses={selectedStatuses}
           onStatusChange={handleStatusChange}
+          onResetFilters={resetFilters}
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
         />

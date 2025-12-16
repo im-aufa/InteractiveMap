@@ -38,204 +38,79 @@ Program P2M Polibatam saat ini hanya tersedia dalam bentuk **list text-based** d
 
 ---
 
-## 2. DATA STRUCTURE ANALYSIS
+## 2. IMPLEMENTED DATA PIPELINE (LLM-ASSISTED)
 
-### 2.1 Current Data Format (P2M Website)
+> **Status:** ✅ Successfully Implemented & Executed
+> **Output:** `src/data/programs.ts` containing 40+ fully geocoded programs.
 
-Based on analysis of https://p2m.polibatam.ac.id/?page_id=6994 (Tahun 2022):
+We transformed the manual data collection challenge into an automated **ETL (Extract, Transform, Load)** pipeline using Python and Large Language Models (LLM).
 
-**Current Format:**
-```
-Text-based list of publications:
-- Author names
-- Publication title
-- Journal name (with Sinta ranking)
-- Volume and issue numbers
-- Links to publications (PUBLIKASI LUARAN section)
-```
-
-**✨ IMPORTANT DISCOVERY:**
-The **"Publikasi Luaran"** section at the end of each year's page contains links to journal publications. These journals often include:
-- ✅ **Detailed project descriptions** (methodology, implementation)
-- ✅ **Photos of the project** (equipment, activities, results)
-- ✅ **Videos** (some journals include multimedia)
-- ✅ **Location information** (in methodology sections)
-- ✅ **Outcome data** (results, impact, beneficiaries)
-
-**This significantly improves data availability!**
-
-**Updated Data Availability:**
-- ❌ No direct coordinates (still need geocoding)
-- ✅ **Location hints** available in journal papers (can extract village/area names)
-- ✅ **Project details** available in journal abstracts/methodology
-- ✅ **Project leader** available (first author)
-- ✅ **Outcome data** available in results sections
-- ✅ **Multimedia** available in some journal papers (photos, diagrams)
-
-### 2.2 Required Data Structure for Interactive Map
-
-```typescript
-type P2MProgram = {
-  // Basic Information
-  id: string;
-  name: string;
-  description: string;
-  
-  // Geographic Data (CRITICAL - NEEDS MANUAL COLLECTION)
-  location: {
-    lat: number;           // Latitude
-    lng: number;           // Longitude
-    address: string;       // Full address
-    island: string;        // e.g., "Batam", "Bintan", "Karimun"
-    village: string;       // e.g., "Tanjung Uncang", "Sekupang"
-    district: string;      // Kecamatan
-  };
-  
-  // Program Details
-  category: string;        // e.g., "Pendidikan", "Kesehatan", "Teknologi"
-  year: number;           // 2022, 2023, etc.
-  status: 'Planned' | 'In Progress' | 'Completed';
-  
-  // Team Information
-  projectLead: string;    // Ketua pelaksana
-  teamMembers: string[];  // Anggota tim
-  department: string;     // Jurusan
-  
-  // Outcomes
-  outcomes: {
-    description: string;
-    publications?: {
-      title: string;
-      journal: string;
-      url: string;
-      sintaRank?: number;
-    }[];
-    beneficiaries?: number;  // Jumlah penerima manfaat
-    impact?: string;         // Dampak program
-  };
-  
-  // Multimedia
-  images: string[];       // URLs to images
-  videoUrl?: string;      // YouTube embed URL
-  
-  // Links
-  detailsUrl?: string;    // Link to full documentation
-};
-```
-
-### 2.3 Data Gap Analysis
-
-| Required Field | Available in Current Website | Collection Method |
-|---------------|------------------------------|-------------------|
-| Program Name | ✅ Available (from publication titles) | Automated extraction from journal titles |
-| Program Description | ✅ **Available in journals** | Extract from journal abstracts/methodology |
-| Location (Coordinates) | ❌ NOT AVAILABLE | Manual geocoding from location names |
-| Island/Village | ✅ **Often in journals** | Extract from journal methodology sections |
-| Category | ⚠️ Partially (infer from title) | Semi-automated categorization |
-| Project Lead | ✅ Available (first author) | Automated extraction |
-| Team Members | ✅ Available (co-authors) | Automated extraction |
-| Year | ✅ Available | Automated extraction |
-| Publications | ✅ Available | Automated extraction |
-| Images/Videos | ✅ **Some in journals** | Extract from journal PDFs |
-| Outcomes/Impact | ✅ **Available in journals** | Extract from results/conclusion sections |
-
-**Revised Finding:** ~40% of required data can be extracted from journal publications! This significantly reduces manual collection effort.
-
-**✅ IMPLEMENTED STRATEGY (SUCCESS):**
-1. **Source:** Collected 49 PDFs of P2M journal publications (2019-2025).
-2. **Extraction:** Used Python + **OpenAI GPT-3.5-turbo (ChatGPT API)** to extract structured JSON data.
-   - Script: `data-extraction-workspace/scripts/extract_with_chatgpt.py`
-   - Success Rate: 100% (49/49 files)
-3. **Geocoding:** Automated geocoding using `geopy` + custom logic for local islands (Mubut, Rempang, Galang).
-   - Script: `data-extraction-workspace/scripts/geocode_locations.py`
-4. **Integration:** Converted to TypeScript and injected into web app.
-
-**Outcome:** 50+ real programs successfully mapped with actual locations, descriptions, and metadata.
-
----
-
-## 3. DATA COLLECTION STRATEGY
-
-### 3.1 Recommended Approach: Hybrid Manual-Automated
-
-Given the academic context and data availability, a **hybrid approach** is recommended:
-
-#### Phase 1: Automated Data Extraction (20% of work)
-**What can be automated:**
-- Extract program names from publication titles
-- Extract author names (project leads and team members)
-- Extract years
-- Extract publication links and journal information
-
-**Tools:**
-- Web scraping (Python with BeautifulSoup/Scrapy)
-- Manual copy-paste to spreadsheet (simpler for small dataset)
-
-**Estimated Time:** 2-4 hours for all years
-
-#### Phase 2: Manual Data Collection (80% of work)
-**What requires manual work:**
-
-1. **Geographic Data Collection** (CRITICAL)
-   - Research actual program locations
-   - Contact P2M office for program documentation
-   - Interview project leads if possible
-   - Use Google Maps to find coordinates
-   - Verify island/village/district information
-
-2. **Categorization**
-   - Analyze program descriptions
-   - Create category taxonomy
-   - Assign each program to appropriate category
-
-3. **Multimedia Collection**
-   - Request photos from P2M office
-   - Request videos from project leads
-   - Scan documentation for images
-
-4. **Outcome/Impact Data**
-   - Review final reports (if available)
-   - Interview project leads
-   - Survey beneficiaries (if time permits)
-
-**Estimated Time:** 20-40 hours depending on data availability
-
-### 3.2 Data Collection Workflow
+### 2.1 The Pipeline Architecture
 
 ```mermaid
 graph TD
-    A[Start] --> B[Extract Publication Data from Website]
-    B --> C[Create Initial Spreadsheet]
-    C --> D[Contact P2M Office for Documentation]
-    D --> E[Request Program Details & Locations]
-    E --> F{Documentation Available?}
-    F -->|Yes| G[Extract Location & Details]
-    F -->|No| H[Interview Project Leads]
-    G --> I[Geocode Locations]
-    H --> I
-    I --> J[Categorize Programs]
-    J --> K[Collect Multimedia]
-    K --> L[Verify All Data]
-    L --> M[Convert to JSON Format]
-    M --> N[End]
+    A[PDF Journals] -->|PyPDF2| B(Raw Text)
+    B -->|OpenAI GPT-3.5| C(Structured JSON)
+    C -->|Nominatim + Custom Logic| D(Geocoded JSON)
+    D -->|Manual Review| E(Corrected JSON)
+    E -->|Python Script| F[programs.ts]
+    F -->|Import| G[Next.js App]
 ```
 
-### 3.3 Academic Justification for Manual Collection
+### 2.2 Step-by-Step Workflow
 
-**For Your Thesis Methodology Chapter:**
+#### Step 1: Intelligent Extraction (`extract_with_chatgpt.py`)
+Instead of manual copy-pasting, we utilized **OpenAI's GPT-3.5-turbo** to "read" the PDF journals.
+- **Input:** 49 raw PDF files from `data example/`.
+- **Process:** The LLM was prompted to extract specific fields (Title, Category, Location Hints, Outcomes) and output them as strict JSON.
+- **Key Feature:** The prompt specifically aimed to find *where* the service happened (e.g., "Desa Pasir Panjang") rather than the author's address.
 
-> "Data collection for this research employs a **hybrid methodology** combining automated web extraction and manual primary data collection. While program publication data is extracted from the official P2M website (p2m.polibatam.ac.id), **geographic and contextual data requires manual collection** due to the following reasons:
-> 
-> 1. **Data Unavailability:** The current P2M website does not provide geographic coordinates, program locations, or multimedia documentation.
-> 
-> 2. **Data Accuracy:** Manual verification ensures the accuracy and reliability of location data, which is critical for geographic visualization.
-> 
-> 3. **Primary Source Access:** Direct communication with P2M office and project leads provides authentic, first-hand information about program outcomes and impact.
-> 
-> 4. **Academic Rigor:** Manual data collection allows for quality control, verification, and validation of each data point, ensuring scientific objectivity as required by Indonesian academic standards.
-> 
-> This approach aligns with Indonesian thesis standards requiring clear methodology documentation, scientific data collection, and justification of chosen methods."
+#### Step 2: Automated Geocoding (`geocode_locations.py`)
+We built a smart geocoder using `geopy` (Nominatim/OpenStreetMap) with a "fall-through" strategy:
+1.  **Exact Match:** Checks a hardcoded `KNOWN_LOCATIONS` dictionary for common P2M sites (e.g., "Pulau Mubut", "Sembulang", "Politeknik Negeri Batam").
+2.  **Smart Queries:** If no exact match, it constructs queries like `"{Village}, Kepulauan Riau"` to avoid ambiguous results.
+3.  **Fallback:** Defaults to "Batam, Indonesia" if all else fails, to be caught in review.
 
+#### Step 3: Human-in-the-Loop Validation (`corrections.json`)
+Automated geocoding is never 100% perfect. We implemented a correction layer:
+- **Validation:** We reviewed the generated map and identified markers that were off (e.g., "Pulau Jemare" appearing in the wrong ocean).
+- **Correction:** A `corrections.json` file maps specific Program IDs to manually verified Lat/Lng coordinates.
+- **Script:** `apply_json_corrections.py` merges these manual fixes into the automated dataset.
+
+#### Step 4: Code Generation (`json_to_ts.py`)
+the final step converts the validated JSON data into the TypeScript file required by the Next.js app.
+- **Image Assignment:** Automatically assigns high-quality Unsplash images based on the program's `category`.
+- **Clustering Fix:** Adds a tiny random "jitter" (+/- 50m) to coordinates so that programs at the exact same location (e.g., same Village Hall) don't overlap perfectly, allowing the clustering system to handle them.
+- **Output:** Generates `src/data/programs.ts` with strong typing.
+
+### 2.3 Data Structure (Final)
+
+The pipeline produces data matching this TypeScript interface:
+
+```typescript
+export type Program = {
+  id: string;          // e.g., "p2m-2022-031"
+  name: string;
+  category: string;    // One of 10 P2M categories
+  description: string;
+  location: {
+    lat: number;
+    lng: number;
+    address: string;
+  };
+  images: string[];    // Automapped from Unsplash
+  videoUrl?: string;   // Default fallback or extracted
+  detailsUrl: string;  // Link to original journal
+  year: number;
+  status: 'Completed'; // Journals imply completion
+};
+```
+
+---
+
+## 3. MANUAL DATA COLLECTION (LEGACY / FALLBACK)
+
+*This section describes the original manual strategy, kept for reference or efficiently adding single non-journal programs.*
 ---
 
 ## 4. DEPLOYMENT STRATEGIES (WITH & WITHOUT BACKEND)
