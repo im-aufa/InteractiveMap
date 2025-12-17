@@ -2,6 +2,7 @@
 
 > Interactive map visualization for 50+ P2M (Pengabdian Kepada Masyarakat) programs at Politeknik Negeri Batam.
 
+![Project Status](https://img.shields.io/badge/Status-Deployed-success?style=for-the-badge&logo=vercel)
 ![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript)

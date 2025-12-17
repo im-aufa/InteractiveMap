@@ -17,6 +17,13 @@ This section documents architectural decisions and potential technical debt to b
 
 All notable changes to this project will be documented in this file.
 
+## [2.7.0] - 2025-12-16
+
+### 🚀 Deployed
+- **Production Launch**: Successfully deployed the application to **Vercel**.
+- **Live URL**: Application is now accessible on the web.
+- **Verification**: Confirmed mobile responsiveness and map functionality in production environment.
+
 ## [2.6.1] - 2025-12-16
 
 ### Added
