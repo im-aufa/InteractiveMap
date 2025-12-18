@@ -17,6 +17,18 @@ This section documents architectural decisions and potential technical debt to b
 
 All notable changes to this project will be documented in this file.
 
+## [2.8.0] - 2025-12-18
+
+### Added
+- **Splash Screen Feature**:
+  - Implemented a graphical entrance screen that welcomes users.
+  - **Session Persistence**: Logic to ensure it only appears once per browser session.
+  - **Animations**: Smooth fade-in/out transitions using Tailwind CSS.
+- **Interactive Walkthrough Tutorial**:
+  - Integrated `driver.js` to provide a step-by-step tour of the application.
+  - **Guided Steps**: Highlights key features including Filter Menu, Search Bar, Theme Toggle, and Map Controls.
+  - **Direct Access**: Users can launch the tutorial directly from the Splash Screen or dismiss it to explore immediately.
+
 ## [2.7.0] - 2025-12-16
 
 ### 🚀 Deployed

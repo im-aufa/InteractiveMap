@@ -1,8 +1,8 @@
 # P2M Interactive Map - Complete Documentation
 
-> **Version:** 2.4.0  
-> **Tech Stack:** Next.js 16, React 19, TypeScript 5, Tailwind CSS 4, Leaflet 1.9  
-> **Status:** 🚀 Deployed / Production (100% Core Features Complete)
+> **Version:** 2.8.0  
+> **Tech Stack:** Next.js 16, React 19, TypeScript 5, Tailwind CSS 4, Leaflet 1.9, driver.js  
+> **Status:** 🚀 Deployed / Production (100% Core Features Complete + Onboarding)
 
 ---
 
@@ -273,7 +273,24 @@ useEffect(() => {
 }, [filteredPrograms, debouncedSearch]);
 ```
 
-### 3.4 Program Detail Page
+### 3.4 Onboarding System
+n
+**Splash Screen:**
+- **Purpose**: Brand introduction and "first paint" experience.
+- **Behavior**: Appears on new session, dismisses on click or action.
+- **Persistence**: `sessionStorage` avoids annoyance on reload.
+
+**Interactive Tutorial:**
+- **Library**: `driver.js` (lightweight, no external dependencies).
+- **Flow**:
+  1.  **Welcome**: Introduction.
+  2.  **Filter**: Highlights burger menu.
+  3.  **Search**: Highlights search bar.
+  4.  **Theme**: Highlights mode toggle.
+  5.  **Controls**: Highlights zoom buttons.
+- **Trigger**: "Tutorial" button on Splash Screen.
+
+### 3.5 Program Detail Page
 
 **Route:** `/program/[id]`
 

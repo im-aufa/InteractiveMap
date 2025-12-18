@@ -5,6 +5,7 @@ import 'react-leaflet-cluster/dist/assets/MarkerCluster.css';
 import 'react-leaflet-cluster/dist/assets/MarkerCluster.Default.css';
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
+import SplashScreen from "@/components/SplashScreen";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +34,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <ThemeProvider>
+          <SplashScreen />
           {children}
         </ThemeProvider>
       </body>

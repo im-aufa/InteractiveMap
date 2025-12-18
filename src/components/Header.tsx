@@ -40,6 +40,7 @@ const Header = ({
         <div className="flex items-center gap-2">
           <Drawer.Trigger asChild>
             <button
+              id="filter-toggle"
               className="h-10 w-10 flex items-center justify-center rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm transition-all hover:scale-105 relative"
               aria-label="Open filters menu"
             >
@@ -51,7 +52,9 @@ const Header = ({
               )}
             </button>
           </Drawer.Trigger>
-          <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+          <div id="search-container">
+            <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+          </div>
         </div>
       </header>
 

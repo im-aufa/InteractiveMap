@@ -40,6 +40,11 @@
 - Mobile-first approach with touch targets >44px.
 - Adaptive layouts for phones, tablets, and desktops.
 
+### 🎓 Onboarding Experience
+- **Splash Screen**: Engaging welcome screen with smooth entrance animations.
+- **Interactive Tutorial**: Step-by-step guided tour using `driver.js` to help new users learn features (Filters, Search, etc.).
+- **Smart Persistence**: Tutorial and splash screen status memorized for the session.
+
 ## 🚀 Quick Start
 
 ### Prerequisites

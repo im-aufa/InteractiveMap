@@ -27,7 +27,7 @@ const ZoomControl = () => {
   };
 
   return (
-    <div className="flex flex-col gap-2">
+    <div id="zoom-controls" className="flex flex-col gap-2">
       <button
         onClick={handleZoomIn}
         className="h-10 w-10 flex items-center justify-center rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm transition-colors hover:bg-zinc-100 dark:hover:bg-gray-700 active:bg-zinc-200 dark:active:bg-gray-600"
