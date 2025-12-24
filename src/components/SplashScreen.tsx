@@ -43,29 +43,29 @@ export default function SplashScreen() {
 
     return (
         <div
-            className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-zinc-50 dark:bg-zinc-950 transition-all duration-700 ease-in-out ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full"
+            className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center transition-all duration-700 ease-in-out ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full"
                 }`}
         >
-            <div className="relative flex flex-col items-center max-w-2xl px-6 text-center animate-in fade-in zoom-in duration-1000">
-                {/* Decorative background elements */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-500/10 dark:bg-blue-500/20 blur-[100px] rounded-full pointer-events-none" />
+            {/* Backdrop Blur & Overlay */}
+            <div className="absolute inset-0 bg-white/60 dark:bg-black/60 backdrop-blur-xl" />
 
+            <div className="relative flex flex-col items-center max-w-2xl px-6 text-center animate-in fade-in zoom-in duration-1000">
                 {/* Icon */}
-                <div className="relative mb-8 p-6 bg-white dark:bg-zinc-900 rounded-3xl shadow-xl border border-zinc-200 dark:border-zinc-800">
-                    <FaMapMarkedAlt className="w-16 h-16 text-blue-600 dark:text-blue-500" />
+                <div className="relative mb-8 p-6 bg-white/50 dark:bg-black/50 rounded-3xl shadow-xl border border-white/20 dark:border-white/10 backdrop-blur-md">
+                    <FaMapMarkedAlt className="w-16 h-16 text-zinc-900 dark:text-white" />
                 </div>
 
                 {/* Text Content */}
-                <h1 className="relative text-4xl md:text-6xl font-bold tracking-tight text-zinc-900 dark:text-white mb-6">
+                <h1 className="relative text-4xl md:text-6xl font-bold tracking-tight text-zinc-900 dark:text-white mb-6 drop-shadow-sm">
                     P2M Interactive Map
-                    <span className="block text-xl md:text-2xl mt-2 font-medium text-zinc-500 dark:text-zinc-400">
+                    <span className="block text-xl md:text-2xl mt-2 font-medium text-zinc-700 dark:text-zinc-300">
                         Politeknik Negeri Batam
                     </span>
                 </h1>
 
-                <p className="relative text-lg text-zinc-600 dark:text-zinc-300 mb-10 max-w-lg leading-relaxed">
+                <p className="relative text-lg text-zinc-800 dark:text-zinc-200 mb-10 max-w-lg leading-relaxed font-medium">
                     Jelajahi dan temukan berbagai program
-                    <span className="font-semibold text-blue-600 dark:text-blue-400"> Pengabdian Kepada Masyarakat </span>
+                    <span className="font-bold text-zinc-900 dark:text-white"> Pengabdian Kepada Masyarakat </span>
                     yang tersebar di seluruh wilayah.
                 </p>
 
@@ -81,16 +81,16 @@ export default function SplashScreen() {
 
                     <button
                         onClick={handleStartTutorial}
-                        className="relative group flex items-center gap-3 px-8 py-4 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white rounded-full font-semibold text-lg border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+                        className="relative group flex items-center gap-3 px-8 py-4 bg-white/50 dark:bg-black/50 text-zinc-900 dark:text-white rounded-full font-semibold text-lg border border-white/20 dark:border-white/10 backdrop-blur-sm hover:bg-white/80 dark:hover:bg-black/80 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
                     >
                         Tutorial
-                        <FaQuestionCircle className="text-zinc-400 group-hover:text-blue-500 transition-colors" />
+                        <FaQuestionCircle className="text-zinc-700 dark:text-zinc-300 group-hover:text-zinc-900 dark:group-hover:text-white transition-colors" />
                     </button>
                 </div>
             </div>
 
             {/* Footer / Credits */}
-            <div className="absolute bottom-8 text-sm text-zinc-400 dark:text-zinc-500">
+            <div className="absolute bottom-8 text-sm text-zinc-600 dark:text-zinc-400 font-medium">
                 &copy; {new Date().getFullYear()} Pusat Penelitian dan Pengabdian Kepada Masyarakat
             </div>
         </div>

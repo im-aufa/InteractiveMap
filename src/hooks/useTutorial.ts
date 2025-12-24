@@ -7,6 +7,7 @@ export const useTutorial = () => {
             showProgress: true,
             animate: true,
             allowClose: true,
+            stagePadding: 4,
             steps: [
                 {
                     element: "#filter-toggle",
