@@ -62,7 +62,7 @@ export default function ProgramDetailPage() {
       </div>
 
       {/* 2. Navbar */}
-      <nav className="relative z-50 flex items-center justify-between px-4 py-6 md:px-8 max-w-7xl mx-auto">
+      <nav className="relative z-50 flex items-center justify-between px-4 py-6 max-w-7xl mx-auto">
         <Link
           href="/"
           className="group flex items-center gap-2 rounded-full bg-white/70 dark:bg-black/40 px-5 py-2.5 text-sm font-medium shadow-sm backdrop-blur-md border border-white/20 dark:border-white/10 transition-all hover:bg-white dark:hover:bg-black/60 hover:shadow-md hover:scale-[1.02]"
@@ -74,7 +74,7 @@ export default function ProgramDetailPage() {
 
       {/* 3. Main Content Content */}
       <main className="relative z-10 px-4 pb-20 pt-4">
-        <div className="mx-auto max-w-5xl overflow-hidden rounded-[2rem] bg-white/80 dark:bg-gray-900/80 shadow-2xl backdrop-blur-xl border border-white/40 dark:border-gray-700/50ring-1 ring-black/5 dark:ring-white/10">
+        <div className="mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-white/80 dark:bg-gray-900/80 shadow-2xl backdrop-blur-xl border border-white/40 dark:border-gray-700/50 ring-1 ring-black/5 dark:ring-white/10">
 
           {/* Hero Image Section */}
           {/* Hero Image Section */}
@@ -131,7 +131,7 @@ export default function ProgramDetailPage() {
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2 pb-2 border-b border-gray-100 dark:border-gray-800">
                     About the Program
                   </h2>
-                  <div className="prose prose-lg prose-blue dark:prose-invert max-w-none">
+                  <div className="prose prose-lg prose-blue dark:prose-invert max-w-none min-h-[200px]">
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
                       {program.description}
                     </p>
@@ -146,7 +146,7 @@ export default function ProgramDetailPage() {
                     </h2>
                     <div className={`grid gap-4 ${program.images.slice(1).length === 1 ? 'grid-cols-1' : 'grid-cols-2'}`}>
                       {program.images.slice(1).map((img, i) => (
-                        <div key={i} className="relative h-48 rounded-2xl overflow-hidden group shadow-md hover:shadow-xl transition-all">
+                        <div key={i} className="relative h-72 rounded-2xl overflow-hidden group shadow-md hover:shadow-xl transition-all">
                           <Image
                             src={img}
                             alt={`Gallery ${i}`}
@@ -189,9 +189,12 @@ export default function ProgramDetailPage() {
 
                 {/* Video Card */}
                 {program.videoUrl && (
-                  <div className="space-y-3">
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white">Video Highlight</h3>
-                    <div className="rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700 bg-black">
+                  <div className="p-6 rounded-2xl bg-gray-50/80 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700 backdrop-blur-sm shadow-sm space-y-4">
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                      <PlayCircle className="h-5 w-5 text-red-500" />
+                      Video Highlight
+                    </h3>
+                    <div className="rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-black">
                       <div className="relative aspect-video w-full">
                         <iframe
                           src={program.videoUrl}
@@ -207,14 +210,20 @@ export default function ProgramDetailPage() {
                 )}
 
                 {program.detailsUrl && (
-                  <a
-                    href={program.detailsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full py-3 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-xl font-medium transition-colors border border-blue-100 dark:border-blue-900/30"
-                  >
-                    <Info className="h-4 w-4" /> Visit Official Website
-                  </a>
+                  <div className="p-6 rounded-2xl bg-gray-50/80 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700 backdrop-blur-sm shadow-sm space-y-4">
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                      <Info className="h-5 w-5 text-blue-500" />
+                      More Information
+                    </h3>
+                    <a
+                      href={program.detailsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 w-full py-3 text-white bg-blue-600 hover:bg-blue-700 rounded-xl font-medium transition-colors shadow-lg shadow-blue-500/30"
+                    >
+                      Visit Official Website <ExternalLink className="h-4 w-4" />
+                    </a>
+                  </div>
                 )}
               </div>
             </div>

@@ -34,7 +34,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800",
       "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2025,
     "status": "Completed"
@@ -53,7 +53,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800",
       "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2025,
     "status": "Completed"
@@ -72,7 +72,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800",
       "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2025,
     "status": "Completed"
@@ -91,7 +91,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800",
       "https://images.unsplash.com/photo-1584515933487-779824d29309?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2025,
     "status": "Completed"
@@ -110,7 +110,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800",
       "https://images.unsplash.com/photo-1584515933487-779824d29309?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2025,
     "status": "Completed"
@@ -129,7 +129,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800",
       "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2025,
     "status": "Completed"
@@ -148,7 +148,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800",
       "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2022,
     "status": "Completed"
@@ -167,7 +167,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800",
       "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "http://ejurnal.umri.ac.id/index.php/jae",
     "year": 2024,
     "status": "Completed"
@@ -186,7 +186,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800",
       "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2022,
     "status": "Completed"
@@ -205,7 +205,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800",
       "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2019,
     "status": "Completed"
@@ -224,7 +224,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800",
       "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2020,
     "status": "Completed"
@@ -243,7 +243,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800",
       "https://images.unsplash.com/photo-1584515933487-779824d29309?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2019,
     "status": "Completed"
@@ -262,7 +262,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800",
       "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2019,
     "status": "Completed"
@@ -281,7 +281,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800",
       "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2019,
     "status": "Completed"
@@ -300,7 +300,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=800",
       "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2020,
     "status": "Completed"
@@ -319,7 +319,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800",
       "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2020,
     "status": "Completed"
@@ -338,7 +338,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800",
       "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2019,
     "status": "Completed"
@@ -357,7 +357,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800",
       "https://images.unsplash.com/photo-1584515933487-779824d29309?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2020,
     "status": "Completed"
@@ -376,7 +376,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800",
       "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2021,
     "status": "Completed"
@@ -395,7 +395,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800",
       "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2021,
     "status": "Completed"
@@ -414,7 +414,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800",
       "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2021,
     "status": "Completed"
@@ -433,7 +433,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=800",
       "https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2021,
     "status": "Completed"
@@ -452,7 +452,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800",
       "https://images.unsplash.com/photo-1584515933487-779824d29309?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2022,
     "status": "Completed"
@@ -471,7 +471,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800",
       "https://images.unsplash.com/photo-1584515933487-779824d29309?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2021,
     "status": "Completed"
@@ -490,7 +490,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800",
       "https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2019,
     "status": "Completed"
@@ -509,7 +509,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800",
       "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2022,
     "status": "Completed"
@@ -528,7 +528,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800",
       "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2022,
     "status": "Completed"
@@ -547,7 +547,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800",
       "https://images.unsplash.com/photo-1584515933487-779824d29309?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2022,
     "status": "Completed"
@@ -566,7 +566,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800",
       "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2022,
     "status": "Completed"
@@ -585,7 +585,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1542601906990-b4d3fb7d5b43?w=800",
       "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2023,
     "status": "Completed"
@@ -604,7 +604,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1542601906990-b4d3fb7d5b43?w=800",
       "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2022,
     "status": "Completed"
@@ -623,7 +623,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800",
       "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2021,
     "status": "Completed"
@@ -642,7 +642,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800",
       "https://images.unsplash.com/photo-1584515933487-779824d29309?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2022,
     "status": "Completed"
@@ -661,7 +661,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=800",
       "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2019,
     "status": "Completed"
@@ -680,7 +680,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800",
       "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2022,
     "status": "Completed"
@@ -699,7 +699,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800",
       "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2022,
     "status": "Completed"
@@ -718,7 +718,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800",
       "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2022,
     "status": "Completed"
@@ -737,7 +737,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800",
       "https://images.unsplash.com/photo-1625246333195-5819acf42587?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2023,
     "status": "Completed"
@@ -756,7 +756,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800",
       "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2023,
     "status": "Completed"
@@ -775,7 +775,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800",
       "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2022,
     "status": "Completed"
@@ -794,7 +794,7 @@ export const programs: Program[] = [
       "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=800",
       "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=800"
     ],
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "videoUrl": "https://www.youtube.com/embed/LaXoDxyhc_8",
     "detailsUrl": "https://jurnal.polibatam.ac.id",
     "year": 2024,
     "status": "Completed"
