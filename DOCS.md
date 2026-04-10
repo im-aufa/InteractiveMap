@@ -1,8 +1,8 @@
 # P2M Interactive Map - Complete Documentation
 
-> **Version:** 2.8.0  
-> **Tech Stack:** Next.js 16, React 19, TypeScript 5, Tailwind CSS 4, Leaflet 1.9, driver.js  
-> **Status:** 🚀 Deployed / Production (100% Core Features Complete + Onboarding)
+> **Version:** 2.9.0  
+> **Tech Stack:** Next.js 16, React 19, TypeScript 5, Tailwind CSS 4, Leaflet 1.9, driver.js, lottie-react, yet-another-react-lightbox  
+> **Status:** 🚀 Deployed / Production (100% Core Features Complete + Onboarding + Multimedia Enhancements)
 
 ---
 
@@ -119,23 +119,36 @@ interactive-map-app/
 │   │   ├── layout.tsx           # Root layout
 │   │   ├── globals.css          # Global styles + Leaflet overrides
 │   │   └── program/[id]/
-│   │       └── page.tsx         # Dynamic detail page
+│   │       └── page.tsx         # Dynamic detail page (lightbox, related programs)
 │   ├── components/
-│   │   ├── ClientOnlyMap.tsx    # SSR wrapper for map
-│   │   ├── Map.tsx              # Main map component
+│   │   ├── ClientOnlyMap.tsx    # SSR wrapper for map (Lottie loading)
+│   │   ├── Map.tsx              # Main map component (empty state)
 │   │   ├── HoverMarker.tsx      # Marker with hover behavior
-│   │   ├── CustomPopup.tsx      # Popup content
-│   │   ├── Header.tsx           # Search + filter trigger
+│   │   ├── CustomPopup.tsx      # Single marker popup content
+│   │   ├── ClusterPopup.tsx     # Cluster marker popup content
+│   │   ├── Header.tsx           # Search + filter trigger (fixed position)
 │   │   ├── SearchBar.tsx        # Search input
-│   │   ├── FilterMenu.tsx       # Filter checkboxes
-│   │   └── ZoomControl.tsx      # Custom zoom buttons
+│   │   ├── FilterMenu.tsx       # Multimedia filter chips
+│   │   ├── SplashScreen.tsx     # Glassmorphism entrance screen
+│   │   ├── ThemeToggle.tsx      # Dark/light mode toggle
+│   │   ├── ZoomControl.tsx      # Custom zoom + reset buttons
+│   │   └── ui/
+│   │       └── LottiePlayer.tsx # Reusable Lottie animation wrapper
 │   ├── context/
-│   │   └── MapContext.tsx       # Map instance context
+│   │   ├── MapContext.tsx       # Map instance context
+│   │   └── ThemeContext.tsx     # Theme (dark/light) context
 │   ├── data/
-│   │   └── programs.ts          # Static program data (temp)
-│   └── hooks/
-│       └── useDebounce.ts       # Debounce hook
-├── public/                      # Static assets
+│   │   └── programs.ts          # Static program data (50+ programs)
+│   ├── hooks/
+│   │   ├── useDebounce.ts       # Debounce hook
+│   │   ├── useMediaQuery.ts     # Responsive breakpoint detection
+│   │   └── useTutorial.ts       # driver.js tutorial configuration
+│   └── utils/
+│       └── categoryIcons.ts     # Centralized icon/color mappings
+├── public/
+│   └── lottie/                  # Lottie animation JSON assets
+│       ├── loading.json         # Map loading animation
+│       └── empty-state.json     # Empty filter results animation
 ├── package.json                 # Dependencies
 ├── tsconfig.json                # TypeScript config
 ├── tailwind.config.ts           # Tailwind config
@@ -274,20 +287,22 @@ useEffect(() => {
 ```
 
 ### 3.4 Onboarding System
-n
+
 **Splash Screen:**
+- **Design**: Glassmorphism aesthetic with `backdrop-blur-xl` over the map.
+- **Visual Style**: Semi-transparent containers (`bg-white/50 dark:bg-black/50`), neutral monochromatic palette.
 - **Purpose**: Brand introduction and "first paint" experience.
 - **Behavior**: Appears on new session, dismisses on click or action.
 - **Persistence**: `sessionStorage` avoids annoyance on reload.
 
 **Interactive Tutorial:**
 - **Library**: `driver.js` (lightweight, no external dependencies).
+- **Configuration**: `stagePadding: 4` for precise element highlighting.
 - **Flow**:
-  1.  **Welcome**: Introduction.
-  2.  **Filter**: Highlights burger menu.
-  3.  **Search**: Highlights search bar.
-  4.  **Theme**: Highlights mode toggle.
-  5.  **Controls**: Highlights zoom buttons.
+  1.  **Filter**: Highlights burger menu.
+  2.  **Search**: Highlights search bar.
+  3.  **Theme**: Highlights mode toggle.
+  4.  **Controls**: Highlights zoom buttons.
 - **Trigger**: "Tutorial" button on Splash Screen.
 
 ### 3.5 Program Detail Page
@@ -295,29 +310,62 @@ n
 **Route:** `/program/[id]`
 
 **Content Sections:**
-1. **Header:** Program name, back button
-2. **Actions:** "Get Directions" button (Google Maps integration)
-3. **Description:** Full program description
-4. **Gallery:** Responsive image grid (3 → 2 → 1 columns)
-5. **Video:** Embedded YouTube player (16:9 aspect ratio)
-6. **Location:** Mini map with marker
+1. **Navbar:** "Back to Map" button with glassmorphism styling (fixed position)
+2. **Hero Image:** Full-width cover image with gradient overlay
+3. **Title & Metadata:** Name, category badge, year, status, location
+4. **Actions:** "Get Directions" button (Google Maps integration)
+5. **Description:** Full program description (min-height: 200px for consistency)
+6. **Gallery:** Responsive image grid (2 columns) with lightbox support
+7. **Video Card:** Embedded YouTube player with PlayCircle icon and card wrapper
+8. **More Information Card:** Prominent CTA to official website
+9. **Related Programs:** Up to 3 programs from the same category
 
-**Responsive Gallery:**
-```css
-/* Desktop: 3 columns */
-@media (min-width: 1024px) {
-  grid-template-columns: repeat(3, 1fr);
-}
+**Image Lightbox:**
+```typescript
+import Lightbox from 'yet-another-react-lightbox';
+import Zoom from 'yet-another-react-lightbox/plugins/zoom';
 
-/* Tablet: 2 columns */
-@media (min-width: 768px) and (max-width: 1023px) {
-  grid-template-columns: repeat(2, 1fr);
-}
+<Lightbox
+  open={lightboxOpen}
+  close={() => setLightboxOpen(false)}
+  index={lightboxIndex}
+  slides={slides}
+  plugins={[Zoom]}
+  animation={{ zoom: 500 }}
+  zoom={{ maxZoomPixelRatio: 3, scrollToZoom: true }}
+/>
+```
 
-/* Mobile: 1 column */
-@media (max-width: 767px) {
-  grid-template-columns: 1fr;
-}
+**Related Programs:**
+```typescript
+const relatedPrograms = programs
+  .filter(p => p.category === program.category && p.id !== program.id)
+  .slice(0, 3);
+```
+
+### 3.6 Animated States
+
+**Loading State (Map):**
+- Displayed while the map component loads via `next/dynamic`.
+- Uses a Lottie animation (`loading.json`) centered on screen.
+- Respects dark mode with `bg-slate-50 dark:bg-slate-900` background.
+
+**Empty State (Map):**
+- Displayed as an overlay when no programs match the current filters.
+- Uses a Lottie animation (`empty-state.json`) with "No programs found" text.
+- Semi-transparent backdrop blur (`bg-white/50 dark:bg-black/50 backdrop-blur-sm`).
+- `pointer-events-none` ensures the map remains interactable underneath.
+
+**Lottie Player Component:**
+```typescript
+// src/components/ui/LottiePlayer.tsx
+import Lottie from 'lottie-react';
+
+const LottiePlayer = ({ animationData, className, ...props }) => (
+  <div className={className}>
+    <Lottie animationData={animationData} {...props} />
+  </div>
+);
 ```
 
 ---
@@ -818,9 +866,10 @@ const Map = dynamic(() => import('@/components/Map'), {
 **Clustering Settings:**
 ```typescript
 <MarkerClusterGroup
-  maxClusterRadius={50}        // Balance between grouping and detail
+  maxClusterRadius={25}        // Reduced from 50 for less aggressive clustering
   disableClusteringAtZoom={15} // Show individual markers when zoomed in
-  spiderfyOnMaxZoom={true}     // Spread out overlapping markers
+  spiderfyOnMaxZoom={false}    // Disabled; popup list takes precedence
+  zoomToBoundsOnClick={false}  // Disabled; cluster popup shows instead
   chunkedLoading={true}        // Load markers in chunks
 />
 ```
@@ -886,13 +935,15 @@ const Map = dynamic(() => import('@/components/Map'), {
 ## Additional Resources
 
 - **[Data Strategy](./DATA_STRATEGY.md)** - Data collection, processing & deployment
-- **[Changelog](./interactive-map-app/CHANGELOG.md)** - Version history
+- **[Changelog](./CHANGELOG.md)** - Version history
 - **[Next.js Docs](https://nextjs.org/docs)** - Framework documentation
 - **[React-Leaflet Docs](https://react-leaflet.js.org/)** - Map library documentation
+- **[yet-another-react-lightbox](https://yet-another-react-lightbox.com/)** - Lightbox library documentation
+- **[Lottie React](https://lottiereact.com/)** - Lottie animation library
 - **[WCAG Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)** - Accessibility standards
 
 ---
 
-**Last Updated:** December 2024  
-**Version:** 2.1.0  
+**Last Updated:** April 2026  
+**Version:** 2.9.0  
 **Maintained by:** Politeknik Negeri Batam Team

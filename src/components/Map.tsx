@@ -13,6 +13,8 @@ import ClusterPopup from './ClusterPopup'; // Import the ClusterPopup component
 import { categoryIcons, CategoryKey } from '../utils/categoryIcons';
 import { GraduationCap } from 'lucide-react'; // Default fallback icon
 import { useTheme } from '../context/ThemeContext'; // Import theme hook
+import LottiePlayer from './ui/LottiePlayer';
+import emptyStateAnimation from '../../public/lottie/empty-state.json';
 
 // --- Function to create a divIcon for a category ---
 const getIconForCategory = (category: string, theme: 'light' | 'dark') => {
@@ -194,30 +196,40 @@ const Map = ({ selectedCategories, selectedYears, selectedStatuses, searchQuery 
     });
 
   return (
-    <MapContainer
-      center={batamPosition}
-      zoom={11}
-      minZoom={5}
-      maxBounds={indonesiaBounds}
-      maxBoundsViscosity={1.0}
-      zoomControl={false}
-      attributionControl={false}
-      className="h-full w-full bg-zinc-100 dark:bg-gray-900 transition-colors"
-    >
-      <TileLayer
-        url={theme === 'dark'
-          ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-          : "https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-        }
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-      />
+    <div className="relative w-full h-full">
+      <MapContainer
+        center={batamPosition}
+        zoom={11}
+        minZoom={5}
+        maxBounds={indonesiaBounds}
+        maxBoundsViscosity={1.0}
+        zoomControl={false}
+        attributionControl={false}
+        className="h-full w-full bg-zinc-100 dark:bg-gray-900 transition-colors"
+      >
+        <TileLayer
+          url={theme === 'dark'
+            ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+            : "https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+          }
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        />
 
-      {/* Render Clusters with direct event handling */}
-      <ProgramClusters filteredPrograms={filteredPrograms} theme={theme} />
+        {/* Render Clusters with direct event handling */}
+        <ProgramClusters filteredPrograms={filteredPrograms} theme={theme} />
 
-      <MapContextProvider />
-      <MapEvents filteredPrograms={filteredPrograms} searchQuery={searchQuery} />
-    </MapContainer>
+        <MapContextProvider />
+        <MapEvents filteredPrograms={filteredPrograms} searchQuery={searchQuery} />
+      </MapContainer>
+
+      {filteredPrograms.length === 0 && (
+        <div className="absolute inset-0 z-[1000] pointer-events-none flex flex-col items-center justify-center bg-white/50 dark:bg-black/50 backdrop-blur-sm">
+          <LottiePlayer animationData={emptyStateAnimation} className="w-64 h-64" />
+          <p className="text-xl font-bold text-gray-800 dark:text-white mt-4">No programs found</p>
+          <p className="text-gray-600 dark:text-gray-300">Try adjusting your filters</p>
+        </div>
+      )}
+    </div>
   );
 };
 

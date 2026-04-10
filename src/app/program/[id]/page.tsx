@@ -4,14 +4,28 @@ import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { programs } from '../../../data/programs';
 import Link from 'next/link';
-import { ArrowLeft, MapPin, Calendar, Tag, ExternalLink, PlayCircle, Info } from 'lucide-react';
+import { ArrowLeft, MapPin, Calendar, Tag, ExternalLink, PlayCircle, Info, ChevronRight, X } from 'lucide-react';
+import Lightbox from "yet-another-react-lightbox";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/styles.css";
+import React, { useState } from 'react';
 
 export default function ProgramDetailPage() {
   const params = useParams();
   const router = useRouter();
   const programId = params.id as string;
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
 
   const program = programs.find((p) => p.id === programId);
+
+  // Logic for Related Programs
+  const relatedPrograms = programs
+    .filter(p => p.category === program?.category && p.id !== programId)
+    .slice(0, 3);
+
+  // Create slides for lightbox
+  const slides = program?.images.map(src => ({ src })) || [];
 
   if (!program) {
     return (
@@ -80,7 +94,13 @@ export default function ProgramDetailPage() {
           {/* Hero Image Section */}
           <div className="relative h-[300px] md:h-[450px] w-full group overflow-hidden">
             {/* Scalable Container for Image & Gradient */}
-            <div className="absolute inset-0 w-full h-full transition-transform duration-700 group-hover:scale-105">
+            <div
+              className="absolute inset-0 w-full h-full transition-transform duration-700 group-hover:scale-105 cursor-pointer"
+              onClick={() => {
+                setLightboxIndex(0);
+                setLightboxOpen(true);
+              }}
+            >
               {program.images.length > 0 ? (
                 <Image
                   src={program.images[0]}
@@ -146,14 +166,23 @@ export default function ProgramDetailPage() {
                     </h2>
                     <div className={`grid gap-4 ${program.images.slice(1).length === 1 ? 'grid-cols-1' : 'grid-cols-2'}`}>
                       {program.images.slice(1).map((img, i) => (
-                        <div key={i} className="relative h-72 rounded-2xl overflow-hidden group shadow-md hover:shadow-xl transition-all">
+                        <div
+                          key={i}
+                          className="relative h-72 rounded-2xl overflow-hidden group shadow-md hover:shadow-xl transition-all cursor-pointer"
+                          onClick={() => {
+                            setLightboxIndex(i + 1);
+                            setLightboxOpen(true);
+                          }}
+                        >
                           <Image
                             src={img}
                             alt={`Gallery ${i}`}
                             fill
                             className="object-cover transition-transform duration-500 group-hover:scale-110"
                           />
-                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                            <PlayCircle className="text-white opacity-0 group-hover:opacity-100 transition-opacity w-12 h-12" />
+                          </div>
                         </div>
                       ))}
                     </div>
@@ -229,6 +258,62 @@ export default function ProgramDetailPage() {
             </div>
           </div>
 
+          {/* Related Programs Section */}
+          {relatedPrograms.length > 0 && (
+            <div className="border-t border-gray-100 dark:border-gray-800 bg-gray-50/50 dark:bg-black/20 p-6 md:p-10">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                Related Programs
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                {relatedPrograms.map((related) => (
+                  <Link
+                    key={related.id}
+                    href={`/program/${related.id}`}
+                    className="group block bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-gray-100 dark:border-gray-700 hover:-translate-y-1"
+                  >
+                    <div className="relative h-48 w-full overflow-hidden">
+                      <Image
+                        src={related.images[0]}
+                        alt={related.name}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute top-3 right-3">
+                        <span className="px-2 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wide bg-white/90 dark:bg-black/60 backdrop-blur-md text-gray-800 dark:text-gray-200 shadow-sm">
+                          {related.category}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="p-5">
+                      <div className="flex items-center gap-2 mb-2 text-xs font-medium text-gray-500 dark:text-gray-400">
+                        <Calendar className="h-3.5 w-3.5" />
+                        <span>{related.year}</span>
+                      </div>
+                      <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 line-clamp-2 leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                        {related.name}
+                      </h3>
+                      <div className="flex items-center text-blue-600 dark:text-blue-400 text-sm font-medium mt-4">
+                        View Details <ChevronRight className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-1" />
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <Lightbox
+            open={lightboxOpen}
+            close={() => setLightboxOpen(false)}
+            index={lightboxIndex}
+            slides={slides}
+            plugins={[Zoom]}
+            animation={{ zoom: 500 }}
+            zoom={{
+              maxZoomPixelRatio: 3,
+              scrollToZoom: true,
+            }}
+          />
         </div>
       </main>
     </div>

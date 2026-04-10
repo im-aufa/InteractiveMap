@@ -17,6 +17,49 @@ This section documents architectural decisions and potential technical debt to b
 
 All notable changes to this project will be documented in this file.
 
+## [2.9.0] - 2026-04-10
+
+### Added
+- **Image Lightbox**:
+  - Integrated `yet-another-react-lightbox` for full-screen image viewing on the detail page.
+  - Supports pinch-to-zoom, scroll-to-zoom (up to 3x), and smooth 500ms zoom animation.
+  - Gallery images now show a play-circle hover overlay indicating they are clickable.
+- **Lottie Animations**:
+  - Added `lottie-react` dependency and a reusable `LottiePlayer` UI component (`src/components/ui/LottiePlayer.tsx`).
+  - **Loading State**: Replaced the plain text "A map is loading" placeholder in `ClientOnlyMap` with a polished Lottie loading animation.
+  - **Empty State**: When filters return zero results, the map now displays a friendly Lottie empty-state animation with "No programs found" messaging.
+  - Lottie JSON assets stored in `public/lottie/` (loading.json, empty-state.json).
+- **Related Programs Section**:
+  - Added a "Related Programs" section at the bottom of the Program Detail page.
+  - Displays up to 3 programs from the same category (excluding the current program).
+  - Each card features a cover image, category badge, year, hover effects, and a "View Details" link.
+  - Responsive grid layout: 1 column (mobile) → 2 columns (sm) → 3 columns (md+).
+
+### Changed
+- **Map Component**: Wrapped `MapContainer` in a relative `div` to support the absolute-positioned empty state overlay.
+- **ClientOnlyMap**: Updated loading fallback from plain text to Lottie animation with proper dark mode background.
+
+## [2.8.1] - 2026-01-27
+
+### Changed
+- **Splash Screen Glassmorphism Redesign** (2025-12-24):
+  - Replaced opaque background (`bg-zinc-50`/`bg-zinc-950`) with frosted glass effect (`bg-white/60 dark:bg-black/60 backdrop-blur-xl`).
+  - Icon container and buttons now use semi-transparent backgrounds with `backdrop-blur` for visual consistency.
+  - Shifted from blue accent colors to a neutral, monochromatic palette for a cleaner aesthetic.
+  - Improved text contrast and added `drop-shadow-sm` to the heading and `font-medium`/`font-bold` for better readability.
+- **Program Detail Page Improvements**:
+  - Widened main content container from `max-w-5xl` to `max-w-7xl` for better use of screen space.
+  - Increased gallery image height from `h-48` to `h-72` for better visual impact.
+  - Added minimum height (`min-h-[200px]`) to the "About the Program" section for layout consistency.
+  - Redesigned the Video Highlight section with a card wrapper, `PlayCircle` icon, and refined styling.
+  - Redesigned the "Visit Official Website" link into a dedicated "More Information" card with a prominent blue CTA button.
+
+### Fixed
+- **Placeholder Video URLs**: Replaced all rickroll placeholder URLs (`dQw4w9WgXcQ`) across 18+ programs with a relevant video (`LaXoDxyhc_8`).
+- **Header Positioning**: Changed header from `absolute` to `fixed` positioning to prevent it from scrolling out of view.
+- **Tutorial Stage Padding**: Added `stagePadding: 4` to `driver.js` configuration for better visual highlighting.
+- **CSS Class Typo**: Fixed a missing space in the detail page container class (`dark:border-gray-700/50ring-1` → `dark:border-gray-700/50 ring-1`).
+
 ## [2.8.0] - 2025-12-18
 
 ### Added

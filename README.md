@@ -111,7 +111,7 @@ See [DATA_STRATEGY.md](./DATA_STRATEGY.md) for details.
 
 We maintain detailed documentation for development and deployment:
 
-- **[CHANGELOG.md](./CHANGELOG.md)**: Version history (Latest: v2.6.1).
+- **[CHANGELOG.md](./CHANGELOG.md)**: Version history (Latest: v2.9.0).
 - **[DEPLOYMENT.md](./DEPLOYMENT.md)**: Deployment guides (Vercel, Netlify).
 - **[DOCS.md](./DOCS.md)**: Architecture deep dive and roadmap.
 
