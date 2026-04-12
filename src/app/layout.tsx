@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from '@vercel/analytics/next';
 import 'leaflet/dist/leaflet.css';
 import 'react-leaflet-cluster/dist/assets/MarkerCluster.css';
 import 'react-leaflet-cluster/dist/assets/MarkerCluster.Default.css';
@@ -37,6 +38,7 @@ export default function RootLayout({
           <SplashScreen />
           {children}
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
