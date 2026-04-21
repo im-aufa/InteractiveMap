@@ -61,6 +61,7 @@ type MapProps = {
   selectedYears: number[];
   selectedStatuses: string[];
   searchQuery: string;
+  tileMode: 'street' | 'satellite';
 };
 
 // Helper component to handle map events like pan/zoom
@@ -171,10 +172,21 @@ const ProgramClusters = ({ filteredPrograms, theme }: { filteredPrograms: typeof
   );
 };
 
-const Map = ({ selectedCategories, selectedYears, selectedStatuses, searchQuery }: MapProps) => {
+const Map = ({ selectedCategories, selectedYears, selectedStatuses, searchQuery, tileMode }: MapProps) => {
   const { theme } = useTheme();
   const batamPosition: L.LatLngExpression = [0.9640591285588442, 104.2100177997217];
   const indonesiaBounds: L.LatLngBoundsLiteral = [[-11.2085669, 94.7717124], [6.2744496, 141.0194444]];
+
+  // Compute tile URL based on mode and theme
+  const tileUrl = tileMode === 'satellite'
+    ? "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+    : theme === 'dark'
+      ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+      : "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
+
+  const tileAttribution = tileMode === 'satellite'
+    ? '&copy; <a href="https://www.esri.com/">Esri</a> &mdash; Source: Esri, i-cubed, USDA, USGS'
+    : '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
 
   // Combine filters
   const filteredPrograms = programs
@@ -208,11 +220,9 @@ const Map = ({ selectedCategories, selectedYears, selectedStatuses, searchQuery 
         className="h-full w-full bg-zinc-100 dark:bg-gray-900 transition-colors"
       >
         <TileLayer
-          url={theme === 'dark'
-            ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-            : "https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-          }
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+          key={`${tileMode}-${theme}`}
+          url={tileUrl}
+          attribution={tileAttribution}
         />
 
         {/* Render Clusters with direct event handling */}

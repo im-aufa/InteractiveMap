@@ -1,8 +1,8 @@
 # P2M Interactive Map - Complete Documentation
 
-> **Version:** 2.9.0  
+> **Version:** 3.0.0  
 > **Tech Stack:** Next.js 16, React 19, TypeScript 5, Tailwind CSS 4, Leaflet 1.9, driver.js, lottie-react, yet-another-react-lightbox  
-> **Status:** 🚀 Deployed / Production (100% Core Features Complete + Onboarding + Multimedia Enhancements)
+> **Status:** 🚀 Deployed / Production (100% Core Features Complete + Onboarding + Multimedia + UX Polish)
 
 ---
 
@@ -85,24 +85,30 @@ Membangun platform pemetaan interaktif yang mampu memvisualisasikan **50+ progra
 
 ```mermaid
 graph TD
-    A[Main Page - page.tsx] --> B[MapContainer]
-    A --> C[Header with Search & Filter]
-    A --> D[Zoom Controls]
-    
-    B --> E[Tile Layer]
+    A["Main Page - page.tsx"] --> B[MapContainer]
+    A --> C["Header with Search & Filter"]
+    A --> D[ZoomControl]
+    A --> DA[LocateControl]
+    A --> DB[TileLayerToggle]
+    A --> DC[HelpButton]
+    A --> DD[ThemeToggle]
+
+    B --> E["Tile Layer (Street/Satellite)"]
     B --> F[Marker Cluster Group]
     B --> G[Map Context Provider]
-    
+
     F --> H[Hover Markers]
     H --> I[Custom Popups]
-    
-    C --> J[Search Bar]
+
+    C --> J["SearchBar (Autocomplete)"]
     C --> K[Filter Drawer]
-    
+
     K --> L[Category Filters]
     K --> M[Year Filters]
     K --> N[Status Filters]
-    
+
+    DC --> T["useTutorial (driver.js, ID)"] 
+
     I --> O[Detail Page Route]
     O --> P[Image Gallery]
     O --> Q[Video Embed]
@@ -115,23 +121,26 @@ graph TD
 interactive-map-app/
 ├── src/
 │   ├── app/                      # Next.js App Router
-│   │   ├── page.tsx             # Main page with state management
+│   │   ├── page.tsx             # Main page with state + new control wiring
 │   │   ├── layout.tsx           # Root layout
 │   │   ├── globals.css          # Global styles + Leaflet overrides
 │   │   └── program/[id]/
 │   │       └── page.tsx         # Dynamic detail page (lightbox, related programs)
 │   ├── components/
 │   │   ├── ClientOnlyMap.tsx    # SSR wrapper for map (Lottie loading)
-│   │   ├── Map.tsx              # Main map component (empty state)
+│   │   ├── Map.tsx              # Main map + tile layer switching
 │   │   ├── HoverMarker.tsx      # Marker with hover behavior
 │   │   ├── CustomPopup.tsx      # Single marker popup content
 │   │   ├── ClusterPopup.tsx     # Cluster marker popup content
 │   │   ├── Header.tsx           # Search + filter trigger (fixed position)
-│   │   ├── SearchBar.tsx        # Search input
+│   │   ├── SearchBar.tsx        # Search input with autocomplete dropdown  [v3.0]
 │   │   ├── FilterMenu.tsx       # Multimedia filter chips
+│   │   ├── HelpButton.tsx       # Floating "?" button to replay tutorial    [NEW]
+│   │   ├── LocateControl.tsx    # GPS "locate me" button                    [NEW]
+│   │   ├── TileLayerToggle.tsx  # Street/satellite layer switcher           [NEW]
 │   │   ├── SplashScreen.tsx     # Glassmorphism entrance screen
-│   │   ├── ThemeToggle.tsx      # Dark/light mode toggle
-│   │   ├── ZoomControl.tsx      # Custom zoom + reset buttons
+│   │   ├── ThemeToggle.tsx      # Dark/light mode toggle (+ title tooltip)
+│   │   ├── ZoomControl.tsx      # Custom zoom + reset buttons (+ title tooltips)
 │   │   └── ui/
 │   │       └── LottiePlayer.tsx # Reusable Lottie animation wrapper
 │   ├── context/
@@ -142,7 +151,7 @@ interactive-map-app/
 │   ├── hooks/
 │   │   ├── useDebounce.ts       # Debounce hook
 │   │   ├── useMediaQuery.ts     # Responsive breakpoint detection
-│   │   └── useTutorial.ts       # driver.js tutorial configuration
+│   │   └── useTutorial.ts       # driver.js tutorial (ID localized, 6 steps) [v3.0]
 │   └── utils/
 │       └── categoryIcons.ts     # Centralized icon/color mappings
 ├── public/
@@ -271,19 +280,23 @@ programs
 
 **Features:**
 - Debounced input (300ms) using custom `useDebounce` hook
-- Case-insensitive search
-- Searches program names
+- Case-insensitive search across program names
+- **Autocomplete Dropdown** *(v3.0)*: Shows matching programs as you type with name, address, and category badge
+- **Keyboard Navigation**: `ArrowUp`/`ArrowDown` to highlight, `Enter` to select, `Escape` to close
+- Selecting a suggestion fires `onProgramSelect` to instantly `flyTo` the program on the map
 - Auto-pan/zoom to single result using `map.flyTo()`
 
 **Implementation:**
 ```typescript
 const debouncedSearch = useDebounce(searchQuery, 300);
 
-useEffect(() => {
-  if (filteredPrograms.length === 1) {
-    map.flyTo([program.location.lat, program.location.lng], 15);
-  }
-}, [filteredPrograms, debouncedSearch]);
+// Autocomplete dropdown items
+const suggestions = programs.filter(p =>
+  p.name.toLowerCase().includes(debouncedSearch.toLowerCase())
+);
+
+// On suggestion select
+onProgramSelect(program); // parent flies map to program location
 ```
 
 ### 3.4 Onboarding System
@@ -295,15 +308,17 @@ useEffect(() => {
 - **Behavior**: Appears on new session, dismisses on click or action.
 - **Persistence**: `sessionStorage` avoids annoyance on reload.
 
-**Interactive Tutorial:**
+**Interactive Tutorial (v3.0 — 6 Steps, Bahasa Indonesia):**
 - **Library**: `driver.js` (lightweight, no external dependencies).
 - **Configuration**: `stagePadding: 4` for precise element highlighting.
-- **Flow**:
-  1.  **Filter**: Highlights burger menu.
-  2.  **Search**: Highlights search bar.
-  3.  **Theme**: Highlights mode toggle.
-  4.  **Controls**: Highlights zoom buttons.
-- **Trigger**: "Tutorial" button on Splash Screen.
+- **Flow** *(all text in Bahasa Indonesia)*:
+  1.  **Filter Program** (`#filter-toggle`): filter berdasarkan Kategori, Tahun, atau Status.
+  2.  **Cari Program** (`#search-container`): ketik nama program, pilih dari saran dropdown.
+  3.  **Mode Tampilan** (`#theme-toggle`): beralih antara Gelap dan Terang.
+  4.  **Kontrol Peta** (`#zoom-controls`): zoom, GPS, dan layer satelit.
+  5.  **Marker & Cluster** *(floating popover)*: cara klik marker dan cluster.
+  6.  **Butuh Bantuan?** (`#help-button`): cara membuka ulang tutorial ini.
+- **Trigger**: "Tutorial" button on Splash Screen OR the persistent `HelpButton`.
 
 ### 3.5 Program Detail Page
 

@@ -12,8 +12,8 @@ export const useTutorial = () => {
                 {
                     element: "#filter-toggle",
                     popover: {
-                        title: "Filters",
-                        description: "Filter programs by Category, Year, or Status using this menu.",
+                        title: "Filter Program",
+                        description: "Filter program berdasarkan Kategori, Tahun, atau Status menggunakan menu ini.",
                         side: "bottom",
                         align: "start",
                     },
@@ -21,8 +21,8 @@ export const useTutorial = () => {
                 {
                     element: "#search-container",
                     popover: {
-                        title: "Search",
-                        description: "Find specific programs by typing keywords here.",
+                        title: "Cari Program",
+                        description: "Ketik nama program untuk mencari. Pilih dari daftar saran yang muncul untuk langsung menuju lokasi program.",
                         side: "bottom",
                         align: "start",
                     },
@@ -30,8 +30,8 @@ export const useTutorial = () => {
                 {
                     element: "#theme-toggle",
                     popover: {
-                        title: "Theme Information",
-                        description: "Switch between Dark and Light mode for better visibility.",
+                        title: "Mode Tampilan",
+                        description: "Beralih antara mode Gelap dan Terang untuk kenyamanan tampilan.",
                         side: "left",
                         align: "start",
                     },
@@ -39,9 +39,24 @@ export const useTutorial = () => {
                 {
                     element: "#zoom-controls",
                     popover: {
-                        title: "Map Controls",
-                        description: "Zoom in, zoom out, or reset the map view here.",
+                        title: "Kontrol Peta",
+                        description: "Perbesar, perkecil, atau reset tampilan peta. Gunakan tombol GPS untuk menemukan lokasi Anda, dan tombol layer untuk beralih ke tampilan satelit.",
                         side: "left",
+                        align: "start",
+                    },
+                },
+                {
+                    popover: {
+                        title: "Marker & Cluster",
+                        description: "Klik ikon marker di peta untuk melihat detail program. Jika beberapa program berdekatan, mereka akan dikelompokkan dalam cluster — klik cluster untuk memperbesar atau melihat daftar program.",
+                    },
+                },
+                {
+                    element: "#help-button",
+                    popover: {
+                        title: "Butuh Bantuan?",
+                        description: "Klik tombol ini kapan saja untuk membuka tutorial ini kembali.",
+                        side: "top",
                         align: "start",
                     },
                 },

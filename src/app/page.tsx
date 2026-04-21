@@ -1,18 +1,26 @@
 'use client';
 
+import { useContext, useCallback } from 'react';
 import ClientOnlyMap from './../components/ClientOnlyMap';
 import Header from './../components/Header';
-import { MapProvider } from './../context/MapContext';
+import { MapProvider, MapContext } from './../context/MapContext';
 import ZoomControl from './../components/ZoomControl';
+import LocateControl from './../components/LocateControl';
+import TileLayerToggle from './../components/TileLayerToggle';
 import ThemeToggle from './../components/ThemeToggle';
+import HelpButton from './../components/HelpButton';
 import { useState } from 'react';
 import { useDebounce } from '../hooks/useDebounce';
+import { Program } from '../data/programs';
 
-export default function Home() {
+// Inner component that has access to MapContext
+function HomeContent() {
+  const { map } = useContext(MapContext)!;
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedYears, setSelectedYears] = useState<number[]>([]);
   const [selectedStatuses, setSelectedStatuses] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [tileMode, setTileMode] = useState<'street' | 'satellite'>('street');
   const debouncedSearchQuery = useDebounce(searchQuery, 300);
 
   const handleCategoryChange = (category: string, isChecked: boolean) => {
@@ -45,31 +53,54 @@ export default function Home() {
     setSelectedStatuses([]);
   };
 
+  const handleProgramSelect = useCallback((program: Program) => {
+    if (map) {
+      map.flyTo([program.location.lat, program.location.lng], 16, {
+        duration: 1.5,
+      });
+    }
+  }, [map]);
+
+  const toggleTileMode = () => {
+    setTileMode(prev => prev === 'street' ? 'satellite' : 'street');
+  };
+
+  return (
+    <main className="relative h-screen w-screen">
+      <ClientOnlyMap
+        selectedCategories={selectedCategories}
+        selectedYears={selectedYears}
+        selectedStatuses={selectedStatuses}
+        searchQuery={debouncedSearchQuery}
+        tileMode={tileMode}
+      />
+      <Header
+        selectedCategories={selectedCategories}
+        onCategoryChange={handleCategoryChange}
+        selectedYears={selectedYears}
+        onYearChange={handleYearChange}
+        selectedStatuses={selectedStatuses}
+        onStatusChange={handleStatusChange}
+        onResetFilters={resetFilters}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        onProgramSelect={handleProgramSelect}
+      />
+      <ThemeToggle />
+      <div className="fixed bottom-4 right-4 z-[1000] flex flex-col gap-2 max-h-[calc(100vh-8rem)] max-h-[calc(100dvh-8rem)]">
+        <TileLayerToggle tileMode={tileMode} onToggle={toggleTileMode} />
+        <LocateControl />
+        <ZoomControl />
+      </div>
+      <HelpButton />
+    </main>
+  );
+}
+
+export default function Home() {
   return (
     <MapProvider>
-      <main className="relative h-screen w-screen">
-        <ClientOnlyMap
-          selectedCategories={selectedCategories}
-          selectedYears={selectedYears}
-          selectedStatuses={selectedStatuses}
-          searchQuery={debouncedSearchQuery}
-        />
-        <Header
-          selectedCategories={selectedCategories}
-          onCategoryChange={handleCategoryChange}
-          selectedYears={selectedYears}
-          onYearChange={handleYearChange}
-          selectedStatuses={selectedStatuses}
-          onStatusChange={handleStatusChange}
-          onResetFilters={resetFilters}
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-        />
-        <ThemeToggle />
-        <div className="absolute bottom-4 right-4 z-[1000]">
-          <ZoomControl />
-        </div>
-      </main>
+      <HomeContent />
     </MapProvider>
   );
 }

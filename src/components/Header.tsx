@@ -2,6 +2,7 @@
 'use client';
 
 import SearchBar from './SearchBar';
+import { Program } from '../data/programs';
 import FilterMenu from './FilterMenu';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { Drawer } from 'vaul';
@@ -17,6 +18,7 @@ type HeaderProps = {
   onResetFilters: () => void;
   searchQuery: string;
   setSearchQuery: (query: string) => void;
+  onProgramSelect?: (program: Program) => void;
 };
 
 const Header = ({
@@ -28,7 +30,8 @@ const Header = ({
   onStatusChange,
   onResetFilters,
   searchQuery,
-  setSearchQuery
+  setSearchQuery,
+  onProgramSelect
 }: HeaderProps) => {
   const isDesktop = useMediaQuery('(min-width: 768px)');
   const totalActiveFilters = selectedCategories.length + selectedYears.length + selectedStatuses.length;
@@ -53,7 +56,7 @@ const Header = ({
             </button>
           </Drawer.Trigger>
           <div id="search-container">
-            <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+            <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} onProgramSelect={onProgramSelect} />
           </div>
         </div>
       </header>

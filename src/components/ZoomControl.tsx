@@ -32,6 +32,7 @@ const ZoomControl = () => {
         onClick={handleZoomIn}
         className="h-10 w-10 flex items-center justify-center rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm transition-colors hover:bg-zinc-100 dark:hover:bg-gray-700 active:bg-zinc-200 dark:active:bg-gray-600"
         aria-label="Zoom in"
+        title="Zoom in"
       >
         <FiPlus className="h-5 w-5 text-zinc-500 dark:text-gray-300" />
       </button>
@@ -39,6 +40,7 @@ const ZoomControl = () => {
         onClick={handleZoomOut}
         className="h-10 w-10 flex items-center justify-center rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm transition-colors hover:bg-zinc-100 dark:hover:bg-gray-700 active:bg-zinc-200 dark:active:bg-gray-600"
         aria-label="Zoom out"
+        title="Zoom out"
       >
         <FiMinus className="h-5 w-5 text-zinc-500 dark:text-gray-300" />
       </button>
@@ -46,6 +48,7 @@ const ZoomControl = () => {
         onClick={handleResetView}
         className="h-10 w-10 flex items-center justify-center rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm transition-colors hover:bg-zinc-100 dark:hover:bg-gray-700 active:bg-zinc-200 dark:active:bg-gray-600"
         aria-label="Reset view"
+        title="Reset view"
       >
         <FiMaximize className="h-5 w-5 text-zinc-500 dark:text-gray-300" />
       </button>

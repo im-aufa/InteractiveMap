@@ -17,6 +17,45 @@ This section documents architectural decisions and potential technical debt to b
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0] - 2026-04-21
+
+### Added
+- **HelpButton Component** (`src/components/HelpButton.tsx`):
+  - New floating action button (`#help-button`) fixed to the bottom-left of the map.
+  - Allows users to re-launch the guided tutorial at any time without reloading.
+  - Styled consistently with other map controls (rounded, dark-mode aware, shadow).
+- **LocateControl Component** (`src/components/LocateControl.tsx`):
+  - New GPS "locate me" button integrated into the map controls panel.
+  - Uses the browser Geolocation API to fly the map to the user's current position.
+  - Shows a loading spinner while acquiring location; handles permission errors gracefully.
+- **TileLayerToggle Component** (`src/components/TileLayerToggle.tsx`):
+  - New layer-switcher button that toggles the base map between **Street** and **Satellite** views.
+  - Visually highlights in blue when satellite mode is active.
+  - Uses `FiLayers` icon from `react-icons`; fully dark-mode aware.
+
+### Changed
+- **SearchBar** (`src/components/SearchBar.tsx`) — Major Enhancement:
+  - Added a **keyboard-navigable autocomplete dropdown** that appears as the user types.
+  - Dropdown items show program name, address, and a category color badge.
+  - Supports `ArrowUp`/`ArrowDown` navigation and `Enter` to select, `Escape` to close.
+  - Selecting a suggestion fires `onProgramSelect` to pan/zoom the map directly to that program.
+- **Tutorial (`src/hooks/useTutorial.ts`) — Localization & Expansion**:
+  - All popover titles and descriptions **translated to Bahasa Indonesia**.
+  - Step 1 (Filter): "Filter Program" — filter berdasarkan Kategori, Tahun, atau Status.
+  - Step 2 (Search): "Cari Program" — hints user to select from dropdown suggestion list.
+  - Step 3 (Theme): "Mode Tampilan" — gelap/terang.
+  - Step 4 (Zoom/Controls): "Kontrol Peta" — now also mentions GPS and satellite layer buttons.
+  - **Step 5 (NEW)**: "Marker & Cluster" — floating popover explaining marker clicks and cluster behavior.
+  - **Step 6 (NEW)**: "Butuh Bantuan?" — highlights the new `#help-button` to close the loop.
+- **ZoomControl** (`src/components/ZoomControl.tsx`):
+  - Added `title` tooltip attributes to Zoom In, Zoom Out, and Reset View buttons for improved accessibility and hover discoverability.
+- **ThemeToggle** (`src/components/ThemeToggle.tsx`):
+  - Added dynamic `title` tooltip ("Switch to dark mode" / "Switch to light mode") matching the current theme state.
+- **page.tsx**: Updated to wire up new `LocateControl`, `TileLayerToggle`, and `HelpButton` components with appropriate state/props.
+- **Map.tsx**: Updated to integrate `TileLayerToggle` tile source switching logic.
+- **Header.tsx**: Minor layout/prop adjustments to accommodate updated search bar API.
+- **ClientOnlyMap.tsx**: Minor update to pass through new props to `Map` component.
+
 ## [2.9.0] - 2026-04-10
 
 ### Added

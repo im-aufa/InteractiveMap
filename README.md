@@ -27,6 +27,8 @@
   - **Single**: Glassmorphism cards with details.
   - **Cluster**: Scrollable lists for grouped locations.
 - **Smart Controls**: "Reset View" button to instantly focus on Batam.
+- **GPS Locate** *(v3.0)*: "Locate Me" button flies the map to the user's current GPS position.
+- **Satellite/Street Toggle** *(v3.0)*: Switch base map layer between street and satellite views with one click.
 
 ### 🔍 Advanced Filtering & Search
 - **Responsive Drawer System**:
@@ -35,6 +37,7 @@
 - **Multi-Criteria Filter**: Filter by **Category** (10 P2M domains), **Year**, and **Status**.
 - **Visual Feedback**: Category-specific colors and icons (e.g., Education = Blue/Cap, Health = Red/Heart).
 - **Real-time Search**: Instant name-based search with auto-pan functionality.
+- **Autocomplete Dropdown** *(v3.0)*: Keyboard-navigable suggestion list with program name, address, and category badge.
 
 ### 📱 Responsive Design
 - Mobile-first approach with touch targets >44px.
@@ -42,7 +45,8 @@
 
 ### 🎓 Onboarding Experience
 - **Splash Screen**: Engaging welcome screen with smooth entrance animations.
-- **Interactive Tutorial**: Step-by-step guided tour using `driver.js` to help new users learn features (Filters, Search, etc.).
+- **Interactive Tutorial** *(v3.0 — 6 Steps, Bahasa Indonesia)*: Step-by-step guided tour covering Filters, Search (with autocomplete hint), Theme, Map Controls (GPS + Satellite), Markers/Clusters, and the Help button.
+- **Help Button** *(v3.0)*: Persistent floating `?` button lets users replay the tutorial at any time.
 - **Smart Persistence**: Tutorial and splash screen status memorized for the session.
 
 ## 🚀 Quick Start
@@ -111,7 +115,7 @@ See [DATA_STRATEGY.md](./DATA_STRATEGY.md) for details.
 
 We maintain detailed documentation for development and deployment:
 
-- **[CHANGELOG.md](./CHANGELOG.md)**: Version history (Latest: v2.9.0).
+- **[CHANGELOG.md](./CHANGELOG.md)**: Version history (Latest: v3.0.0).
 - **[DEPLOYMENT.md](./DEPLOYMENT.md)**: Deployment guides (Vercel, Netlify).
 - **[DOCS.md](./DOCS.md)**: Architecture deep dive and roadmap.
 

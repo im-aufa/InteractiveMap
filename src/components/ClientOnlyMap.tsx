@@ -21,14 +21,16 @@ type ClientOnlyMapProps = {
   selectedYears: number[];
   selectedStatuses: string[];
   searchQuery: string;
+  tileMode: 'street' | 'satellite';
 };
 
-const ClientOnlyMap = ({ selectedCategories, selectedYears, selectedStatuses, searchQuery }: ClientOnlyMapProps) => {
+const ClientOnlyMap = ({ selectedCategories, selectedYears, selectedStatuses, searchQuery, tileMode }: ClientOnlyMapProps) => {
   return <Map
     selectedCategories={selectedCategories}
     selectedYears={selectedYears}
     selectedStatuses={selectedStatuses}
     searchQuery={searchQuery}
+    tileMode={tileMode}
   />;
 };
 
