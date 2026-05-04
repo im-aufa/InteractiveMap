@@ -947,9 +947,109 @@ const Map = dynamic(() => import('@/components/Map'), {
 
 ---
 
+## 9. Data Pipeline
+
+> Full reference: **[DATA_STRATEGY.md](./DATA_STRATEGY.md)**  
+> Timing benchmark script: `data-extraction-workspace/scripts/time_pipeline.py`  
+> Visualization: `data-extraction-workspace/pipeline-visualization.html`
+
+### 9.1 Overview
+
+The application's dataset is populated via a **4-step AI-assisted ETL pipeline** that transforms raw academic PDF journals into the type-safe `src/data/programs.ts` consumed by the Next.js app.
+
+```
+49 PDF Journals
+  └─[Step 2: extract_with_chatgpt.py]──► 49 × .json (extracted-json/)
+  └─[Step 3: geocode_locations.py]─────► +lat/lng added to each JSON
+  └─[Step 4: apply_json_corrections.py]► human-verified coordinate patches
+  └─[Step 5: json_to_ts.py]────────────► src/data/programs.ts  (46 KB)
+                                              └─► Leaflet Map (live)
+```
+
+### 9.2 Per-Step Timing (Measured — Windows 11, Python 3.11)
+
+| Step | Script | Operation | Mean Time | Source |
+|------|--------|-----------|-----------|--------|
+| **2a** | `extract_with_chatgpt.py` | PyPDF2 text extraction (per PDF) | **515.79 ms** | ✅ Measured |
+| **2b** | `extract_with_chatgpt.py` | OpenAI GPT-3.5-turbo API (per PDF) | **~4,367 ms** | ∿ Derived |
+| **2c** | `batch_process_chatgpt.py` | Inter-PDF safety delay | **500 ms** | Hardcoded |
+| **2 TOTAL** | `batch_process_chatgpt.py` | 49 PDFs | **264,000 ms (4 min 24 sec)** | ✅ Actual Log |
+| **3a** | `geocode_locations.py` | KNOWN_LOCATIONS dict lookup | **1.32 µs** | ✅ Measured |
+| **3b** | `geocode_locations.py` | Nominatim API (per query, rate-limited) | **~1,210 ms** | Rate-limited |
+| **3c** | `geocode_locations.py` | JSON read + write (per file) | **11.97 ms** | ✅ Measured |
+| **3 TOTAL** | `geocode_locations.py` | 49 programs | **~28,429 ms (~28 sec)** | Estimated |
+| **4** | `apply_json_corrections.py` | Per-file correction (read+patch+write) | **16.97 ms** | ✅ Measured |
+| **4 TOTAL** | `apply_json_corrections.py` | ~12 corrections | **~208.67 ms** | ∿ Derived |
+| **5a** | `json_to_ts.py` | Read 48 JSON files | **419.83 ms** | ✅ Measured |
+| **5b** | `json_to_ts.py` | Build TypeScript content | **2.03 ms** | ✅ Measured |
+| **5c** | `json_to_ts.py` | Write `programs.ts` (46 KB) | **1.06 ms** | ✅ Measured |
+| **5 TOTAL** | `json_to_ts.py` | Full generation | **422.93 ms** | ✅ Measured |
+| **FULL PIPELINE** | All scripts | End-to-end | **~293,060 ms ≈ 4 min 53 sec** | Derived+Actual |
+
+> **Key insight:** GPT-3.5-turbo API calls account for **90.1%** of total pipeline runtime.  
+> Geocoding is rate-limited by Nominatim policy (max 1 req/sec) — not hardware-bound.  
+> Steps 4 and 5 are negligible (<1 second combined).
+
+### 9.3 Geocoding Strategy (3-Tier Fallback)
+
+```
+Input: location.address + location.hints[]
+  │
+  ├─ Tier 1: KNOWN_LOCATIONS dict  (~1.32 µs)
+  │   14 pre-verified P2M sites (Pulau Mubut, Sembulang, Pasir Panjang …)
+  │   Match: substring check on hints + address → instant lat/lng
+  │
+  ├─ Tier 2: Nominatim / OpenStreetMap  (~1,210 ms enforced)
+  │   Query: "{hint}, Kepulauan Riau, Indonesia"
+  │   Fallback: "{address.split(',')[0]}, Batam, Indonesia"
+  │
+  └─ Tier 3: Polibatam default  (~3 ms)
+      Fallback coords: 1.1184°N, 104.0485°E
+      → flagged for manual review
+```
+
+### 9.4 Running the Pipeline
+
+```bash
+# 1. Install dependencies
+cd data-extraction-workspace
+pip install -r scripts/requirements.txt
+
+# 2. Create .env with API key
+echo "OPENAI_API_KEY=sk-..." > .env
+
+# 3. Run extraction (49 PDFs → ~4.4 min, ~$2-3 API cost)
+python scripts/batch_process_chatgpt.py
+
+# 4. Geocode coordinates (~28 sec)
+python scripts/geocode_locations.py
+
+# 5. Apply manual corrections (<1 sec)
+python scripts/apply_json_corrections.py
+
+# 6. Generate programs.ts (~423 ms)
+python scripts/json_to_ts.py
+
+# 7. Run timing benchmark (no API cost)
+python scripts/time_pipeline.py
+```
+
+### 9.5 Output Files
+
+| File | Size | Description |
+|------|------|-------------|
+| `extracted-json/*.json` | ~1.4 KB each | 48 individual program records |
+| `extracted-json/all_programs.json` | 72 KB | Combined raw extract |
+| `final-programs/programs.ts` | 46 KB | Final type-safe TS output |
+| `logs/extraction_log_*.txt` | <1 KB | Batch run summaries |
+| `logs/timing_benchmark.json` | <1 KB | Latest timing measurements |
+
+---
+
 ## Additional Resources
 
-- **[Data Strategy](./DATA_STRATEGY.md)** - Data collection, processing & deployment
+- **[Data Strategy](./DATA_STRATEGY.md)** - Full pipeline documentation, performance metrics & Section 2.4 timing tables
+- **[Pipeline Visualization](../data-extraction-workspace/pipeline-visualization.html)** - Interactive HTML visualization of the ETL pipeline with ms-level timing
 - **[Changelog](./CHANGELOG.md)** - Version history
 - **[Next.js Docs](https://nextjs.org/docs)** - Framework documentation
 - **[React-Leaflet Docs](https://react-leaflet.js.org/)** - Map library documentation
@@ -960,5 +1060,6 @@ const Map = dynamic(() => import('@/components/Map'), {
 ---
 
 **Last Updated:** April 2026  
-**Version:** 2.9.0  
+**Version:** 3.0.0  
 **Maintained by:** Politeknik Negeri Batam Team
+

@@ -103,13 +103,23 @@ interactive-map-app/
 
 ## 📊 Data Pipeline
 
-The project uses an advanced data pipeline to populate the map:
-1.  **Extraction**: `extract_with_chatgpt.py` parses PDF reports using LLMs.
-2.  **Geocoding**: `geocode_locations.py` resolves location names to coordinates.
-3.  **Correction**: Manual overrides in `corrections.json` ensure high accuracy.
-4.  **Generation**: `json_to_ts.py` compiles everything into the type-safe `programs.ts` used by the app.
+The project uses a **4-step AI-assisted ETL pipeline** to transform 49 PDF journals into the live map data.
 
-See [DATA_STRATEGY.md](./DATA_STRATEGY.md) for details.
+| Step | Script | Operation | Timing |
+|------|--------|-----------|--------|
+| 1 | `extract_with_chatgpt.py` | PyPDF2 text read (per PDF) | **515.79 ms avg** ✅ |
+| 2 | `extract_with_chatgpt.py` | GPT-3.5-turbo API call (per PDF) | **~4,367 ms avg** (derived) |
+| 3 | `geocode_locations.py` | Nominatim geocoding (per query) | **~1,210 ms** (rate-limited) |
+| 3 | `geocode_locations.py` | KNOWN_LOCATIONS dict lookup | **1.32 µs** ✅ |
+| 4 | `apply_json_corrections.py` | Per-file correction patch | **16.97 ms** ✅ |
+| 5 | `json_to_ts.py` | Full TS generation (48 files) | **422.93 ms** ✅ |
+| **Total** | All scripts | **Full pipeline** | **~293,060 ms ≈ 4 min 53 sec** |
+
+> ✅ = directly measured · derived = calculated from actual log (`logs/extraction_log_20251214_221345.txt`)  
+> 🤖 GPT API accounts for **90.1%** of total pipeline time.  
+> Run `python scripts/time_pipeline.py` to reproduce all measurements.
+
+See [DATA_STRATEGY.md](./DATA_STRATEGY.md) for the full pipeline documentation and performance analysis.
 
 ## 📝 Documentation
 

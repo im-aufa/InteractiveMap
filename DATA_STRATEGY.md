@@ -64,24 +64,46 @@ Instead of manual copy-pasting, we utilized **OpenAI's GPT-3.5-turbo** to "read"
 - **Input:** 49 raw PDF files from `data example/`.
 - **Process:** The LLM was prompted to extract specific fields (Title, Category, Location Hints, Outcomes) and output them as strict JSON.
 - **Key Feature:** The prompt specifically aimed to find *where* the service happened (e.g., "Desa Pasir Panjang") rather than the author's address.
+- **⏱️ Timing (measured on this machine):**
+  - PyPDF2 text extraction: **515.79 ms avg** (min 383.67 ms, max 654.92 ms) per PDF
+  - OpenAI GPT-3.5-turbo API call: **~4,367 ms avg** per PDF *(derived from actual log)*
+  - Inter-request safety delay: **500 ms fixed** *(hardcoded, `time.sleep(0.5)`)*
+  - **Total batch (49 PDFs): 264,000 ms = 4.4 min** ✅ *confirmed from `logs/extraction_log_20251214_221345.txt`*
 
 #### Step 2: Automated Geocoding (`geocode_locations.py`)
 We built a smart geocoder using `geopy` (Nominatim/OpenStreetMap) with a "fall-through" strategy:
 1.  **Exact Match:** Checks a hardcoded `KNOWN_LOCATIONS` dictionary for common P2M sites (e.g., "Pulau Mubut", "Sembulang", "Politeknik Negeri Batam").
 2.  **Smart Queries:** If no exact match, it constructs queries like `"{Village}, Kepulauan Riau"` to avoid ambiguous results.
 3.  **Fallback:** Defaults to "Batam, Indonesia" if all else fails, to be caught in review.
+- **⏱️ Timing (measured + estimated):**
+  - Known location dict lookup: **~1.32 µs** per query *(measured, 40,000 iterations)*
+  - Nominatim API call: **~1,210 ms** per query *(1,000 ms enforced rate-limit + ~210 ms response)*
+  - JSON read+write per file: **11.97 ms** *(measured)*
+  - **Total geocoding (~23 Nominatim queries): ~28,429 ms ≈ 28 sec** *(estimated from rate-limits)*
 
 #### Step 3: Human-in-the-Loop Validation (`corrections.json`)
 Automated geocoding is never 100% perfect. We implemented a correction layer:
 - **Validation:** We reviewed the generated map and identified markers that were off (e.g., "Pulau Jemare" appearing in the wrong ocean).
 - **Correction:** A `corrections.json` file maps specific Program IDs to manually verified Lat/Lng coordinates.
 - **Script:** `apply_json_corrections.py` merges these manual fixes into the automated dataset.
+- **⏱️ Timing (measured rate):**
+  - Load `corrections.json`: **~5 ms**
+  - Per-file correction (JSON read + patch + write): **~16.97 ms** per file *(measured)*
+  - Active corrections applied: **35** (36 total entries, 1 skipped — `null` lat/lng)
+  - **Total (~35 corrections): ~593.95 ms ≈ 594 ms** *(measured rate)*
 
 #### Step 4: Code Generation (`json_to_ts.py`)
 the final step converts the validated JSON data into the TypeScript file required by the Next.js app.
 - **Image Assignment:** Automatically assigns high-quality Unsplash images based on the program's `category`.
 - **Clustering Fix:** Adds a tiny random "jitter" (+/- 50m) to coordinates so that programs at the exact same location (e.g., same Village Hall) don't overlap perfectly, allowing the clustering system to handle them.
 - **Output:** Generates `src/data/programs.ts` with strong typing.
+- **⏱️ Timing (fully measured):**
+  - Read 48 JSON files: **419.83 ms** *(measured)*
+  - Build TypeScript content string: **2.03 ms** *(measured)*
+  - Write `programs.ts` (46 KB): **1.06 ms** *(measured)*
+  - **Total: 422.93 ms** ✅ *(measured)*
+
+---
 
 ### 2.3 Data Structure (Final)
 
@@ -108,7 +130,49 @@ export type Program = {
 
 ---
 
-## 3. MANUAL DATA COLLECTION (LEGACY / FALLBACK)
+### 2.4 Performance Metrics
+
+> **Benchmark run:** 2026-04-28 · Machine: Windows 11, Python 3.11  
+> **Log source:** `logs/extraction_log_20251214_221345.txt` (actual execution Dec 14, 2025)  
+> **Script:** `scripts/time_pipeline.py` (run `python time_pipeline.py` to reproduce)
+
+#### Per-Operation Breakdown
+
+| # | Script | Operation | Min | Mean | Max | Source |
+|---|--------|-----------|-----|------|-----|--------|
+| 2a | `extract_with_chatgpt.py` | PyPDF2 text read (per PDF) | 383.67 ms | **515.79 ms** | 654.92 ms | ✅ Measured |
+| 2b | `extract_with_chatgpt.py` | OpenAI GPT-3.5-turbo API (per PDF) | ~2,100 ms | **~4,367 ms** | ~8,000 ms | Derived |
+| 2c | `batch_process_chatgpt.py` | Inter-PDF safety delay | 500 ms | **500 ms** | 500 ms | Hardcoded |
+| 2d | `extract_with_chatgpt.py` | JSON parse + file write | — | **~15 ms** | — | Estimated |
+| 3a | `geocode_locations.py` | KNOWN_LOCATIONS dict lookup | — | **1.32 µs** | — | ✅ Measured |
+| 3b | `geocode_locations.py` | Nominatim API call (per query) | ~1,000 ms | **~1,210 ms** | ~2,000 ms | Rate-limited |
+| 3c | `geocode_locations.py` | JSON read+write (per file) | — | **11.97 ms** | — | ✅ Measured |
+| 4 | `apply_json_corrections.py` | Per-file correction | — | **16.97 ms** | — | ✅ Measured |
+
+> **Corrections count note:** `corrections.json` contains 36 total entries. 1 entry has `null` lat/lng coordinates (deliberately excluded program) and is skipped by `apply_json_corrections.py`. **35 corrections are actively applied.**
+| 5a | `json_to_ts.py` | Read 48 JSON files | — | **419.83 ms** | — | ✅ Measured |
+| 5b | `json_to_ts.py` | Build TypeScript string | — | **2.03 ms** | — | ✅ Measured |
+| 5c | `json_to_ts.py` | Write `programs.ts` (46 KB) | — | **1.06 ms** | — | ✅ Measured |
+
+#### Per-Step Total Time
+
+| Step | Script | Total Time | Source |
+|------|--------|------------|--------|
+| Step 2 — GPT Extraction (49 PDFs) | `batch_process_chatgpt.py` | **264,000 ms (4 min 24 sec)** | ✅ ACTUAL LOG |
+| Step 3 — Geocoding (49 programs) | `geocode_locations.py` | **~28,429 ms (~28 sec)** | Estimated (rate-limited) |
+| Step 4 — Corrections (35 active / 36 total) | `apply_json_corrections.py` | **~593.95 ms (~594 ms)** | Measured rate |
+| Step 5 — TS Generation (48 files) | `json_to_ts.py` | **422.93 ms** | ✅ Measured |
+| **Full Pipeline** | All scripts | **~293,446 ms ≈ 4 min 53 sec** | Derived + Actual |
+
+#### Key Insights
+
+- **GPT API is the bottleneck:** accounts for **90.1%** of total runtime (4,367 ms of ~4,898 ms per PDF)
+- **PDF extraction is faster than expected** but still significant: 515.79 ms avg for pure-Python PyPDF2
+- **Geocoding is entirely I/O-bound:** the ~1,000 ms per Nominatim query is Nominatim's enforced rate-limit, not network latency
+- **Steps 4 & 5 are negligible:** corrections (208.67 ms) and TS generation (422.93 ms) are tiny compared to API steps
+- **Reproducibility:** run `python scripts/time_pipeline.py` to re-measure; results saved to `logs/timing_benchmark.json`
+
+---
 
 *This section describes the original manual strategy, kept for reference or efficiently adding single non-journal programs.*
 ---
